@@ -7,14 +7,15 @@
 
 #pragma once
 
-#include <frc/commands/Subsystem.h>
+#include <frc/commands/Command.h>
 
-class ExampleSubsystem : public frc::Subsystem {
+class SetIntake : public frc::Command {
  public:
-  ExampleSubsystem();
-  void InitDefaultCommand() override;
+  explicit SetElevatorSetpoint(double setpoint);
+  void Initialize() override;
+  bool IsFinished() override;
+  void Interrupted() override;
 
  private:
-  // It's desirable that everything possible under private except
-  // for methods that implement subsystem capabilities
+  double m_setpoint;
 };

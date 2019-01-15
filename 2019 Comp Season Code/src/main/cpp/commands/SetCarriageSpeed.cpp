@@ -30,12 +30,7 @@ void SetCarriageSpeed::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void SetCarriageSpeed::Execute() {
-    if (&Robot::m_oi.GetGamepad()->GetTriggerAxis(1) > 0.05) {
-        Robot::m_carriage.SetMotors(&Robot::m_oi.GetGamepad()->GetTriggerAxis(1));
-    }
-    if (&Robot::m_oi.GetGamepad()->GetTriggerAxis(0) > 0.05) {
-        Robot::m_carriage.SetMotors(-1 * &Robot::m_oi.GetGamepad()->GetTriggerAxis(0));
-    }
+    Robot::m_carriage.SetMotors(Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand));
 }
 
 // Make this return true when this Command no longer needs to run execute()

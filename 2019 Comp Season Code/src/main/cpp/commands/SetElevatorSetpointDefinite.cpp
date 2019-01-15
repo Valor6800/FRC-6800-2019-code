@@ -5,31 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/IntakeTeleop.h"
+#include "commands/SetElevatorSetpointDefinite.h"
 
 #include "Robot.h"
 
-IntakeTeleop::IntakeTeleop() {
-  // Use Requires() here to declare subsystem dependencies
-  Requires(&Robot::m_intake);
+SetElevatorSetpointDefinite::SetElevatorSetpointDefinite(double setpoint) {
+  m_setpoint = setpoint;
+  Requires(&Robot::m_elevator);
+  SetInterruptible(true);
 }
 
 // Called just before this Command runs the first time
-void IntakeTeleop::Initialize() {}
-
-// Called repeatedly when this Command is scheduled to run
-void IntakeTeleop::Execute() {
-    if (Robot::m_oi.GetGamepad()->GetBButton()) {
-        Robot::m_intake.SetWheelMotor(0.5);
-    }
+void SetElevatorSetpointDefinite::Initialize() {
+  Robot::m_elevator.Enable();
+  Robot::m_elevator.SetSetpoint(m_setpoint);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool IntakeTeleop::IsFinished() { return false; }
+bool SetElevatorSetpointDefinite::IsFinished() { return Robot::m_elevator.OnTarget(); }
 
-// Called once after isFinished returns true
-void IntakeTeleop::End() {}
+void SetElevatorSetpointDefinite::Interrupted() { Robot::m_elevator.Disable(); }
 
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void IntakeTeleop::Interrupted() {}
+

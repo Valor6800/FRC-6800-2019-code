@@ -5,16 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "subsystems/ExampleSubsystem.h"
+#pragma once
 
-#include "RobotMap.h"
+#include <frc/AnalogInput.h>
+#include <frc/Compressor.h>
+#include <frc/commands/Subsystem.h>
 
-ExampleSubsystem::ExampleSubsystem() : frc::Subsystem("ExampleSubsystem") {}
+/**
+ * The Pneumatics subsystem contains the compressor and a pressure sensor.
+ *
+ * NOTE: The simulator currently doesn't support the compressor or pressure
+ * sensors.
+ */
+class Pneumatics : public frc::Subsystem {
+ public:
 
-void ExampleSubsystem::InitDefaultCommand() {
-  // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
-}
+  Pneumatics();
+  void Start();
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+ private:
+
+  frc::Compressor m_compressor;
+
+};

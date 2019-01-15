@@ -7,19 +7,20 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
+#include <frc/commands/ConditionalCommand.h>
 
 /**
  * Moves the  Elevator to a given height. This command finishes when it is within
  * the tolerance, but leaves the PID loop running to maintain the position.
  * Other commands using the Elevator should make sure they disable PID!
  */
-class SetElevatorSetpoint : public frc::Command {
+class SetElevatorSetpoint : public frc::ConditionalCommand {
  public:
-  explicit SetElevatorSetpoint(double setpoint);
+  explicit SetElevatorSetpoint(Command* hatchCommand, Command* cargoCommand);
   void Initialize() override;
   bool IsFinished() override;
   void Interrupted() override;
+  bool Condition() override;
 
  private:
   double m_setpoint;

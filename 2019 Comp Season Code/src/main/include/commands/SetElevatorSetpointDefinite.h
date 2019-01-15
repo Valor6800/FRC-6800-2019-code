@@ -9,12 +9,18 @@
 
 #include <frc/commands/Command.h>
 
-class ExampleCommand : public frc::Command {
+/**
+ * Moves the  Elevator to a given height. This command finishes when it is within
+ * the tolerance, but leaves the PID loop running to maintain the position.
+ * Other commands using the Elevator should make sure they disable PID!
+ */
+class SetElevatorSetpointDefinite : public frc::Command {
  public:
-  ExampleCommand();
+  explicit SetElevatorSetpointDefinite(double setpoint);
   void Initialize() override;
-  void Execute() override;
   bool IsFinished() override;
-  void End() override;
   void Interrupted() override;
+
+ private:
+  double m_setpoint;
 };

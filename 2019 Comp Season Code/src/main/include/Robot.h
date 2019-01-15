@@ -16,6 +16,7 @@
 #include "subsystems/Drivetrain.h"
 #include "subsystems/Elevator.h"
 #include "subsystems/Intake.h"
+#include "subsystems/Pneumatics.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -25,6 +26,7 @@ class Robot : public frc::TimedRobot {
   static Elevator m_elevator;
   static Intake m_intake;
   static OI m_oi;
+  static Pneumatics m_pneumatics;
 
  private:
   frc::Command* m_autonomousCommand = nullptr;

@@ -5,16 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "subsystems/Pneumatics.h"
 
-#include <frc/commands/Command.h>
-
-class IntakeTeleop : public frc::Command {
- public:
-  IntakeTeleop();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
-};
+Pneumatics::Pneumatics() : frc::Subsystem("Pneumatics") {}
+void Pneumatics::Start() { m_compressor.Start(); }

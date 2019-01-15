@@ -9,21 +9,21 @@
 
 #include "Robot.h"
 
-SetElevatorSetpoint::SetElevatorSetpoint(double setpoint) {
-  m_setpoint = setpoint;
+SetElevatorSetpoint::SetElevatorSetpoint(Command * hatchCommand, Command * cargoCommand) {
   Requires(&Robot::m_elevator);
   SetInterruptible(true);
 }
 
 // Called just before this Command runs the first time
-void SetElevatorSetpoint::Initialize() {
-  Robot::m_elevator.Enable();
-  Robot::m_elevator.SetSetpoint(m_setpoint);
-}
+void SetElevatorSetpoint::Initialize() {}
 
 // Make this return true when this Command no longer needs to run execute()
 bool SetElevatorSetpoint::IsFinished() { return Robot::m_elevator.OnTarget(); }
 
 void SetElevatorSetpoint::Interrupted() { Robot::m_elevator.Disable(); }
+
+bool SetElevatorSetpoint::Condition() {
+  return Robot::m_oi.GetGamepad().GetStartButton();
+}
 
 

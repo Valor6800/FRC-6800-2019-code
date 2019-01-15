@@ -15,6 +15,7 @@ Carriage Robot::m_carriage;
 Drivetrain Robot::m_drivetrain;
 Elevator Robot::m_elevator;
 Intake Robot::m_intake;
+Pneumatics Robot::m_pneumatics;
 
 void Robot::RobotInit() {
   

@@ -5,27 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/MyAutoCommand.h"
+#include "commands/SetIntakePivot.h"
 
 #include "Robot.h"
 
-MyAutoCommand::MyAutoCommand() {
-  // Use Requires() here to declare subsystem dependencies
-  Requires(&Robot::m_subsystem);
+SetIntakePivot::SetIntakePivot() {
+  Requires(&Robot::m_intake);
+  if (m_isDown == NULL) {
+      m_isDown = false;
+  } else {
+      m_isDown = !m_isDown;
+  }
+  SetInterruptible(true);
 }
 
 // Called just before this Command runs the first time
-void MyAutoCommand::Initialize() {}
-
-// Called repeatedly when this Command is scheduled to run
-void MyAutoCommand::Execute() {}
+void SetIntakePivot::Initialize() {
+  Robot::m_intake.Enable();
+  Robot::m_intake.SetPivot(m_isDown ? 1.0 : 0.0); // change values
+}
 
 // Make this return true when this Command no longer needs to run execute()
-bool MyAutoCommand::IsFinished() { return false; }
+bool SetIntakePivot::IsFinished() { return Robot::m_intake.OnTarget(); }
 
-// Called once after isFinished returns true
-void MyAutoCommand::End() {}
-
-// Called when another command which requires one or more of the same
-// subsystems is scheduled to run
-void MyAutoCommand::Interrupted() {}
+void SetIntakePivot::Interrupted() { Robot::m_intake.Disable(); }

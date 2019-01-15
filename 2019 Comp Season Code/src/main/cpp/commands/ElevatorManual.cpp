@@ -15,10 +15,11 @@ ElevatorManual::ElevatorManual() { Requires(&Robot::m_elevator); }
 void ElevatorManual::Execute() {
   auto& gamepad = Robot::m_oi.GetGamepad();
   Robot::m_elevator.SetLiftSpeed(gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) > .05 ? gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) : 0);
+  SetInterruptible(false);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ElevatorManual::IsFinished() { return false; }
 
 // Called once after isFinished returns true
-void ElevatorManual::End() { Robot::m_elevator.Stop();
+void ElevatorManual::End() { Robot::m_elevator.SetLiftSpeed(0); }

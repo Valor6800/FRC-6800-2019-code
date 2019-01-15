@@ -9,12 +9,15 @@
 
 #include <frc/commands/Command.h>
 
-class MyAutoCommand : public frc::Command {
+class SetIntakePivot : public frc::Command {
  public:
-  MyAutoCommand();
+  explicit SetIntakePivot();
   void Initialize() override;
-  void Execute() override;
   bool IsFinished() override;
-  void End() override;
   void Interrupted() override;
+
+private:
+  static bool m_isDown;
 };
+
+

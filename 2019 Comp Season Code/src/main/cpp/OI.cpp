@@ -9,7 +9,13 @@
 
 OI::OI() {
   // Process operator interface input here.
-  gamepad.GetBButtonPressed(new SetElevatorSetpoint(Elevator::kLevelOneHatch));
+
+  m_bumperR.ToggleWhenPressed(new SetIntakePivot());
+
+  m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
+  m_b.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelOneHatch), new SetElevatorSetpointDefinite(Elevator::kLevelOneCargo)));
+  m_x.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelTwoHatch), new SetElevatorSetpointDefinite(Elevator::kLevelTwoCargo)));
+  m_y.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelThreeHatch), new SetElevatorSetpointDefinite(Elevator::kLevelThreeCargo)));
 
   //pedal = new Button(3);
 }
