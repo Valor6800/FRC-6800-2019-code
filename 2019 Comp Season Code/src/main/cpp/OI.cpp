@@ -7,8 +7,26 @@
 
 #include "OI.h"
 
-#include <frc/WPILib.h>
-
 OI::OI() {
   // Process operator interface input here.
+
+
+
+  //pedal = new Button(3);
+}
+
+frc::Joystick& OI::GetLeftJoyDrive() {
+  return leftJoyDrive;
+}
+
+frc::Joystick& OI::GetRightJoyDrive() {
+  return rightJoyDrive;
+}
+
+frc::XboxController& OI::GetGamepad() {
+  return gamepad;
+}
+
+frc::JoystickButton& OI::GetShifter() {
+  return shifter;
 }

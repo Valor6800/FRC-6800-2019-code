@@ -7,28 +7,19 @@
 
 #pragma once
 
-#include <frc/WPILib.h>
-#include <frc/XboxController.h>
-#include <frc/Joystick.h>
-#include <frc/buttons/Button.h>
+#include <frc/commands/Command.h>
 
-class OI {
- private:
-  frc::Joystick leftJoyDrive{1};
-  frc::Joystick rightJoyDrive{2};
-
-  frc::XboxController gamepad{0};
-
-  frc::Joystick button{3};
+/**
+ * Moves the  Elevator to a given height. This command finishes when it is within
+ * the tolerance, but leaves the PID loop running to maintain the position.
+ * Other commands using the Elevator should make sure they disable PID!
+ */
+class SetElevatorSetpoint : public frc::Command {
  public:
-  frc::Joystick& GetLeftJoyDrive();
-  frc::Joystick& GetRightJoyDrive();
-  frc::XboxController& GetGamepad();
-  frc::JoystickButton& GetShifter();
+  explicit SetElevatorSetpoint(double setpoint);
+  void Initialize() override;
+  bool IsFinished() override;
 
-  frc::JoystickButton shifter{&button, 0};
-
-  //Button *pedal;
-  OI();
+ private:
+  double m_setpoint;
 };
-

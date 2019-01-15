@@ -10,62 +10,31 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-ExampleSubsystem Robot::m_subsystem;
-OI Robot::m_oi;
+
+Carriage Robot::m_carriage;
+Drivetrain Robot::m_drivetrain;
+Elevator Robot::m_elevator;
+Intake Robot::m_intake;
 
 void Robot::RobotInit() {
-  m_chooser.SetDefaultOption("Default Auto", &m_defaultAuto);
-  m_chooser.AddOption("My Auto", &m_myAuto);
-  frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+  
+  // instantiate the command used for the autonomous period
+  // m_autoChooser.SetDefaultOption("Drive and Shoot", &m_driveAndShootAuto);
+  // m_autoChooser.AddOption("Drive Forward", &m_driveForwardAuto);
+  frc::SmartDashboard::PutData("Auto Mode", &m_autoChooser);
+
+  // pneumatics.Start();  // Pressurize the pneumatics.
 }
 
-/**
- * This function is called every robot packet, no matter the mode. Use
- * this for items like diagnostics that you want ran during disabled,
- * autonomous, teleoperated and test.
- *
- * <p> This runs after the mode specific periodic functions, but before
- * LiveWindow and SmartDashboard integrated updating.
- */
-void Robot::RobotPeriodic() {}
-
-/**
- * This function is called once each time the robot enters Disabled mode. You
- * can use it to reset any subsystem information you want to clear when the
- * robot is disabled.
- */
-void Robot::DisabledInit() {}
-
-void Robot::DisabledPeriodic() { frc::Scheduler::GetInstance()->Run(); }
-
-/**
- * This autonomous (along with the chooser code above) shows how to select
- * between different autonomous modes using the dashboard. The sendable chooser
- * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
- * remove all of the chooser code and uncomment the GetString code to get the
- * auto name from the text box below the Gyro.
- *
- * You can add additional auto modes by adding additional commands to the
- * chooser code above (like the commented example) or additional comparisons to
- * the if-else structure below with additional strings & commands.
- */
 void Robot::AutonomousInit() {
-  // std::string autoSelected = frc::SmartDashboard::GetString(
-  //     "Auto Selector", "Default");
-  // if (autoSelected == "My Auto") {
-  //   m_autonomousCommand = &m_myAuto;
-  // } else {
-  //   m_autonomousCommand = &m_defaultAuto;
-  // }
-
-  m_autonomousCommand = m_chooser.GetSelected();
-
-  if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Start();
-  }
+  m_autonomousCommand = m_autoChooser.GetSelected();
+  m_autonomousCommand->Start();
 }
 
-void Robot::AutonomousPeriodic() { frc::Scheduler::GetInstance()->Run(); }
+void Robot::AutonomousPeriodic() {
+  frc::Scheduler::GetInstance()->Run();
+  Log();
+}
 
 void Robot::TeleopInit() {
   // This makes sure that the autonomous stops running when
@@ -74,13 +43,33 @@ void Robot::TeleopInit() {
   // this line or comment it out.
   if (m_autonomousCommand != nullptr) {
     m_autonomousCommand->Cancel();
-    m_autonomousCommand = nullptr;
   }
+  // std::cout << "Starting Teleop" << std::endl;
 }
 
-void Robot::TeleopPeriodic() { frc::Scheduler::GetInstance()->Run(); }
+void Robot::TeleopPeriodic() {
+  frc::Scheduler::GetInstance()->Run();
+  Log();
+}
 
 void Robot::TestPeriodic() {}
+
+void Robot::DisabledInit() { // shooter.Unlatch(); 
+}
+
+void Robot::DisabledPeriodic() { Log(); }
+
+/**
+ * Log interesting values to the SmartDashboard.
+ */
+void Robot::Log() {
+  // Robot::pneumatics.WritePressure();
+  // frc::SmartDashboard::PutNumber("Pivot Pot Value", pivot.GetAngle());
+  frc::SmartDashboard::PutNumber("Left Distance",
+                                 m_drivetrain.GetLeftEncoder().GetDistance());
+  frc::SmartDashboard::PutNumber("Right Distance",
+                                 m_drivetrain.GetRightEncoder().GetDistance());
+}
 
 #ifndef RUNNING_FRC_TESTS
 int main() { return frc::StartRobot<Robot>(); }

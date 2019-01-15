@@ -8,7 +8,7 @@
 #include "subsystems/DriveTrain.h"
 #include <cmath>
 
-DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
+Drivetrain::Drivetrain() : frc::Subsystem("Drivetrain") {
 //   AddChild("Front Left CIM", m_frontLeftCIM);
 //   AddChild("Front Right CIM", m_frontRightCIM);
 //   AddChild("Back Left CIM", m_backLeftCIM);
@@ -32,16 +32,18 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 
 }
 
-void DriveTrain::InitDefaultCommand() {
+void Drivetrain::InitDefaultCommand() {
 //   SetDefaultCommand(new DriveWithJoystick());
 }
 
-void DriveTrain::TankDrive(double leftAxis, double rightAxis) {
+void Drivetrain::TankDrive(double leftAxis, double rightAxis) {
   m_robotDrive.TankDrive(leftAxis, rightAxis);
 }
 
-void DriveTrain::Stop() { m_robotDrive.TankDrive(0.0, 0.0); }
+void Drivetrain::Stop() { m_robotDrive.TankDrive(0.0, 0.0); }
 
-frc::Encoder& DriveTrain::GetLeftEncoder() { return m_leftEncoder; }
+void Drivetrain::SetShifter(bool pedal) {m_shifter.Get();}
 
-frc::Encoder& DriveTrain::GetRightEncoder() { return m_rightEncoder; }
+frc::Encoder& Drivetrain::GetLeftEncoder() { return m_leftEncoder; }
+
+frc::Encoder& Drivetrain::GetRightEncoder() { return m_rightEncoder; }

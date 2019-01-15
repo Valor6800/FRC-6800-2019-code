@@ -23,14 +23,15 @@ class Joystick;
  * The DriveTrain subsystem controls the robot's chassis and reads in
  * information about it's speed and position.
  */
-class DriveTrain : public frc::Subsystem
+class Drivetrain : public frc::Subsystem
 {
 public:
-  DriveTrain();
+  Drivetrain();
 
   void InitDefaultCommand();
   void TankDrive(double leftAxis, double rightAxis);
   void Stop();
+  void SetShifter(bool pedal);
 
   frc::Encoder& GetLeftEncoder();
   frc::Encoder& GetRightEncoder();    

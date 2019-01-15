@@ -54,7 +54,7 @@ class Elevator : public frc::PIDSubsystem {
   frc::PWMVictorSPX m_liftMotorB{5};
   frc::PWMVictorSPX m_liftMotorC{6};
   frc::PWMVictorSPX m_liftMotorD{7};
-  
+
   frc::SpeedControllerGroup m_liftMotors{m_liftMotorA, m_liftMotorB, m_liftMotorC, m_liftMotorD};
   
 };

@@ -7,28 +7,14 @@
 
 #pragma once
 
-#include <frc/WPILib.h>
-#include <frc/XboxController.h>
-#include <frc/Joystick.h>
-#include <frc/buttons/Button.h>
+#include <frc/commands/Command.h>
 
-class OI {
- private:
-  frc::Joystick leftJoyDrive{1};
-  frc::Joystick rightJoyDrive{2};
-
-  frc::XboxController gamepad{0};
-
-  frc::Joystick button{3};
+class IntakeTeleop : public frc::Command {
  public:
-  frc::Joystick& GetLeftJoyDrive();
-  frc::Joystick& GetRightJoyDrive();
-  frc::XboxController& GetGamepad();
-  frc::JoystickButton& GetShifter();
-
-  frc::JoystickButton shifter{&button, 0};
-
-  //Button *pedal;
-  OI();
+  IntakeTeleop();
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
 };
-
