@@ -12,6 +12,7 @@
 SetElevatorSetpoint::SetElevatorSetpoint(double setpoint) {
   m_setpoint = setpoint;
   Requires(&Robot::m_elevator);
+  SetInterruptible(true);
 }
 
 // Called just before this Command runs the first time
@@ -22,3 +23,7 @@ void SetElevatorSetpoint::Initialize() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool SetElevatorSetpoint::IsFinished() { return Robot::m_elevator.OnTarget(); }
+
+void SetElevatorSetpoint::Interrupted() { Robot::m_elevator.Disable(); }
+
+

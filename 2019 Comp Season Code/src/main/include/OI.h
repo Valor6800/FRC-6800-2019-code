@@ -14,12 +14,12 @@
 
 class OI {
  private:
-  frc::Joystick leftJoyDrive{1};
-  frc::Joystick rightJoyDrive{2};
+  frc::Joystick m_leftJoyDrive{1};
+  frc::Joystick m_rightJoyDrive{2};
 
-  frc::XboxController gamepad{0};
+  frc::XboxController m_gamepad{0};
 
-  frc::Joystick button{3};
+  frc::Joystick m_button{3};
  public:
   frc::Joystick& GetLeftJoyDrive();
   frc::Joystick& GetRightJoyDrive();

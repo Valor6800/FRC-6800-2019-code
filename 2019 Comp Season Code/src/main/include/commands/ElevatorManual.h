@@ -5,27 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "OI.h"
+#pragma once
 
-OI::OI() {
-  // Process operator interface input here.
-  gamepad.GetBButtonPressed(new SetElevatorSetpoint(Elevator::kLevelOneHatch));
+#include <frc/commands/Command.h>
 
-  //pedal = new Button(3);
-}
-
-frc::Joystick& OI::GetLeftJoyDrive() {
-  return m_leftJoyDrive;
-}
-
-frc::Joystick& OI::GetRightJoyDrive() {
-  return m_rightJoyDrive;
-}
-
-frc::XboxController& OI::GetGamepad() {
-  return m_gamepad;
-}
-
-frc::JoystickButton& OI::GetShifter() {
-  return shifter;
-}
+/**
+ * This command allows PS3 joystick to drive the robot. It is always running
+ * except when interrupted by another command.
+ */
+class ElevatorManual : public frc::Command {
+ public:
+  ElevatorManual();
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+};

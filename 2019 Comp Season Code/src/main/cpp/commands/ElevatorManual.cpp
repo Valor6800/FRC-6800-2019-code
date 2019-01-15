@@ -21,4 +21,4 @@ void ElevatorManual::Execute() {
 bool ElevatorManual::IsFinished() { return false; }
 
 // Called once after isFinished returns true
-void ElevatorManual::End() { Robot::m_drivetrain.Stop(); }
+void ElevatorManual::End() { Robot::m_elevator.Stop();
