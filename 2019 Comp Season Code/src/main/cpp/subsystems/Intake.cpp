@@ -11,6 +11,8 @@
 
 Intake::Intake() : frc::PIDSubsystem("Intake", 7.0, 0.0, 8.0) {
     pivotDown = false;
+    SetAbsoluteTolerance(0.01);
+    GetPIDController()->SetContinuous(false);
 }
 
 void Intake::InitDefaultCommand() {

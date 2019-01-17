@@ -13,6 +13,7 @@
 #include <frc/drive/DifferentialDrive.h>
 #include <rev/SparkMax.h>
 #include <frc/Solenoid.h>
+#include "commands/DriveWithJoystick.h"
 
 namespace frc
 {
@@ -34,20 +35,21 @@ public:
   void SetShifter(bool pedal);
 
   frc::Encoder& GetLeftEncoder();
-  frc::Encoder& GetRightEncoder(); 
-  
-private:
+  frc::Encoder& GetRightEncoder();
+  frc::DifferentialDrive m_robotDrive{m_leftDrive, m_rightDrive}; 
   rev::SparkMax m_driveMotorLeftA{0};
   rev::SparkMax m_driveMotorLeftB{1};
   rev::SparkMax m_driveMotorRightA{2};
   rev::SparkMax m_driveMotorRightB{3};
+  
+private:
+  
 
   frc::Solenoid m_shifter{0};
 
   frc::SpeedControllerGroup m_leftDrive{m_driveMotorLeftA, m_driveMotorLeftB};
   frc::SpeedControllerGroup m_rightDrive{m_driveMotorRightA, m_driveMotorRightB};
 
-  frc::DifferentialDrive m_robotDrive{m_leftDrive, m_rightDrive};
 
   frc::Encoder m_leftEncoder{0, 1, false, frc::Encoder::k1X};
   frc::Encoder m_rightEncoder{2, 3, true, frc::Encoder::k1X};

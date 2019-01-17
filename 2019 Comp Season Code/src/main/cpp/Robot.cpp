@@ -67,10 +67,13 @@ void Robot::DisabledPeriodic() { Log(); }
 void Robot::Log() {
   // Robot::pneumatics.WritePressure();
   // frc::SmartDashboard::PutNumber("Pivot Pot Value", pivot.GetAngle());
-  frc::SmartDashboard::PutNumber("Left Distance",
-                                 m_drivetrain.GetLeftEncoder().GetDistance());
-  frc::SmartDashboard::PutNumber("Right Distance",
-                                 m_drivetrain.GetRightEncoder().GetDistance());
+  frc::SmartDashboard::PutNumber("Left Distance", m_drivetrain.GetLeftEncoder().GetDistance());
+  frc::SmartDashboard::PutNumber("Right Distance", m_drivetrain.GetRightEncoder().GetDistance());
+  frc::SmartDashboard::PutNumber("Elevator Height", m_elevator.GetHeight());
+  frc::SmartDashboard::PutNumber("Differential Drive", m_drivetrain.m_driveMotorLeftA.Get());
+  frc::SmartDashboard::PutNumber("Differential Drive", m_drivetrain.m_driveMotorRightA.Get());
+
+    
 }
 
 #ifndef RUNNING_FRC_TESTS

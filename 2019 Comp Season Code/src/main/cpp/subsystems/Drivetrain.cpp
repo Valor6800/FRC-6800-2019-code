@@ -33,7 +33,7 @@ Drivetrain::Drivetrain() : frc::Subsystem("Drivetrain") {
 }
 
 void Drivetrain::InitDefaultCommand() {
-//   SetDefaultCommand(new DriveWithJoystick());
+  SetDefaultCommand(new DriveWithJoystick());
 }
 
 void Drivetrain::TankDrive(double leftAxis, double rightAxis) {
