@@ -34,8 +34,8 @@ public:
   void SetShifter(bool pedal);
 
   frc::Encoder& GetLeftEncoder();
-  frc::Encoder& GetRightEncoder();    
-
+  frc::Encoder& GetRightEncoder(); 
+  
 private:
   rev::SparkMax m_driveMotorLeftA{0};
   rev::SparkMax m_driveMotorLeftB{1};

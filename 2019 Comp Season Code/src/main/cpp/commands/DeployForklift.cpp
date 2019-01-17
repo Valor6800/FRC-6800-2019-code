@@ -5,23 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DriveWithJoystick.h"
+#include "commands/DeployForklift.h"
 
 #include "Robot.h"
 
-DriveWithJoystick::DriveWithJoystick() { Requires(&Robot::m_drivetrain); }
+DeployForklift::DeployForklift(bool deployed) { Requires(&Robot::m_forks); }
+
+void DeployForklift::Initialize() {
+    Robot::m_forks.deployed = !Robot::m_forks.deployed;
+}
 
 // Called repeatedly when this Command is scheduled to run
-void DriveWithJoystick::Execute() {
-  auto& joystickL = Robot::m_oi.GetLeftJoyDrive();
-  auto& joystickR = Robot::m_oi.GetRightJoyDrive();
-  auto& shifter = Robot::m_oi.GetShifter();
-  Robot::m_drivetrain.TankDrive(joystickL.GetY(), joystickR.GetY());
-  Robot::m_drivetrain.SetShifter(shifter.Get());
+void DeployForklift::Execute() {
+    Robot::m_forks.deployed ? Robot::m_forks.Deploy() : Robot::m_forks.DisengageOutriggers();
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool DriveWithJoystick::IsFinished() { return false; }
+bool DeployForklift::IsFinished() { return (Robot::m_forks.GetForkState() && Robot::m_forks.GetOutriggerState()); }
 
 // Called once after isFinished returns true
-void DriveWithJoystick::End() { Robot::m_drivetrain.Stop(); }
+void DeployForklift::End() { Robot::m_drivetrain.Stop(); }

@@ -9,7 +9,7 @@
 
 #include "Robot.h"
 
-SetElevatorSetpoint::SetElevatorSetpoint(Command * hatchCommand, Command * cargoCommand) {
+SetElevatorSetpoint::SetElevatorSetpoint(Command* hatchCommand, Command* cargoCommand) : frc::ConditionalCommand(hatchCommand, cargoCommand) {
   Requires(&Robot::m_elevator);
   SetInterruptible(true);
 }
@@ -25,5 +25,3 @@ void SetElevatorSetpoint::Interrupted() { Robot::m_elevator.Disable(); }
 bool SetElevatorSetpoint::Condition() {
   return Robot::m_oi.GetGamepad().GetStartButton();
 }
-
-

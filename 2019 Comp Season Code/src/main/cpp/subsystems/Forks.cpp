@@ -7,15 +7,27 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
+#include <subsystems/Forks.h>
 
-class SetIntake : public frc::Command {
- public:
-  explicit SetElevatorSetpoint(double setpoint);
-  void Initialize() override;
-  bool IsFinished() override;
-  void Interrupted() override;
+Forks::Forks() : frc::Subsystem("Forks") {
+}
 
- private:
-  double m_setpoint;
-};
+void Forks::InitDefaultCommand() {
+    //SetDefaultCommand(new CarriageTeleop());
+}
+void Forks::Deploy() {
+    forks.Set(true);
+    outriggers.Set(true);            
+}
+
+void Forks::DisengageOutriggers() {
+    outriggers.Set(false);    
+}
+
+bool Forks::GetForkState() {
+    return forks.Get();
+}
+
+bool Forks::GetOutriggerState() {
+    return outriggers.Get();
+}

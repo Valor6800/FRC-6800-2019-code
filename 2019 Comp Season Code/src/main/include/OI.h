@@ -15,6 +15,7 @@
 #include "commands/SetElevatorSetpoint.h"
 #include "commands/SetIntakePivot.h"
 #include "commands/SetElevatorSetpointDefinite.h"
+#include "commands/SpinIntakeMotors.h"
 #include "subsystems/Elevator.h"
 
 class OI {
@@ -26,12 +27,12 @@ class OI {
 
   frc::Joystick m_footPedal{3};
 
-  frc::JoystickButton m_a{&m_gamepad, 1};
-  frc::JoystickButton m_b{&m_gamepad, 2};
-  frc::JoystickButton m_x{&m_gamepad, 3};
-  frc::JoystickButton m_y{&m_gamepad, 4};
-  frc::JoystickButton m_bumperL{&m_gamepad, 5};
-  frc::JoystickButton m_bumperR{&m_gamepad, 6};
+  frc::JoystickButton m_a {&m_gamepad, 1};
+  frc::JoystickButton m_b {&m_gamepad, 2};
+  frc::JoystickButton m_x {&m_gamepad, 3};
+  frc::JoystickButton m_y {&m_gamepad, 4};
+  frc::JoystickButton m_bumperL {&m_gamepad, 5};
+  frc::JoystickButton m_bumperR {&m_gamepad, 6};
 
  public:
   frc::Joystick& GetLeftJoyDrive();

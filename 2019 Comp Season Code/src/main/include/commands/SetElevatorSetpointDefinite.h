@@ -16,7 +16,7 @@
  */
 class SetElevatorSetpointDefinite : public frc::Command {
  public:
-  explicit SetElevatorSetpointDefinite(double setpoint);
+  SetElevatorSetpointDefinite(double setpoint);
   void Initialize() override;
   bool IsFinished() override;
   void Interrupted() override;

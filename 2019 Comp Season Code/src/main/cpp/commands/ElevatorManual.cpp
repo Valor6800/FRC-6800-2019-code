@@ -16,6 +16,9 @@ void ElevatorManual::Execute() {
   auto& gamepad = Robot::m_oi.GetGamepad();
   Robot::m_elevator.SetLiftSpeed(gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) > .05 ? gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) : 0);
   SetInterruptible(false);
+
+  if(Robot::m_elevator.IsAtLowerLimit()) { Robot::m_elevator.m_liftEncoder.Reset(); }
+  if(Robot::m_elevator.IsAtUpperLimit()) { Robot::m_elevator.m_liftEncoder.SetIndexSource(8, frc::Encoder::IndexingType::kResetWhileHigh); Robot::m_elevator.SetLiftSpeed(0); }
 }
 
 // Make this return true when this Command no longer needs to run execute()

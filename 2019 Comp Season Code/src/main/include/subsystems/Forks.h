@@ -8,29 +8,25 @@
 #pragma once
 
 #include <frc/PWMVictorSPX.h>
-#include <frc/commands/PIDSubsystem.h>
-#include <frc/Encoder.h>
-#include <frc/DigitalInput.h>
+#include <frc/commands/Subsystem.h>
+#include <frc/Solenoid.h>
 
-class Intake : public frc::PIDSubsystem {
+class Forks : public frc::Subsystem
+{
 public:
-  Intake();
+  Forks();
 
   void InitDefaultCommand();
-  void SetWheelMotor(double val);
-  void SetPivot(double pos);
-  void Stop();
+  void Deploy();
+  void DisengageOutriggers();
+  bool GetForkState();
+  bool GetOutriggerState();
 
-  double ReturnPIDInput() override;
-  void UsePIDOutput(double output) override;
-
-  bool TogglePivot();
-
-  frc::Encoder& GetPivotEncoder();
+  bool deployed;
 
 private:
-    frc::PWMVictorSPX m_wheelMotor {10};
-    frc::PWMVictorSPX m_pivotMotor {11};
-    frc::Encoder m_intakeEncoder {6, 7, frc::Encoder::k1X};
-    bool pivotDown;
+    frc::Solenoid outriggers{1};
+    frc::Solenoid forks{2};
+
+
 };

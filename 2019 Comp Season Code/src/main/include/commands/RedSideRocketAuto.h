@@ -7,13 +7,14 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
+#include <frc/commands/CommandGroup.h>
+#include <pathfinder.h>
 
-class SetIntakePivot : public frc::Command {
+/**
+ * This command allows PS3 joystick to drive the robot. It is always running
+ * except when interrupted by another command.
+ */
+class RedSideRocketAuto : public frc::CommandGroup {
  public:
-  SetIntakePivot();
-  void Initialize() override;
-  bool IsFinished() override;
-  void Interrupted() override;
-
+  RedSideRocketAuto();
 };

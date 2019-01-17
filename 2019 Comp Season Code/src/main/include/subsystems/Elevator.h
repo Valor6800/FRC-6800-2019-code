@@ -41,13 +41,13 @@ class Elevator : public frc::PIDSubsystem {
 
   void SetLiftSpeed(double power);
 
+  frc::Encoder m_liftEncoder{4, 5, frc::Encoder::k1X};
+
  private:
 
   // Sensors for measuring the position of the pivot
-  frc::DigitalInput m_upperLimitSwitch{13};
-  frc::DigitalInput m_lowerLimitSwitch{12};
-
-  frc::Encoder m_liftEncoder{4, 5, frc::Encoder::k1X};
+  frc::DigitalInput m_upperLimitSwitch{8};
+  frc::DigitalInput m_lowerLimitSwitch{9};
 
   // Motor to move the pivot
   frc::PWMVictorSPX m_liftMotorA{4};

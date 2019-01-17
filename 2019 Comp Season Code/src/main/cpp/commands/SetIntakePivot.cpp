@@ -11,18 +11,13 @@
 
 SetIntakePivot::SetIntakePivot() {
   Requires(&Robot::m_intake);
-  if (m_isDown == NULL) {
-      m_isDown = false;
-  } else {
-      m_isDown = !m_isDown;
-  }
   SetInterruptible(true);
 }
 
 // Called just before this Command runs the first time
 void SetIntakePivot::Initialize() {
   Robot::m_intake.Enable();
-  Robot::m_intake.SetPivot(m_isDown ? 1.0 : 0.0); // change values
+  Robot::m_intake.SetPivot(Robot::m_intake.TogglePivot() ? 1.0 : 0.0); // change values
 }
 
 // Make this return true when this Command no longer needs to run execute()

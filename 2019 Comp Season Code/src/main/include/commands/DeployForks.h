@@ -7,21 +7,16 @@
 
 #pragma once
 
-#include <frc/commands/ConditionalCommand.h>
+#include <frc/commands/Command.h>
 
 /**
- * Moves the  Elevator to a given height. This command finishes when it is within
- * the tolerance, but leaves the PID loop running to maintain the position.
- * Other commands using the Elevator should make sure they disable PID!
+ * This command allows PS3 joystick to drive the robot. It is always running
+ * except when interrupted by another command.
  */
-class SetElevatorSetpoint : public frc::ConditionalCommand {
+class DeployForks : public frc::Command {
  public:
-  SetElevatorSetpoint(Command* hatchCommand, Command* cargoCommand);
-  void Initialize() override;
+  DeployForks();
+  void Execute() override;
   bool IsFinished() override;
-  void Interrupted() override;
-  bool Condition() override;
-
- private:
-  double m_setpoint;
+  void End() override;
 };
