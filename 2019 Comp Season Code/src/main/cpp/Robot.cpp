@@ -17,6 +17,7 @@ Elevator Robot::m_elevator;
 Intake Robot::m_intake;
 Pneumatics Robot::m_pneumatics;
 Forks Robot::m_forks;
+OI Robot::m_oi;
 
 void Robot::RobotInit() {
   

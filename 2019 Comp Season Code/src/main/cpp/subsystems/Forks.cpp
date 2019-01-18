@@ -5,8 +5,6 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-
 #include <subsystems/Forks.h>
 
 Forks::Forks() : frc::Subsystem("Forks") {

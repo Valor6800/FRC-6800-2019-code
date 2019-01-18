@@ -2,6 +2,7 @@
 #include "Robot.h"
 
 RedSideRocketAuto::RedSideRocketAuto() {
+    /*
     int POINT_LENGTH = 4;
 
     Waypoint points[POINT_LENGTH];
@@ -74,5 +75,5 @@ RedSideRocketAuto::RedSideRocketAuto() {
 
     setLeftMotors(l + turn);
     setRightMotors(r - turn);
-
+    */
 }

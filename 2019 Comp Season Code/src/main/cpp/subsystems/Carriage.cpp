@@ -5,8 +5,6 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-
 #include <subsystems/Carriage.h>
 
 Carriage::Carriage() : frc::Subsystem("Carriage") {

@@ -5,12 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-
 #include "subsystems/Intake.h"
 
 Intake::Intake() : frc::PIDSubsystem("Intake", 7.0, 0.0, 8.0) {
-    pivotDown = false;
+    m_pivotDown = false;
     SetAbsoluteTolerance(0.01);
     GetPIDController()->SetContinuous(false);
 }
@@ -40,6 +38,6 @@ double Intake::ReturnPIDInput() { return m_intakeEncoder.Get(); }
 void Intake::UsePIDOutput(double output) { m_pivotMotor.PIDWrite(output); }
 
 bool Intake::TogglePivot() {
-    pivot = !pivot;
-    return pivot;
+    m_pivotDown = !m_pivotDown;
+    return m_pivotDown;
 }

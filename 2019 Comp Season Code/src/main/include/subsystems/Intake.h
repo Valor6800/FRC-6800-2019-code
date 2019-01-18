@@ -32,5 +32,5 @@ private:
     frc::PWMVictorSPX m_wheelMotor {10};
     frc::PWMVictorSPX m_pivotMotor {11};
     frc::Encoder m_intakeEncoder {6, 7, frc::Encoder::k1X};
-    bool pivotDown;
+    bool m_pivotDown;
 };
