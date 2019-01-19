@@ -7,7 +7,6 @@
 
 #pragma once
 
-#include <frc/PWMVictorSPX.h>
 #include <frc/commands/Subsystem.h>
 #include <frc/Solenoid.h>
 
@@ -27,6 +26,4 @@ public:
 private:
     frc::Solenoid outriggers{1};
     frc::Solenoid forks{2};
-
-
 };

@@ -21,23 +21,35 @@ void Intake::SetWheelMotor(double val) {
     m_wheelMotor.Set(val);
 }
 
-void Intake::SetPivot(double pos) {
-    m_pivotMotor.SetPosition(pos);
+
+void Intake::SetPivot(bool pos) {
+    m_pivotSolenoid.Set(pos);
 }
 
 void Intake::Stop() {
     m_wheelMotor.Set(0);
 }
 
-frc::Encoder& Intake::GetPivotEncoder() {
+
+frc::Encoder& Intake::GetIntakeEncoder() {
     return m_intakeEncoder;
 }
 
+
 double Intake::ReturnPIDInput() { return m_intakeEncoder.Get(); }
+
 
 void Intake::UsePIDOutput(double output) { m_pivotMotor.PIDWrite(output); }
 
 bool Intake::TogglePivot() {
     m_pivotDown = !m_pivotDown;
     return m_pivotDown;
+}
+
+bool Intake::GetPivotState() {
+    return m_pivotSolenoid.Get();
+}
+
+double Intake::GetWheelMotor() {
+    return m_wheelMotor.Get();
 }

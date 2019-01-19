@@ -44,6 +44,26 @@ void Drivetrain::Stop() { m_robotDrive.TankDrive(0.0, 0.0); }
 
 void Drivetrain::SetShifter(bool pedal) {m_shifter.Get();}
 
+double Drivetrain::GetMotorLeftA() {
+  m_driveMotorLeftA.Get();
+}
+
+double Drivetrain::GetMotorLeftB() {
+  m_driveMotorLeftB.Get();
+}
+
+double Drivetrain::GetMotorRightA() {
+  m_driveMotorRightA.Get();
+}
+
+double Drivetrain::GetMotorRightB() {
+  m_driveMotorRightB.Get();
+}
+
+bool Drivetrain::GetShifter() {
+  m_shifter.Get();
+}
+
 // frc::Encoder& Drivetrain::GetLeftEncoder() { return m_leftEncoder; }
 
 // frc::Encoder& Drivetrain::GetRightEncoder() { return m_rightEncoder; }

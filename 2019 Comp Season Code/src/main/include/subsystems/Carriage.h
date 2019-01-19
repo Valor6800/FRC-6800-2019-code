@@ -6,8 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-
-#include <frc/PWMVictorSPX.h>
+#include <frc/VictorSP.h>
 #include <frc/commands/Subsystem.h>
 
 class Carriage : public frc::Subsystem
@@ -20,7 +19,10 @@ public:
   void SetMotors(double leftVal, double rightVal);
   void Stop();
 
+  double GetMotorL();
+  double GetMotorR();
+
 private:
-    frc::PWMVictorSPX m_leftMotor{8};
-    frc::PWMVictorSPX m_rightMotor{9};
+    frc::VictorSP m_leftMotor{8};
+    frc::VictorSP m_rightMotor{9};
 };

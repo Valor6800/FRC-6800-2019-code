@@ -23,6 +23,14 @@ void Carriage::SetMotors(double leftVal, double rightVal) {
     m_rightMotor.Set(rightVal);
 }
 
+double Carriage::GetMotorL() {
+    return m_leftMotor.Get();
+}
+
+double Carriage::GetMotorR() {
+    return m_rightMotor.Get();
+}
+
 void Carriage::Stop() {
     m_leftMotor.Set(0);
     m_rightMotor.Set(0);

@@ -34,6 +34,12 @@ public:
   void Stop();
   void SetShifter(bool pedal);
 
+  double GetMotorLeftA();
+  double GetMotorLeftB();
+  double GetMotorRightA();
+  double GetMotorRightB();
+  bool GetShifter();
+
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();
   frc::DifferentialDrive m_robotDrive{m_leftDrive, m_rightDrive}; 

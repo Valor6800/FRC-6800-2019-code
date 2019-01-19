@@ -33,6 +33,10 @@ bool Elevator::IsAtLowerLimit() {
                                     // (prefix with !)
 }
 
+double Elevator::GetSpeed() {
+  return m_liftMotors.Get();
+}
+
 double Elevator::GetHeight() { return m_liftEncoder.Get(); }
 
 

@@ -8,7 +8,7 @@
 #pragma once
 
 #include <frc/DigitalInput.h>
-#include <frc/PWMVictorSPX.h>
+#include <frc/VictorSP.h>
 #include <frc/commands/PIDSubsystem.h>
 #include <frc/Encoder.h>
 #include <frc/SpeedControllerGroup.h>
@@ -38,6 +38,7 @@ class Elevator : public frc::PIDSubsystem {
   bool IsAtUpperLimit();
   bool IsAtLowerLimit();
   double GetHeight();
+  double GetSpeed();
 
   void SetLiftSpeed(double power);
 
@@ -50,10 +51,10 @@ class Elevator : public frc::PIDSubsystem {
   frc::DigitalInput m_lowerLimitSwitch{9};
 
   // Motor to move the pivot
-  frc::PWMVictorSPX m_liftMotorA{4};
-  frc::PWMVictorSPX m_liftMotorB{5};
-  frc::PWMVictorSPX m_liftMotorC{6};
-  frc::PWMVictorSPX m_liftMotorD{7};
+  frc::VictorSP m_liftMotorA{4};
+  frc::VictorSP m_liftMotorB{5};
+  frc::VictorSP m_liftMotorC{6};
+  frc::VictorSP m_liftMotorD{7};
 
   frc::SpeedControllerGroup m_liftMotors{m_liftMotorA, m_liftMotorB, m_liftMotorC, m_liftMotorD};
   
