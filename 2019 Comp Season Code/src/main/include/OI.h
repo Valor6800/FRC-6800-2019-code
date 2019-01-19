@@ -40,7 +40,7 @@ class OI {
   frc::XboxController& GetGamepad();
   frc::JoystickButton& GetShifter();
 
-  frc::JoystickButton shifter{&m_footPedal, 0};
+  frc::JoystickButton shifter{&m_footPedal, 1};
 
   OI();
 };

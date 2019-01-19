@@ -6,9 +6,10 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
-
 #include <frc/commands/Scheduler.h>
+#include <frc/livewindow/LiveWindow.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+
 
 
 Carriage Robot::m_carriage;
@@ -18,15 +19,25 @@ Intake Robot::m_intake;
 Pneumatics Robot::m_pneumatics;
 Forks Robot::m_forks;
 OI Robot::m_oi;
+frc::ShuffleboardTab& tab = frc::Shuffleboard::GetTab("LiveWindow");
+nt::NetworkTableEntry countEntry;
+nt::NetworkTableEntry count2Entry;
+nt::NetworkTableEntry elevatorHeightEntry;
+double count;
+double count2;
+
 
 void Robot::RobotInit() {
   
+  countEntry = tab.Add("count_", 0).withWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
+  count2Entry = tab.Add("count2", 100).GetEntry();
+  elevatorHeightEntry = tab.Add("Elevator Height", 0).withWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
   // instantiate the command used for the autonomous period
   // m_autoChooser.SetDefaultOption("Drive and Shoot", &m_driveAndShootAuto);
   // m_autoChooser.AddOption("Drive Forward", &m_driveForwardAuto);
+  // const frc::BuiltInWidgets::kNumberSlider slider = frc::BuiltInWidgets::kNumberSlider;
   frc::SmartDashboard::PutData("Auto Mode", &m_autoChooser);
-
-  // pneumatics.Start();  // Pressurize the pneumatics.
+    // pneumatics.Start();  // Pressurize the pneumatics.
 }
 
 void Robot::AutonomousInit() {
@@ -55,26 +66,30 @@ void Robot::TeleopPeriodic() {
   Log();
 }
 
-void Robot::TestPeriodic() {}
+void Robot::TestPeriodic() { Log(); }
 
-void Robot::DisabledInit() { // shooter.Unlatch(); 
+void Robot::DisabledInit(){
+  
 }
 
 void Robot::DisabledPeriodic() { Log(); }
 
-/**
+/** 
  * Log interesting values to the SmartDashboard.
  */
 void Robot::Log() {
   // Robot::pneumatics.WritePressure();
   // frc::SmartDashboard::PutNumber("Pivot Pot Value", pivot.GetAngle());
-  frc::SmartDashboard::PutNumber("Left Distance", m_drivetrain.GetLeftEncoder().GetDistance());
-  frc::SmartDashboard::PutNumber("Right Distance", m_drivetrain.GetRightEncoder().GetDistance());
+  // frc::SmartDashboard::PutNumber("Left Distance", m_drivetrain.GetLeftEncoder().GetDistance());
+  // frc::SmartDashboard::PutNumber("Right Distance", m_drivetrain.GetRightEncoder().GetDistance());
   frc::SmartDashboard::PutNumber("Elevator Height", m_elevator.GetHeight());
   frc::SmartDashboard::PutNumber("Differential Drive", m_drivetrain.m_driveMotorLeftA.Get());
   frc::SmartDashboard::PutNumber("Differential Drive", m_drivetrain.m_driveMotorRightA.Get());
-
-    
+  count += .0001;
+  count2 += 1;
+  countEntry.SetDouble(count); // shooter.Unlatch(); 
+  count2Entry.SetDouble(count2);
+  elevatorHeightEntry.SetDouble(m_elevator.GetHeight());
 }
 
 #ifndef RUNNING_FRC_TESTS

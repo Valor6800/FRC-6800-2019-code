@@ -7,9 +7,14 @@
 
 #pragma once
 
+#include <frc/WPILib.h>
 #include <frc/TimedRobot.h>
 #include <frc/commands/Command.h>
 #include <frc/smartdashboard/SendableChooser.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc/shuffleboard/ShuffleboardTab.h>
+#include <frc/shuffleboard/BuiltInWidgets.h>
+#include <frc/shuffleboard/WidgetType.h>
 
 #include "OI.h"
 #include "subsystems/Carriage.h"
