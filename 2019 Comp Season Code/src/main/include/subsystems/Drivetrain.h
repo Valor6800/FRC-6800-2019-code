@@ -11,7 +11,7 @@
 #include <frc/SpeedControllerGroup.h>
 #include <frc/commands/Subsystem.h>
 #include <frc/drive/DifferentialDrive.h>
-#include <rev/SparkMax.h>
+#include <rev/CANSparkMax.h>
 #include <frc/Solenoid.h>
 #include "commands/DriveWithJoystick.h"
 
@@ -34,14 +34,13 @@ public:
   void Stop();
   void SetShifter(bool pedal);
 
-  frc::Encoder& GetLeftEncoder();
-  frc::Encoder& GetRightEncoder();
+  // frc::Encoder& GetLeftEncoder();
+  // frc::Encoder& GetRightEncoder();
   frc::DifferentialDrive m_robotDrive{m_leftDrive, m_rightDrive}; 
-  rev::SparkMax m_driveMotorLeftA{0};
-  rev::SparkMax m_driveMotorLeftB{1};
-  rev::SparkMax m_driveMotorRightA{2};
-  rev::SparkMax m_driveMotorRightB{3};
-  
+  rev::CANSparkMax m_driveMotorLeftA{0, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax m_driveMotorLeftB{1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax m_driveMotorRightA{2, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
+  rev::CANSparkMax m_driveMotorRightB{3, rev::CANSparkMaxLowLevel::MotorType::kBrushless};  
 private:
   
 
@@ -51,7 +50,7 @@ private:
   frc::SpeedControllerGroup m_rightDrive{m_driveMotorRightA, m_driveMotorRightB};
 
 
-  frc::Encoder m_leftEncoder{0, 1, false, frc::Encoder::k1X};
-  frc::Encoder m_rightEncoder{2, 3, true, frc::Encoder::k1X};
+  // frc::Encoder m_leftEncoder{0, 1, false, frc::Encoder::k1X};
+  // frc::Encoder m_rightEncoder{2, 3, true, frc::Encoder::k1X};
 
 };

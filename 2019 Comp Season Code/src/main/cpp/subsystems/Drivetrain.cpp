@@ -22,8 +22,8 @@ Drivetrain::Drivetrain() : frc::Subsystem("Drivetrain") {
   m_robotDrive.SetDeadband(.05);
 
   // Configure encoders
-  m_rightEncoder.SetPIDSourceType(frc::PIDSourceType::kDisplacement);
-  m_leftEncoder.SetPIDSourceType(frc::PIDSourceType::kDisplacement);
+  // m_rightEncoder.SetPIDSourceType(frc::PIDSourceType::kDisplacement);
+  // m_leftEncoder.SetPIDSourceType(frc::PIDSourceType::kDisplacement);
 
 //   AddChild("Right Encoder", m_rightEncoder);
 //   AddChild("Left Encoder", m_leftEncoder);
@@ -44,6 +44,6 @@ void Drivetrain::Stop() { m_robotDrive.TankDrive(0.0, 0.0); }
 
 void Drivetrain::SetShifter(bool pedal) {m_shifter.Get();}
 
-frc::Encoder& Drivetrain::GetLeftEncoder() { return m_leftEncoder; }
+// frc::Encoder& Drivetrain::GetLeftEncoder() { return m_leftEncoder; }
 
-frc::Encoder& Drivetrain::GetRightEncoder() { return m_rightEncoder; }
+// frc::Encoder& Drivetrain::GetRightEncoder() { return m_rightEncoder; }
