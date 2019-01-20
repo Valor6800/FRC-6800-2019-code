@@ -38,7 +38,7 @@ private:
     frc::VictorSP m_pivotMotor {11};
 
 
-    frc::Solenoid m_pivotSolenoid {13}; //check port number
+    frc::Solenoid m_pivotSolenoid {3}; //check port number
     frc::Encoder m_intakeEncoder {6, 7, frc::Encoder::k1X};
     bool m_pivotDown;
 };

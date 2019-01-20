@@ -20,6 +20,12 @@ Drivetrain::Drivetrain() : frc::Subsystem("Drivetrain") {
   m_robotDrive.SetExpiration(0.1);
   m_robotDrive.SetMaxOutput(1.0);
   m_robotDrive.SetDeadband(.05);
+  m_driveMotorLeftA.SetParameter(rev::CANSparkMaxLowLevel::ConfigParameter::kSensorType, 1);
+  m_driveMotorLeftB.SetParameter(rev::CANSparkMaxLowLevel::ConfigParameter::kSensorType, 1);
+  m_driveMotorRightA.SetParameter(rev::CANSparkMaxLowLevel::ConfigParameter::kSensorType, 1);
+  m_driveMotorRightB.SetParameter(rev::CANSparkMaxLowLevel::ConfigParameter::kSensorType, 1);
+
+
 
   // Configure encoders
   // m_rightEncoder.SetPIDSourceType(frc::PIDSourceType::kDisplacement);

@@ -10,8 +10,6 @@
 #include <frc/livewindow/LiveWindow.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-
-
 Carriage Robot::m_carriage;
 Drivetrain Robot::m_drivetrain;
 Elevator Robot::m_elevator;
@@ -71,6 +69,9 @@ void Robot::RobotInit() {
 
   forkStateEntry = tab.Add("Fork State", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   outriggerStateEntry = tab.Add("Outrigger State", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+
+
+
   // instantiate the command used for the autonomous period
   // m_autoChooser.SetDefaultOption("Drive and Shoot", &m_driveAndShootAuto);
   // m_autoChooser.AddOption("Drive Forward", &m_driveForwardAuto);
@@ -137,7 +138,7 @@ void Robot::Log() {
   elevatorSpeedEntry.SetDouble(m_elevator.GetSpeed());
 
   intakeAngleEntry.SetBoolean(m_intake.GetPivotState());
-  intakeWheelEntry.SetDouble(20);//m_intake.GetWheelMotor()
+  intakeWheelEntry.SetDouble(m_intake.GetWheelMotor());
 
   carriageWheelLEntry.SetDouble(m_carriage.GetMotorL());
   carriageWheelREntry.SetDouble(m_carriage.GetMotorR());
@@ -150,6 +151,22 @@ void Robot::Log() {
 
   forkStateEntry.SetBoolean(m_forks.GetForkState());
   outriggerStateEntry.SetBoolean(m_forks.GetOutriggerState());
+
+  frc::SmartDashboard::PutData(&Robot::m_drivetrain);
+  frc::SmartDashboard::PutData(&Robot::m_forks);
+  frc::SmartDashboard::PutData(&Robot::m_carriage);
+  frc::SmartDashboard::PutData(&Robot::m_intake);
+  frc::SmartDashboard::PutData(&Robot::m_elevator);
+  frc::SmartDashboard::PutData(&Robot::m_pneumatics);
+
+  frc::SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
+  // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
+  // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
+  // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
+  // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
+  // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
+
+
 }
 
 #ifndef RUNNING_FRC_TESTS

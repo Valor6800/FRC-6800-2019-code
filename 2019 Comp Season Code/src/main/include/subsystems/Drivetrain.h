@@ -14,6 +14,7 @@
 #include <rev/CANSparkMax.h>
 #include <frc/Solenoid.h>
 #include "commands/DriveWithJoystick.h"
+#include <rev/CANSparkMaxLowLevel.h>
 
 namespace frc
 {
@@ -42,18 +43,21 @@ public:
 
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();
-  frc::DifferentialDrive m_robotDrive{m_leftDrive, m_rightDrive}; 
-  rev::CANSparkMax m_driveMotorLeftA{0, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax m_driveMotorLeftB{1, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax m_driveMotorRightA{2, rev::CANSparkMaxLowLevel::MotorType::kBrushless};
-  rev::CANSparkMax m_driveMotorRightB{3, rev::CANSparkMaxLowLevel::MotorType::kBrushless};  
-private:
-  
-
   frc::Solenoid m_shifter{0};
+
+  rev::CANSparkMax m_driveMotorLeftA{0, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_driveMotorLeftB{3, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_driveMotorRightA{1, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_driveMotorRightB{2, rev::CANSparkMax::MotorType::kBrushless};  
 
   frc::SpeedControllerGroup m_leftDrive{m_driveMotorLeftA, m_driveMotorLeftB};
   frc::SpeedControllerGroup m_rightDrive{m_driveMotorRightA, m_driveMotorRightB};
+
+  frc::DifferentialDrive m_robotDrive{m_leftDrive, m_rightDrive}; 
+private:
+  
+
+
 
 
   // frc::Encoder m_leftEncoder{0, 1, false, frc::Encoder::k1X};

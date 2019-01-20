@@ -16,7 +16,7 @@ void DriveWithJoystick::Execute() {
   auto& joystickL = Robot::m_oi.GetLeftJoyDrive();
   auto& joystickR = Robot::m_oi.GetRightJoyDrive();
   auto& shifter = Robot::m_oi.GetShifter();
-  Robot::m_drivetrain.TankDrive(joystickL.GetY(), joystickR.GetY());
+  Robot::m_drivetrain.TankDrive(std::abs(joystickL.GetY()) > 0.05 ? joystickL.GetY() : 0, std::abs(joystickR.GetY()) > 0.05 ? joystickR.GetY() : 0);
   Robot::m_drivetrain.SetShifter(shifter.Get());
 }
 
