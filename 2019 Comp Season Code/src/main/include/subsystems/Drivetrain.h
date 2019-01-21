@@ -43,7 +43,7 @@ public:
 
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();
-  frc::Solenoid m_shifter{0};
+  frc::Solenoid m_shifter{3};
 
   rev::CANSparkMax m_driveMotorLeftA{0, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax m_driveMotorLeftB{3, rev::CANSparkMax::MotorType::kBrushless};

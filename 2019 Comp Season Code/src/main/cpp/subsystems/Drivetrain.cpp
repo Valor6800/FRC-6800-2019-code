@@ -48,7 +48,7 @@ void Drivetrain::TankDrive(double leftAxis, double rightAxis) {
 
 void Drivetrain::Stop() { m_robotDrive.TankDrive(0.0, 0.0); }
 
-void Drivetrain::SetShifter(bool pedal) {m_shifter.Get();}
+void Drivetrain::SetShifter(bool pedal) {m_shifter.Set(pedal);}
 
 double Drivetrain::GetMotorLeftA() {
   m_driveMotorLeftA.Get();

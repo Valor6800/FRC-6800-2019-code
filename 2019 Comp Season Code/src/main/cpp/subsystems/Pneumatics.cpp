@@ -8,4 +8,4 @@
 #include "subsystems/Pneumatics.h"
 
 Pneumatics::Pneumatics() : frc::Subsystem("Pneumatics") {}
-void Pneumatics::Start() { m_compressor.Start(); }
+void Pneumatics::Start() { m_compressor.Start();}

@@ -17,7 +17,7 @@ void DriveWithJoystick::Execute() {
   auto& joystickR = Robot::m_oi.GetRightJoyDrive();
   auto& shifter = Robot::m_oi.GetShifter();
   Robot::m_drivetrain.TankDrive(std::abs(joystickL.GetY()) > 0.05 ? joystickL.GetY() : 0, std::abs(joystickR.GetY()) > 0.05 ? joystickR.GetY() : 0);
-  Robot::m_drivetrain.SetShifter(shifter.Get());
+  Robot::m_drivetrain.SetShifter(!shifter.Get());
 }
 
 // Make this return true when this Command no longer needs to run execute()
