@@ -7,24 +7,17 @@
 
 #pragma once
 
-#include <frc/commands/Subsystem.h>
-#include <frc/Solenoid.h>
+#include <frc/commands/Command.h>
 
-class Forks : public frc::Subsystem
-{
-public:
-  Forks();
-
-  void InitDefaultCommand();
-  void Deploy(bool deploy);
-  void SetOutriggers(bool out);
-  bool GetForkState();
-  bool GetOutriggerState();
-
-  bool deployed;
-  bool outriggersOut;
-
-private:
-    frc::Solenoid outriggers{1};
-    frc::Solenoid forks{2};
+/**
+ * This command allows PS3 joystick to drive the robot. It is always running
+ * except when interrupted by another command.
+ */
+class ToggleOutriggers : public frc::Command {
+ public:
+  ToggleOutriggers();
+  void Initialize();
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
 };

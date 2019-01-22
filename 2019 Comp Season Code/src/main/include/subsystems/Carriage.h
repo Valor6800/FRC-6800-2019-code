@@ -6,6 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
+
+#include <frc/DigitalInput.h>
 #include <frc/VictorSP.h>
 #include <frc/commands/Subsystem.h>
 
@@ -18,9 +20,11 @@ public:
   void SetMotors(double val);
   void SetMotors(double leftVal, double rightVal);
   void Stop();
+  bool IsPhotoelectric();
 
   double GetMotorL();
   double GetMotorR();
+  frc::DigitalInput m_photoelectric{10}; // TODO: Get port here
 
 private:
     frc::VictorSP m_leftMotor{8};

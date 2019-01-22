@@ -15,7 +15,7 @@
  */
 class DeployForklift : public frc::Command {
  public:
-  DeployForklift(bool deployed);
+  DeployForklift();
   void Initialize();
   void Execute() override;
   bool IsFinished() override;

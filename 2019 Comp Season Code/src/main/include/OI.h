@@ -12,14 +12,22 @@
 #include <frc/Joystick.h>
 #include <frc/buttons/Button.h>
 
+#include "commands/DeployForklift.h"
 #include "commands/SetElevatorSetpoint.h"
 #include "commands/SetIntakePivot.h"
 #include "commands/SetElevatorSetpointDefinite.h"
 #include "commands/SpinIntakeMotors.h"
+#include "commands/EnableGShift.h"
+#include "commands/ToggleOutriggers.h"
+#include "commands/TestSolenoidProto.h"
+
 #include "subsystems/Elevator.h"
+#include "subsystems/Drivetrain.h"
+#include "subsystems/Forks.h"
 
 class OI {
  private:
+
   frc::Joystick m_leftJoyDrive{1};
   frc::Joystick m_rightJoyDrive{2};
 
@@ -33,6 +41,8 @@ class OI {
   frc::JoystickButton m_y {&m_gamepad, 4};
   frc::JoystickButton m_bumperL {&m_gamepad, 5};
   frc::JoystickButton m_bumperR {&m_gamepad, 6};
+  frc::JoystickButton m_back {&m_gamepad, 7};
+
 
  public:
   frc::Joystick& GetLeftJoyDrive();
@@ -41,6 +51,8 @@ class OI {
   frc::JoystickButton& GetShifter();
 
   frc::JoystickButton shifter{&m_footPedal, 1};
+  
+  bool g_shift = false;
 
   OI();
 };

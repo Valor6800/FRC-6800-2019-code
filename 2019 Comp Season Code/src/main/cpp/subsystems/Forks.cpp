@@ -8,18 +8,20 @@
 #include <subsystems/Forks.h>
 
 Forks::Forks() : frc::Subsystem("Forks") {
+    deployed = false;
+    outriggersOut = false;
 }
 
 void Forks::InitDefaultCommand() {
     //SetDefaultCommand(new CarriageTeleop());
 }
-void Forks::Deploy() {
-    forks.Set(true);
-    outriggers.Set(true);            
+void Forks::Deploy(bool deploy) {
+    forks.Set(deploy);
+    outriggers.Set(deploy);            
 }
 
-void Forks::DisengageOutriggers() {
-    outriggers.Set(false);    
+void Forks::SetOutriggers(bool out) {
+    outriggers.Set(out);    
 }
 
 bool Forks::GetForkState() {

@@ -5,26 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DeployForklift.h"
+#include "commands/TestSolenoidProto.h"
 
 #include "Robot.h"
 
-DeployForklift::DeployForklift() { Requires(&Robot::m_forks); }
+TestSolenoidProto::TestSolenoidProto() {}
 
-void DeployForklift::Initialize() {
-    Robot::m_forks.deployed = !Robot::m_forks.deployed;
-    
+void TestSolenoidProto::Initialize() {
+   Robot::m_drivetrain.prototypeDeployed = !Robot::m_drivetrain.prototypeDeployed;
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DeployForklift::Execute() {
-
-    
-    Robot::m_forks.deployed ? Robot::m_forks.Deploy(true) : Robot::m_forks.Deploy(false);
+void TestSolenoidProto::Execute() {
+    Robot::m_drivetrain.SetPrototype(Robot::m_drivetrain.prototypeDeployed);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool DeployForklift::IsFinished() { return (Robot::m_forks.GetForkState() && Robot::m_forks.GetOutriggerState()); }
+bool TestSolenoidProto::IsFinished() {}
 
 // Called once after isFinished returns true
-void DeployForklift::End() {}
+void TestSolenoidProto::End() {}

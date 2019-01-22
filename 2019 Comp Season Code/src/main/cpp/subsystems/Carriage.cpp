@@ -35,3 +35,7 @@ void Carriage::Stop() {
     m_leftMotor.Set(0);
     m_rightMotor.Set(0);
 }
+
+bool Carriage::IsPhotoelectric() {
+  return m_photoelectric.Get();
+}

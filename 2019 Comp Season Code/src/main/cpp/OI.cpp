@@ -10,12 +10,24 @@
 OI::OI() {
   // Process operator interface input here.
 
-  m_bumperR.ToggleWhenPressed(new SetIntakePivot());
+  //m_bumperR.ToggleWhenPressed(new SetIntakePivot());
 
-  m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
+  m_back.WhenPressed(new EnableGShift(true));
+  m_back.WhenReleased(new EnableGShift(false));
+
+  if (g_shift) {
+    m_bumperR.WhenPressed(new ToggleOutriggers());
+  } else {
+    m_bumperR.WhenPressed(new DeployForklift());
+  }
+  
+
+  // m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
   m_b.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelOneHatch), new SetElevatorSetpointDefinite(Elevator::kLevelOneCargo)));
   m_x.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelTwoHatch), new SetElevatorSetpointDefinite(Elevator::kLevelTwoCargo)));
   m_y.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelThreeHatch), new SetElevatorSetpointDefinite(Elevator::kLevelThreeCargo)));
+
+  m_a.WhenPressed(new TestSolenoidProto());
 
   //pedal = new Button(3);
 }

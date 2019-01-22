@@ -13,9 +13,10 @@
  * This command allows PS3 joystick to drive the robot. It is always running
  * except when interrupted by another command.
  */
-class DeployForks : public frc::Command {
+class TestSolenoidProto : public frc::Command {
  public:
-  DeployForks();
+  TestSolenoidProto();
+  void Initialize();
   void Execute() override;
   bool IsFinished() override;
   void End() override;

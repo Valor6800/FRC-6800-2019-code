@@ -5,26 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DeployForklift.h"
+#include "commands/ToggleOutriggers.h"
 
 #include "Robot.h"
 
-DeployForklift::DeployForklift() { Requires(&Robot::m_forks); }
+ToggleOutriggers::ToggleOutriggers() { Requires(&Robot::m_forks); }
 
-void DeployForklift::Initialize() {
-    Robot::m_forks.deployed = !Robot::m_forks.deployed;
+void ToggleOutriggers::Initialize() {
+    Robot::m_forks.outriggersOut = !Robot::m_forks.outriggersOut;
     
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DeployForklift::Execute() {
+void ToggleOutriggers::Execute() {
 
-    
-    Robot::m_forks.deployed ? Robot::m_forks.Deploy(true) : Robot::m_forks.Deploy(false);
+    Robot::m_forks.outriggersOut ? Robot::m_forks.SetOutriggers(true) : Robot::m_forks.SetOutriggers(false);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool DeployForklift::IsFinished() { return (Robot::m_forks.GetForkState() && Robot::m_forks.GetOutriggerState()); }
+bool ToggleOutriggers::IsFinished() { return (Robot::m_forks.GetForkState() && Robot::m_forks.GetOutriggerState()); }
 
 // Called once after isFinished returns true
-void DeployForklift::End() {}
+void ToggleOutriggers::End() {}

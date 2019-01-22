@@ -5,26 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/DeployForklift.h"
+#include "commands/EnableGShift.h"
 
 #include "Robot.h"
 
-DeployForklift::DeployForklift() { Requires(&Robot::m_forks); }
-
-void DeployForklift::Initialize() {
-    Robot::m_forks.deployed = !Robot::m_forks.deployed;
-    
-}
-
-// Called repeatedly when this Command is scheduled to run
-void DeployForklift::Execute() {
-
-    
-    Robot::m_forks.deployed ? Robot::m_forks.Deploy(true) : Robot::m_forks.Deploy(false);
+EnableGShift::EnableGShift(bool enable) {
+    Robot::m_oi.g_shift = enable; 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool DeployForklift::IsFinished() { return (Robot::m_forks.GetForkState() && Robot::m_forks.GetOutriggerState()); }
+bool EnableGShift::IsFinished() { return false; }
 
 // Called once after isFinished returns true
-void DeployForklift::End() {}
+void EnableGShift::End() { Robot::m_drivetrain.Stop(); }
+
