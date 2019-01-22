@@ -9,18 +9,18 @@
 
 #include "Robot.h"
 
-SetIntakePivot::SetIntakePivot() {
+SetIntakePivot::SetIntakePivot(bool up) {
   Requires(&Robot::m_intake);
   SetInterruptible(true);
+  Robot::m_intake.m_pivotDown = up;
 }
 
 // Called just before this Command runs the first time
 void SetIntakePivot::Initialize() {
-  Robot::m_intake.Enable();
-  Robot::m_intake.SetPivot(Robot::m_intake.TogglePivot() ? 1.0 : 0.0); // change values
+  Robot::m_intake.SetPivot(Robot::m_intake.m_pivotDown); // change values
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool SetIntakePivot::IsFinished() { return Robot::m_intake.OnTarget(); }
+bool SetIntakePivot::IsFinished() { return Robot::m_intake.m_pivotSolenoid.Get() == Robot::m_intake.m_pivotDown;}
 
-void SetIntakePivot::Interrupted() { Robot::m_intake.Disable(); }
+void SetIntakePivot::Interrupted() {}

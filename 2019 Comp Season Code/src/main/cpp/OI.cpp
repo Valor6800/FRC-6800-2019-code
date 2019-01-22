@@ -20,14 +20,17 @@ OI::OI() {
   } else {
     m_bumperR.WhenPressed(new DeployForklift());
   }
+
+  m_bumperL.WhenPressed(new SetIntakePivot(true));
+  m_bumperR.WhenPressed(new SetIntakePivot(false));
   
 
-  // m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
+  m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
   m_b.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelOneHatch), new SetElevatorSetpointDefinite(Elevator::kLevelOneCargo)));
   m_x.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelTwoHatch), new SetElevatorSetpointDefinite(Elevator::kLevelTwoCargo)));
   m_y.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelThreeHatch), new SetElevatorSetpointDefinite(Elevator::kLevelThreeCargo)));
 
-  m_a.WhenPressed(new TestSolenoidProto());
+  // m_a.WhenPressed(new TestSolenoidProto());
 
   //pedal = new Button(3);
 }

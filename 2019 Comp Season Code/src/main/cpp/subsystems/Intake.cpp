@@ -7,10 +7,8 @@
 
 #include "subsystems/Intake.h"
 
-Intake::Intake() : frc::PIDSubsystem("Intake", 7.0, 0.0, 8.0) {
-    m_pivotDown = false;
-    SetAbsoluteTolerance(0.01);
-    GetPIDController()->SetContinuous(false);
+Intake::Intake() : frc::Subsystem("Intake") {
+    m_pivotDown = true;
 }
 
 void Intake::InitDefaultCommand() {
@@ -28,26 +26,6 @@ void Intake::SetPivot(bool pos) {
 
 void Intake::Stop() {
     m_wheelMotor.Set(0);
-}
-
-
-frc::Encoder& Intake::GetIntakeEncoder() {
-    return m_intakeEncoder;
-}
-
-
-double Intake::ReturnPIDInput() { return m_intakeEncoder.Get(); }
-
-
-void Intake::UsePIDOutput(double output) { m_pivotMotor.PIDWrite(output); }
-
-bool Intake::TogglePivot() {
-    m_pivotDown = !m_pivotDown;
-    return m_pivotDown;
-}
-
-bool Intake::GetPivotState() {
-    return m_pivotSolenoid.Get();
 }
 
 double Intake::GetWheelMotor() {

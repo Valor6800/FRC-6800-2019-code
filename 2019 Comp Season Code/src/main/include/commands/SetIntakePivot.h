@@ -11,7 +11,7 @@
 
 class SetIntakePivot : public frc::Command {
  public:
-  SetIntakePivot();
+  SetIntakePivot(bool up);
   void Initialize() override;
   bool IsFinished() override;
   void Interrupted() override;

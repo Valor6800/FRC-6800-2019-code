@@ -8,6 +8,7 @@
 #include <subsystems/Carriage.h>
 
 Carriage::Carriage() : frc::Subsystem("Carriage") {
+    
 }
 
 void Carriage::InitDefaultCommand() {
@@ -38,4 +39,13 @@ void Carriage::Stop() {
 
 bool Carriage::IsPhotoelectric() {
   return m_photoelectric.Get();
+}
+
+void Carriage::SetHatchPivot(bool pivot) {
+    hatchPivot.Set(pivot);
+}
+
+void Carriage::SetFlipper(bool flip) {
+    flipper.Set(flip);
+    flipped = flip;
 }

@@ -137,7 +137,6 @@ void Robot::Log() {
   elevatorUpperLimitEntry.SetBoolean(m_elevator.IsAtUpperLimit());
   elevatorSpeedEntry.SetDouble(m_elevator.GetSpeed());
 
-  intakeAngleEntry.SetBoolean(m_intake.GetPivotState());
   intakeWheelEntry.SetDouble(m_intake.GetWheelMotor());
 
   carriageWheelLEntry.SetDouble(m_carriage.GetMotorL());
@@ -165,8 +164,6 @@ void Robot::Log() {
   // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
   // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
   // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
-
-
 }
 
 #ifndef RUNNING_FRC_TESTS

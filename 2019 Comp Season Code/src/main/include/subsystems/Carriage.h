@@ -10,6 +10,7 @@
 #include <frc/DigitalInput.h>
 #include <frc/VictorSP.h>
 #include <frc/commands/Subsystem.h>
+#include <frc/Solenoid.h>
 
 class Carriage : public frc::Subsystem
 {
@@ -20,13 +21,20 @@ public:
   void SetMotors(double val);
   void SetMotors(double leftVal, double rightVal);
   void Stop();
+  void SetHatchPivot(bool pivot);
+  void SetFlipper(bool flip);
+
   bool IsPhotoelectric();
 
   double GetMotorL();
   double GetMotorR();
   frc::DigitalInput m_photoelectric{10}; // TODO: Get port here
 
+  bool flipped = false;
+
 private:
-    frc::VictorSP m_leftMotor{8};
-    frc::VictorSP m_rightMotor{9};
+  frc::VictorSP m_leftMotor{8};
+  frc::VictorSP m_rightMotor{9};
+  frc::Solenoid hatchPivot{5};
+  frc::Solenoid flipper{6};
 };
