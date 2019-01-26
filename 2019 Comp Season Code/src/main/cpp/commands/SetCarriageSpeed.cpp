@@ -19,7 +19,31 @@ void SetCarriageSpeed::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void SetCarriageSpeed::Execute() {
-    // Robot::m_carriage.SetMotors(Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand));
+    if (Robot::m_carriage.photoelectricActivated)
+    {
+        if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand) > .05)
+        {
+           Robot::m_carriage.SetMotors(0);
+        }
+        else
+        {
+            Robot::m_carriage.photoelectricActivated = false;
+        }
+    } 
+    else {
+        if (Robot::m_carriage.IsPhotoelectric() && !Robot::m_carriage.photoelectricTriggeredOnce) {
+          Robot::m_carriage.photoelectricTriggeredOnce = true;
+          Robot::m_carriage.photoelectricActivated = true;
+          Robot::m_carriage.SetMotors(0);
+        } 
+      else {
+         Robot::m_carriage.SetMotors(Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
+         if (!Robot::m_carriage.IsPhotoelectric() && Robot::m_carriage.photoelectricTriggeredOnce) {
+            Robot::m_carriage.photoelectricTriggeredOnce = false;
+         }
+      }
+    }
+  
 }
 
 // Make this return true when this Command no longer needs to run execute()
