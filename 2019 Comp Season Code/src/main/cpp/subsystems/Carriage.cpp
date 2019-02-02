@@ -41,8 +41,8 @@ bool Carriage::IsPhotoelectric() {
   return m_photoelectric.Get();
 }
 
-void Carriage::SetHatchPivot(bool pivot) {
-    hatchPivot.Set(pivot);
+void Carriage::SetHatchPusher(bool pivot) {
+    hatchPusher.Set(pivot);
 }
 
 void Carriage::SetFlipper(bool flip) {
