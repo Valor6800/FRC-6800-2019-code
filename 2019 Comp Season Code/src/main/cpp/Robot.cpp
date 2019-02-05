@@ -9,6 +9,15 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/livewindow/LiveWindow.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <cameraserver/CameraServer.h>
+#include <opencv2/core/core.hpp>
+#include <opencv2/core/types.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <wpi/raw_ostream.h>
+#include <NetworkTable.h>
+#include <NetworkTableEntry.h>
+#include <NetworkTableInstance.h>
+
 
 Carriage Robot::m_carriage;
 Drivetrain Robot::m_drivetrain;
@@ -17,10 +26,8 @@ Intake Robot::m_intake;
 Pneumatics Robot::m_pneumatics;
 Forks Robot::m_forks;
 OI Robot::m_oi;
-frc::ShuffleboardTab& tab = frc::Shuffleboard::GetTab("LiveWindow");
 
-nt::NetworkTableEntry countEntry;
-nt::NetworkTableEntry count2Entry;
+frc::ShuffleboardTab& tab = frc::Shuffleboard::GetTab("OurTab");
 
 nt::NetworkTableEntry elevatorHeightEntry;
 nt::NetworkTableEntry elevatorUpperLimitEntry;
@@ -42,13 +49,26 @@ nt::NetworkTableEntry shifterEntry;
 nt::NetworkTableEntry forkStateEntry;
 nt::NetworkTableEntry outriggerStateEntry;
 
+<<<<<<< HEAD
 nt::NetworkTableEntry clientValEntry;
+=======
+nt::NetworkTableEntry camera1Entry;
+
+nt::NetworkTableEntry testEntry;
+nt::NetworkTableEntry testEntry2;
+>>>>>>> 950f96da2e37acbaade0023af469003ee784b73a
 
 double count;
 double count2;
 
 void Robot::RobotInit() {
-  
+
+  auto inst = nt::NetworkTableInstance::GetDefault();
+  auto table = inst.GetTable("datatable");
+  testEntry = table->GetEntry("test1");
+  testEntry2 = table->GetEntry("test2");
+  inst.StartClientTeam(6800);
+
   //countEntry = tab.Add("count_", 0).withWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
   //count2Entry = tab.Add("count2", 100).GetEntry();
   elevatorHeightEntry = tab.Add("Elevator Height", 0).withWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
@@ -71,7 +91,11 @@ void Robot::RobotInit() {
   forkStateEntry = tab.Add("Fork State", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   outriggerStateEntry = tab.Add("Outrigger State", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
+<<<<<<< HEAD
   clientValEntry = tab.Add("Client Val Entry", -1).GetEntry();
+=======
+  camera1Entry = tab.Add("valor2", false).withWidget(frc::BuiltInWidgets::kCameraStream).GetEntry();
+>>>>>>> 950f96da2e37acbaade0023af469003ee784b73a
 
   // instantiate the command used for the autonomous period
   // m_autoChooser.SetDefaultOption("Drive and Shoot", &m_driveAndShootAuto);
@@ -155,6 +179,8 @@ void Robot::Log() {
 
   forkStateEntry.SetBoolean(m_forks.GetForkState());
   outriggerStateEntry.SetBoolean(m_forks.GetOutriggerState());
+
+  // camera1Entry.SetRaw(outputStream.Get());
 
   frc::SmartDashboard::PutData(&Robot::m_drivetrain);
   frc::SmartDashboard::PutData(&Robot::m_forks);

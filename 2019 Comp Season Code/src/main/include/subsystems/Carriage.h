@@ -21,7 +21,7 @@ public:
   void SetMotors(double val);
   void SetMotors(double leftVal, double rightVal);
   void Stop();
-  void SetHatchPivot(bool pivot);
+  void SetHatchPusher(bool pivot);
   void SetFlipper(bool flip);
 
   bool IsPhotoelectric();
@@ -37,7 +37,7 @@ public:
 private:
   frc::VictorSP m_leftMotor{8};
   frc::VictorSP m_rightMotor{9};
-  frc::Solenoid hatchPivot{5};
+  frc::Solenoid hatchPusher{5};
   frc::Solenoid flipper{6};
   frc::DigitalInput m_photoelectric{10}; // TODO: Get port here
 
