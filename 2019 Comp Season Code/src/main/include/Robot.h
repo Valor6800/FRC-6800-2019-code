@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <thread>
+
 #include <frc/WPILib.h>
 #include <frc/TimedRobot.h>
 #include <frc/commands/Command.h>
@@ -15,6 +17,8 @@
 #include <frc/shuffleboard/ShuffleboardTab.h>
 #include <frc/shuffleboard/BuiltInWidgets.h>
 #include <frc/shuffleboard/WidgetType.h>
+#include <networktables/NetworkTableInstance.h>
+#include <networktables/NetworkTableEntry.h>
 
 #include "OI.h"
 #include "subsystems/Carriage.h"

@@ -42,9 +42,10 @@ nt::NetworkTableEntry shifterEntry;
 nt::NetworkTableEntry forkStateEntry;
 nt::NetworkTableEntry outriggerStateEntry;
 
+nt::NetworkTableEntry clientValEntry;
+
 double count;
 double count2;
-
 
 void Robot::RobotInit() {
   
@@ -70,7 +71,7 @@ void Robot::RobotInit() {
   forkStateEntry = tab.Add("Fork State", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   outriggerStateEntry = tab.Add("Outrigger State", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
-
+  clientValEntry = tab.Add("Client Val Entry", -1).GetEntry();
 
   // instantiate the command used for the autonomous period
   // m_autoChooser.SetDefaultOption("Drive and Shoot", &m_driveAndShootAuto);
@@ -114,10 +115,14 @@ void Robot::DisabledInit(){
 
 void Robot::DisabledPeriodic() { Log(); }
 
-/** 
+/**
  * Log interesting values to the SmartDashboard.
  */
 void Robot::Log() {
+  nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
+  auto table = inst.GetTable("testtable");
+  clientValEntry.SetDouble(table->GetEntry("val").GetDouble(-2));
+
   // Robot::pneumatics.WritePressure();
   // frc::SmartDashboard::PutNumber("Pivot Pot Value", pivot.GetAngle());
   // frc::SmartDashboard::PutNumber("Left Distance", m_drivetrain.GetLeftEncoder().GetDistance());
