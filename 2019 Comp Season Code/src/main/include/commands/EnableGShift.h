@@ -17,5 +17,4 @@ class EnableGShift : public frc::Command {
  public:
   EnableGShift(bool enable);
   bool IsFinished() override;
-  void End() override;
 };

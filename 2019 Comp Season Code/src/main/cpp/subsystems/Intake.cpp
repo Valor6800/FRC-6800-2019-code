@@ -12,7 +12,7 @@ Intake::Intake() : frc::Subsystem("Intake") {
 }
 
 void Intake::InitDefaultCommand() {
-    //SetDefaultCommand(new IntakeTeleop());
+    SetDefaultCommand(new SpinIntakeMotors());
 }
 
 void Intake::SetWheelMotor(double val) {

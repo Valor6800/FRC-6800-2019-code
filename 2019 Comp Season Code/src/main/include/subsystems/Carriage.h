@@ -29,7 +29,6 @@ public:
   double GetMotorL();
   double GetMotorR();
 
-  bool flipped = false;
   bool photoelectricActivated = false;
   bool photoelectricTriggeredOnce = false;
 
@@ -38,7 +37,6 @@ private:
   frc::VictorSP m_leftMotor{8};
   frc::VictorSP m_rightMotor{9};
   frc::Solenoid hatchPusher{5};
-  frc::Solenoid flipper{6};
   frc::DigitalInput m_photoelectric{10}; // TODO: Get port here
 
 };

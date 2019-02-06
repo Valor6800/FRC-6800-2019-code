@@ -17,12 +17,16 @@ OI::OI() {
 
   if (g_shift) {
     m_bumperR.WhenPressed(new ToggleOutriggers());
+    // m_bumperR.WhenPressed(new SpinIntakeMotors());
+    m_bumperL.WhenPressed(new SetIntakePivot(false));
   } else {
     m_bumperR.WhenPressed(new DeployForklift());
+    // m_bumperR.WhenPressed(new SpinIntakeMotors());
+    m_bumperL.WhenPressed(new SetIntakePivot(true));
   }
 
-  m_bumperL.WhenPressed(new SetIntakePivot(true));
-  m_bumperR.WhenPressed(new SetIntakePivot(false));
+
+
   
 
   m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));

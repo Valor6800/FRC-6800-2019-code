@@ -44,8 +44,3 @@ bool Carriage::IsPhotoelectric() {
 void Carriage::SetHatchPusher(bool pivot) {
     hatchPusher.Set(pivot);
 }
-
-void Carriage::SetFlipper(bool flip) {
-    flipper.Set(flip);
-    flipped = flip;
-}

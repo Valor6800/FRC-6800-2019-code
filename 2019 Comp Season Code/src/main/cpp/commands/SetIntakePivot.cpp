@@ -9,15 +9,19 @@
 
 #include "Robot.h"
 
-SetIntakePivot::SetIntakePivot(bool up) {
+SetIntakePivot::SetIntakePivot(bool down) {
   Requires(&Robot::m_intake);
   SetInterruptible(true);
-  Robot::m_intake.m_pivotDown = up;
+  Robot::m_intake.m_pivotDown = down;
 }
 
 // Called just before this Command runs the first time
 void SetIntakePivot::Initialize() {
   Robot::m_intake.SetPivot(Robot::m_intake.m_pivotDown); // change values
+}
+
+void SetIntakePivot::Execute() {
+  Robot::m_intake.SetPivot(Robot::m_intake.m_pivotDown);
 }
 
 // Make this return true when this Command no longer needs to run execute()

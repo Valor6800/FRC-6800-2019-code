@@ -14,8 +14,6 @@ EnableGShift::EnableGShift(bool enable) {
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool EnableGShift::IsFinished() { return false; }
+bool EnableGShift::IsFinished() { return true; }
 
-// Called once after isFinished returns true
-void EnableGShift::End() { Robot::m_drivetrain.Stop(); }
 

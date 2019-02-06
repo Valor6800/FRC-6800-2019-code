@@ -17,17 +17,24 @@ SpinIntakeMotors::SpinIntakeMotors() {
 
 // Called just before this Command runs the first time
 void SpinIntakeMotors::Initialize() {
-    SetIntakePivot(false);
+    // SetIntakePivot(true);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void SpinIntakeMotors::Execute() { // possible edit trigger axis value
-    if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand) > 0.05 && !Robot::m_carriage.IsPhotoelectric() && !Robot::m_carriage.flipped) {        
+    // if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand) > 0.05 && !Robot::m_carriage.IsPhotoelectric()) {        
+    //     Robot::m_oi.g_shift ? Robot::m_intake.SetWheelMotor(Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand)) : Robot::m_intake.SetWheelMotor(-Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
+    //     Robot::m_oi.g_shift ? Robot::m_carriage.SetMotors(Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand)) : Robot::m_carriage.SetMotors(-Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
+    // } else if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand) > 0.05 && Robot::m_carriage.IsPhotoelectric()) {
+    //     Robot::m_intake.SetWheelMotor(0);
+    //     Robot::m_oi.g_shift ? Robot::m_carriage.SetMotors(Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand)) : Robot::m_carriage.SetMotors(-Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand));
+    // } else {
+    //     Robot::m_intake.SetWheelMotor(0);
+    //     Robot::m_carriage.SetMotors(0);
+    // }
+
+    if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand) > 0.05) {        
         Robot::m_oi.g_shift ? Robot::m_intake.SetWheelMotor(Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand)) : Robot::m_intake.SetWheelMotor(-Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
-        Robot::m_oi.g_shift ? Robot::m_carriage.SetMotors(Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand)) : Robot::m_carriage.SetMotors(-Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
-    } else if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand) > 0.05 && !Robot::m_carriage.IsPhotoelectric()) {
-        Robot::m_intake.SetWheelMotor(0);
-        Robot::m_oi.g_shift ? Robot::m_carriage.SetMotors(Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand)) : Robot::m_carriage.SetMotors(-Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand));
     } else {
         Robot::m_intake.SetWheelMotor(0);
         Robot::m_carriage.SetMotors(0);

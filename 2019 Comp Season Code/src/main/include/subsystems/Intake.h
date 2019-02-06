@@ -12,6 +12,7 @@
 #include <frc/Encoder.h>
 #include <frc/DigitalInput.h>
 #include <frc/Solenoid.h>
+#include "commands/SpinIntakeMotors.h"
 
 class Intake : public frc::Subsystem {
 public:
@@ -25,9 +26,9 @@ public:
   double GetWheelMotor();
   bool m_pivotDown;
   
-  frc::Solenoid m_pivotSolenoid {0};
+  frc::Solenoid m_pivotSolenoid {1};
 
 private:
-    frc::VictorSP m_wheelMotor {10};
+    frc::VictorSP m_wheelMotor {0};
  //check port number
 };
