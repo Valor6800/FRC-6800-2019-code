@@ -24,6 +24,10 @@ void Intake::SetPivot(bool pos) {
     m_pivotSolenoid.Set(pos);
 }
 
+bool Intake::GetPivot() {
+    return m_pivotSolenoid.Get();
+}
+
 void Intake::Stop() {
     m_wheelMotor.Set(0);
 }

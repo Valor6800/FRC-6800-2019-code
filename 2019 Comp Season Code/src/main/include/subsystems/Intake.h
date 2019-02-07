@@ -21,12 +21,13 @@ public:
   void InitDefaultCommand();
   void SetWheelMotor(double val);
   void SetPivot(bool pos);
+  bool GetPivot();
   void Stop();
 
   double GetWheelMotor();
   bool m_pivotDown;
   
-  frc::Solenoid m_pivotSolenoid {1};
+  frc::Solenoid m_pivotSolenoid {0};
 
 private:
     frc::VictorSP m_wheelMotor {0};

@@ -25,6 +25,6 @@ public:
   bool outriggersOut;
 
 private:
-    frc::Solenoid outriggers{3};
+    frc::Solenoid outriggers{4};
     frc::Solenoid forks{2};
 };

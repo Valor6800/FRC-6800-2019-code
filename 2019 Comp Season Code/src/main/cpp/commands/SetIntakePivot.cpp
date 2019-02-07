@@ -8,23 +8,21 @@
 #include "commands/SetIntakePivot.h"
 
 #include "Robot.h"
+#include "OI.h"
 
-SetIntakePivot::SetIntakePivot(bool down) {
-  Requires(&Robot::m_intake);
+SetIntakePivot::SetIntakePivot() {
   SetInterruptible(true);
-  Robot::m_intake.m_pivotDown = down;
 }
 
 // Called just before this Command runs the first time
-void SetIntakePivot::Initialize() {
-  Robot::m_intake.SetPivot(Robot::m_intake.m_pivotDown); // change values
-}
+void SetIntakePivot::Initialize() {}
 
 void SetIntakePivot::Execute() {
-  Robot::m_intake.SetPivot(Robot::m_intake.m_pivotDown);
+  Robot::m_intake.m_pivotDown = Robot::m_oi.g_shift;
+  Robot::m_intake.SetPivot(!Robot::m_intake.m_pivotDown);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool SetIntakePivot::IsFinished() { return Robot::m_intake.m_pivotSolenoid.Get() == Robot::m_intake.m_pivotDown;}
+bool SetIntakePivot::IsFinished() {return Robot::m_intake.GetPivot() != Robot::m_intake.m_pivotDown;}
 
 void SetIntakePivot::Interrupted() {}

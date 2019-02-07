@@ -9,11 +9,13 @@
 
 #include "Robot.h"
 
-EnableGShift::EnableGShift(bool enable) {
-    Robot::m_oi.g_shift = enable; 
+EnableGShift::EnableGShift() {}
+
+void EnableGShift::Execute() {
+    Robot::m_oi.g_shift = Robot::m_oi.GetGamepad().GetBackButton();
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool EnableGShift::IsFinished() { return true; }
+bool EnableGShift::IsFinished() { false; }
 
 

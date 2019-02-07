@@ -13,11 +13,12 @@ SpinIntakeMotors::SpinIntakeMotors() {
   // Use Requires() here to declare subsystem dependencies
   Requires(&Robot::m_intake);
   Requires(&Robot::m_carriage);
+  SetInterruptible(true);
 }
 
 // Called just before this Command runs the first time
 void SpinIntakeMotors::Initialize() {
-    // SetIntakePivot(true);
+    SetIntakePivot();
 }
 
 // Called repeatedly when this Command is scheduled to run

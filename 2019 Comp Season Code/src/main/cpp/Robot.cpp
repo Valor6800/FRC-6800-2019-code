@@ -17,6 +17,7 @@
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableEntry.h>
 #include <networktables/NetworkTableInstance.h>
+#include "../include/commands/EnableGShift.h"
 
 
 Carriage Robot::m_carriage;
