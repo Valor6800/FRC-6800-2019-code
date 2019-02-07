@@ -41,10 +41,6 @@ public:
   double GetMotorRightB();
   bool GetShifter();
 
-  void SetPrototype(bool set);
-
-  bool prototypeDeployed;
-
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();
   frc::Solenoid m_shifter{3};
@@ -58,8 +54,6 @@ public:
   frc::SpeedControllerGroup m_rightDrive{m_driveMotorRightA, m_driveMotorRightB};
 
   frc::DifferentialDrive m_robotDrive{m_leftDrive, m_rightDrive}; 
-
-  frc::Solenoid prototype{5};
 
 private:
   

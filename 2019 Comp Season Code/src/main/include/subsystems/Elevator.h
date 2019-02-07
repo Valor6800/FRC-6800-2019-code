@@ -47,14 +47,14 @@ class Elevator : public frc::PIDSubsystem {
  private:
 
   // Sensors for measuring the position of the pivot
-  frc::DigitalInput m_upperLimitSwitch{8};
-  frc::DigitalInput m_lowerLimitSwitch{9};
+  frc::DigitalInput m_upperLimitSwitch{1};
+  frc::DigitalInput m_lowerLimitSwitch{2};
 
   // Motor to move the pivot
-  frc::VictorSP m_liftMotorA{4};
-  frc::VictorSP m_liftMotorB{5};
-  frc::VictorSP m_liftMotorC{6};
-  frc::VictorSP m_liftMotorD{7};
+  frc::VictorSP m_liftMotorA{2};
+  frc::VictorSP m_liftMotorB{3};
+  frc::VictorSP m_liftMotorC{4};
+  frc::VictorSP m_liftMotorD{5};
 
   frc::SpeedControllerGroup m_liftMotors{m_liftMotorA, m_liftMotorB, m_liftMotorC, m_liftMotorD};
   

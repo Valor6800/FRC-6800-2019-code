@@ -34,9 +34,10 @@ public:
 
 
 private:
-  frc::VictorSP m_leftMotor{8};
-  frc::VictorSP m_rightMotor{9};
-  frc::Solenoid hatchPusher{6};
-  frc::DigitalInput m_photoelectric{10}; // TODO: Get port here
+  frc::VictorSP m_leftMotor{6};
+  frc::VictorSP m_rightMotor{7};
+  frc::Solenoid hatchPrepare{2};
+  frc::Solenoid hatchScorer{1};
+  frc::DigitalInput m_photoelectric{0}; // TODO: Get port here
 
 };

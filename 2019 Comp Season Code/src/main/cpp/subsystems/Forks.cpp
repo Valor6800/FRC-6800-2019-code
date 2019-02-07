@@ -7,27 +7,24 @@
 
 #include <subsystems/Forks.h>
 
-Forks::Forks() : frc::Subsystem("Forks") {
-    deployed = false;
-    outriggersOut = false;
-}
+Forks::Forks() : frc::Subsystem("Forks") {}
 
 void Forks::InitDefaultCommand() {
     //SetDefaultCommand(new CarriageTeleop());
 }
-void Forks::Deploy(bool deploy) {
-    forks.Set(deploy);
-    outriggers.Set(deploy);            
+
+void Forks::SetForks(double power) {
+    m_forks.Set(power);
 }
 
 void Forks::SetOutriggers(bool out) {
-    outriggers.Set(out);    
+    m_outriggers.Set(out);    
 }
 
 bool Forks::GetForkState() {
-    return forks.Get();
+    return (m_forksDeployed.Get());
 }
 
 bool Forks::GetOutriggerState() {
-    return outriggers.Get();
+    return m_outriggers.Get();
 }

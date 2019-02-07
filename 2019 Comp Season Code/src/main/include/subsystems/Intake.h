@@ -30,6 +30,6 @@ public:
   frc::Solenoid m_pivotSolenoid {0};
 
 private:
-    frc::VictorSP m_wheelMotor {0};
+  frc::VictorSP m_wheelMotor {0};
  //check port number
 };

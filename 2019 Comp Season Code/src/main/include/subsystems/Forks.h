@@ -9,6 +9,8 @@
 
 #include <frc/commands/Subsystem.h>
 #include <frc/Solenoid.h>
+#include <frc/VictorSP.h>
+#include <frc/DigitalInput.h>
 
 class Forks : public frc::Subsystem
 {
@@ -16,15 +18,13 @@ public:
   Forks();
 
   void InitDefaultCommand();
-  void Deploy(bool deploy);
+  void SetForks(double power);
   void SetOutriggers(bool out);
   bool GetForkState();
   bool GetOutriggerState();
 
-  bool deployed;
-  bool outriggersOut;
-
 private:
-    frc::Solenoid outriggers{4};
-    frc::Solenoid forks{2};
+    frc::Solenoid m_outriggers{4};
+    frc::VictorSP m_forks{1};
+    frc::DigitalInput m_forksDeployed{3};
 };

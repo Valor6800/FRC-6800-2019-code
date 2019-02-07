@@ -11,16 +11,17 @@
 
 DeployForklift::DeployForklift() { Requires(&Robot::m_forks); }
 
-void DeployForklift::Initialize() {
-    Robot::m_forks.deployed = !Robot::m_forks.deployed;
-    
-}
+void DeployForklift::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void DeployForklift::Execute() {
 
-    
-    Robot::m_forks.deployed ? Robot::m_forks.Deploy(true) : Robot::m_forks.Deploy(false);
+    Robot::m_oi.g_shift 
+        ? Robot::m_forks.GetForkState()
+            ? Robot::m_forks.SetForks((Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand) > .05) ? Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand) : 0.0)
+            : Robot::m_forks.SetForks(Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand))
+        : Robot::m_forks.SetForks(0.0);
+    // Robot::m_forks ? Robot::m_forks.Deploy(true) : Robot::m_forks.Deploy(false);
 }
 
 // Make this return true when this Command no longer needs to run execute()

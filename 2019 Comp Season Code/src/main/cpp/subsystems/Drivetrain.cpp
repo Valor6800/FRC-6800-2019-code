@@ -42,9 +42,6 @@ void Drivetrain::InitDefaultCommand() {
   SetDefaultCommand(new DriveWithJoystick());
 }
 
-void Drivetrain::SetPrototype(bool set) {
-  prototype.Set(set);
-}
 void Drivetrain::TankDrive(double leftAxis, double rightAxis) {
   m_robotDrive.TankDrive(leftAxis, rightAxis);
 }
