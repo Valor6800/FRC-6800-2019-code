@@ -19,7 +19,8 @@
 #include "commands/SpinIntakeMotors.h"
 #include "commands/EnableGShift.h"
 #include "commands/ToggleOutriggers.h"
-#include "commands/TestSolenoidProto.h"
+#include "commands/ScoreHatch.h"
+#include "commands/PrepareHatch.h"
 
 #include "subsystems/Elevator.h"
 #include "subsystems/Drivetrain.h"
@@ -42,7 +43,6 @@ class OI {
   frc::JoystickButton m_bumperL {&m_gamepad, 5};
   frc::JoystickButton m_bumperR {&m_gamepad, 6};
   frc::JoystickButton m_back {&m_gamepad, 7};
-
 
  public:
   frc::Joystick& GetLeftJoyDrive();

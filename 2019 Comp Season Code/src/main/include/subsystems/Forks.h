@@ -11,6 +11,7 @@
 #include <frc/Solenoid.h>
 #include <frc/VictorSP.h>
 #include <frc/DigitalInput.h>
+#include "../commands/DeployForklift.h"
 
 class Forks : public frc::Subsystem
 {
@@ -22,6 +23,8 @@ public:
   void SetOutriggers(bool out);
   bool GetForkState();
   bool GetOutriggerState();
+
+  bool outriggersOut;
 
 private:
     frc::Solenoid m_outriggers{4};

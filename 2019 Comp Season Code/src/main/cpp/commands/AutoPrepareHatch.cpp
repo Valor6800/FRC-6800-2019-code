@@ -5,23 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/TestSolenoidProto.h"
+#include "commands/AutoPrepareHatch.h"
 
 #include "Robot.h"
 
-TestSolenoidProto::TestSolenoidProto() {}
+AutoPrepareHatch::AutoPrepareHatch() {Requires(&Robot::m_carriage);}
 
-void TestSolenoidProto::Initialize() {
-   Robot::m_drivetrain.prototypeDeployed = !Robot::m_drivetrain.prototypeDeployed;
-}
+void AutoPrepareHatch::Initialize() {}
 
-// Called repeatedly when this Command is scheduled to run
-void TestSolenoidProto::Execute() {
-    Robot::m_drivetrain.SetPrototype(Robot::m_drivetrain.prototypeDeployed);
+void AutoPrepareHatch::Execute() {
+    if((Robot::m_elevator.GetHeight() > .4 && Robot::m_elevator.GetHeight() < .6) || Robot::m_carriage.preparerToGo) {
+        Robot::m_carriage.SetHatchPreparer(false);
+    } else {
+        Robot::m_carriage.SetHatchPreparer(true);
+    }
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool TestSolenoidProto::IsFinished() {}
+bool AutoPrepareHatch::IsFinished() { return false; }
 
-// Called once after isFinished returns true
-void TestSolenoidProto::End() {}
+

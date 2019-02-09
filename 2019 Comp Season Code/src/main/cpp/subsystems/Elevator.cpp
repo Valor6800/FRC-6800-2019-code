@@ -7,7 +7,7 @@
 
 #include "subsystems/Elevator.h"
 
-Elevator::Elevator() : frc::PIDSubsystem("Elevator", 7.0, 0.0, 8.0) {
+Elevator::Elevator() : frc::PIDSubsystem("Elevator", .1, 0.0, .1) {
   SetAbsoluteTolerance(0.01);
   GetPIDController()->SetContinuous(false);
 

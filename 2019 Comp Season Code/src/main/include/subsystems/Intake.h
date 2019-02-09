@@ -27,9 +27,9 @@ public:
   double GetWheelMotor();
   bool m_pivotDown;
   
-  frc::Solenoid m_pivotSolenoid {0};
+  frc::Solenoid m_pivotSolenoid{0};
 
 private:
-  frc::VictorSP m_wheelMotor {0};
+  frc::VictorSP m_wheelMotor{0};
  //check port number
 };

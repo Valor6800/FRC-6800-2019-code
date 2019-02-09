@@ -11,6 +11,7 @@
 #include <frc/VictorSP.h>
 #include <frc/commands/Subsystem.h>
 #include <frc/Solenoid.h>
+#include "../commands/AutoPrepareHatch.h"
 
 class Carriage : public frc::Subsystem
 {
@@ -21,23 +22,24 @@ public:
   void SetMotors(double val);
   void SetMotors(double leftVal, double rightVal);
   void Stop();
-  void SetHatchPusher(bool pivot);
-  void SetFlipper(bool flip);
+  void SetHatchScorer(bool score);
+  void SetHatchPreparer(bool prepare);
 
   bool IsPhotoelectric();
+  bool GetHatchScorer();
+  bool GetHatchPreparer();
 
   double GetMotorL();
   double GetMotorR();
 
   bool photoelectricActivated = false;
-  bool photoelectricTriggeredOnce = false;
-
+  bool preparerToGo;
 
 private:
   frc::VictorSP m_leftMotor{6};
   frc::VictorSP m_rightMotor{7};
-  frc::Solenoid hatchPrepare{2};
-  frc::Solenoid hatchScorer{1};
+  frc::Solenoid m_hatchPreparer{2};
+  frc::Solenoid m_hatchScorer{1};
   frc::DigitalInput m_photoelectric{0}; // TODO: Get port here
 
 };

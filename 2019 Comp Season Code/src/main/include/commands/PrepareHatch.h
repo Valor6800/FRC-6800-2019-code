@@ -9,12 +9,14 @@
 
 #include <frc/commands/Command.h>
 
-class SetCarriageSpeed : public frc::Command {
+/**
+ * This command allows PS3 joystick to drive the robot. It is always running
+ * except when interrupted by another command.
+ */
+class PrepareHatch : public frc::Command {
  public:
-  SetCarriageSpeed();
+  PrepareHatch();
   void Initialize() override;
-  void Execute() override;
   bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
+
 };

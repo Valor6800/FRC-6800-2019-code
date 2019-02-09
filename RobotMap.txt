@@ -1,0 +1,15 @@
+=========== PWM ==========
+VictorSP Intake_WheelMotor = 0
+VictorSP Forks_forks 	   = 1
+VictorSP Elevator_Motors   = 2, 3, 4, 5
+VictorSP Carriage_Motors   = 6, 7
+
+=========== PCM ==========
+Solenoid Intake_pivot	       = 0
+Solenoid Drivetrain_shifter    = 3
+Solenoid Forks_outriggers	   = 4
+Solenoid Carriage_hatchScorer  = 1
+Solenoid Carriage_hatchPrepare = 2
+
+=========== Digital Input ============
+Carriage_photoelectric		= 0

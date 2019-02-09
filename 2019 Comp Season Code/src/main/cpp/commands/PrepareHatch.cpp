@@ -5,18 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/PrepareHatch.h"
 
-#include <frc/commands/Command.h>
+#include "Robot.h"
 
-class SetIntakePivot : public frc::Command {
- public:
-  SetIntakePivot();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void Interrupted() override;
+PrepareHatch::PrepareHatch() {}
 
-  bool toGo;
+void PrepareHatch::Initialize() {
+    Robot::m_carriage.preparerToGo = !Robot::m_carriage.preparerToGo;
+}
 
-};
+// Make this return true when this Command no longer needs to run execute()
+bool PrepareHatch::IsFinished() { return Robot::m_carriage.GetHatchPreparer() == Robot::m_carriage.preparerToGo; }
+
+

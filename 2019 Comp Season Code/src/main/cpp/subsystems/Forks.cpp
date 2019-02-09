@@ -10,7 +10,7 @@
 Forks::Forks() : frc::Subsystem("Forks") {}
 
 void Forks::InitDefaultCommand() {
-    //SetDefaultCommand(new CarriageTeleop());
+    SetDefaultCommand(new DeployForklift());
 }
 
 void Forks::SetForks(double power) {

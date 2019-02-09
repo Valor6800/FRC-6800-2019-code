@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/ScoreHatch.h"
 
-#include <frc/commands/Command.h>
+#include "Robot.h"
 
-class SetIntakePivot : public frc::Command {
- public:
-  SetIntakePivot();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void Interrupted() override;
+ScoreHatch::ScoreHatch() {}
 
-  bool toGo;
+void ScoreHatch::Initialize() {
+    Robot::m_oi.g_shift ? scorerToGo = Robot::m_carriage.GetHatchScorer() : scorerToGo = !Robot::m_carriage.GetHatchScorer();
+    Robot::m_carriage.SetHatchScorer(scorerToGo);
+}
 
-};
+// Make this return true when this Command no longer needs to run execute()
+bool ScoreHatch::IsFinished() { return Robot::m_carriage.GetHatchScorer() == scorerToGo; }
+
+

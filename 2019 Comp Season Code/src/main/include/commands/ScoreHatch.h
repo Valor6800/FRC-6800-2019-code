@@ -9,14 +9,15 @@
 
 #include <frc/commands/Command.h>
 
-class SetIntakePivot : public frc::Command {
+/**
+ * This command allows PS3 joystick to drive the robot. It is always running
+ * except when interrupted by another command.
+ */
+class ScoreHatch : public frc::Command {
  public:
-  SetIntakePivot();
+  ScoreHatch();
   void Initialize() override;
-  void Execute() override;
   bool IsFinished() override;
-  void Interrupted() override;
 
-  bool toGo;
-
+  bool scorerToGo;
 };
