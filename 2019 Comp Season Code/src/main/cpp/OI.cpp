@@ -17,7 +17,7 @@ OI::OI() {
   m_bumperR.WhenPressed(new ScoreHatch());
 
   m_bumperL.WhenPressed(new SetIntakePivot());
-  // m_bumperL.WhenPressed(new PrepareHatch());
+  m_bumperL.WhenPressed(new PrepareHatch());
 
   m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
   m_b.WhenPressed(new SetElevatorSetpoint(new SetElevatorSetpointDefinite(Elevator::kLevelOneHatch), new SetElevatorSetpointDefinite(Elevator::kLevelOneCargo)));

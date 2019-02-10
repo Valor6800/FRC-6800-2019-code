@@ -51,10 +51,10 @@ class Elevator : public frc::PIDSubsystem {
   frc::DigitalInput m_lowerLimitSwitch{2};
 
   // Motor to move the pivot
-  frc::VictorSP m_liftMotorA{2};
-  frc::VictorSP m_liftMotorB{3};
-  frc::VictorSP m_liftMotorC{4};
-  frc::VictorSP m_liftMotorD{5};
+  frc::VictorSP m_liftMotorA{3};
+  frc::VictorSP m_liftMotorB{4};
+  frc::VictorSP m_liftMotorC{5};
+  frc::VictorSP m_liftMotorD{6};
 
   frc::SpeedControllerGroup m_liftMotors{m_liftMotorA, m_liftMotorB, m_liftMotorC, m_liftMotorD};
   

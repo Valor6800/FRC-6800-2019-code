@@ -36,8 +36,9 @@ public:
   bool preparerToGo;
 
 private:
-  frc::VictorSP m_leftMotor{6};
-  frc::VictorSP m_rightMotor{7};
+  frc::VictorSP m_leftMotor{1};
+  frc::VictorSP m_rightMotor{2};
+  
   frc::Solenoid m_hatchPreparer{2};
   frc::Solenoid m_hatchScorer{1};
   frc::DigitalInput m_photoelectric{0}; // TODO: Get port here
