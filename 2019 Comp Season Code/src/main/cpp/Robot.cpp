@@ -40,6 +40,7 @@ nt::NetworkTableEntry intakeWheelEntry;
 
 nt::NetworkTableEntry carriageWheelLEntry;
 nt::NetworkTableEntry carriageWheelREntry;
+nt::NetworkTableEntry carriagePhotoelectricEntry;
 
 nt::NetworkTableEntry driveMotorLeftAEntry;
 nt::NetworkTableEntry driveMotorLeftBEntry;
@@ -73,6 +74,7 @@ void Robot::RobotInit() {
  
   carriageWheelLEntry = tab.Add("Carriage Wheel L", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
   carriageWheelREntry = tab.Add("Carriage Wheel R", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  carriagePhotoelectricEntry = tab.Add("Carriage Photoelectric", 0).withWidget(frc::BuiltInWidget::kBooleanBox).GetEntry();
   
   driveMotorLeftAEntry = tab.Add("Drive Motor Left A", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
   driveMotorLeftBEntry = tab.Add("Drive Motor Left B", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
@@ -158,6 +160,7 @@ void Robot::Log() {
 
   carriageWheelLEntry.SetDouble(m_carriage.GetMotorL());
   carriageWheelREntry.SetDouble(m_carriage.GetMotorR());
+  carriagePhotoelectricEntry.SetBoolean(m_carriage.IsPhotoelectric());
 
   driveMotorLeftAEntry.SetDouble(m_drivetrain.GetMotorLeftA());
   driveMotorLeftBEntry.SetDouble(m_drivetrain.GetMotorLeftB());

@@ -38,8 +38,8 @@ void Carriage::Stop() {
 }
 
 bool Carriage::IsPhotoelectric() {
-    return false; // NOTE: Change this back later
-//   return m_photoelectric.Get();
+    // return false; // NOTE: Change this back later
+    return m_photoelectric.Get();
 }
 
 bool Carriage::GetHatchScorer() {
