@@ -14,11 +14,18 @@ ElevatorManual::ElevatorManual() { Requires(&Robot::m_elevator); }
 // Called repeatedly when this Command is scheduled to run
 void ElevatorManual::Execute() {
   auto& gamepad = Robot::m_oi.GetGamepad();
+
+  if(Robot::m_elevator.IsAtLowerLimit()) {
+    Robot::m_elevator.m_liftEncoder.Reset();
+    Robot::m_elevator.SetLiftSpeed(0);
+  }
+  if(Robot::m_elevator.IsAtUpperLimit()) {
+    Robot::m_elevator.m_liftEncoder.SetIndexSource(8, frc::Encoder::IndexingType::kResetWhileHigh);
+    Robot::m_elevator.SetLiftSpeed(0);
+  }
+
   Robot::m_elevator.SetLiftSpeed(std::abs(gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) > .05) ? gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) : 0);
   SetInterruptible(!std::abs(gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) > .05));
-
-  if(Robot::m_elevator.IsAtLowerLimit()) { Robot::m_elevator.m_liftEncoder.Reset(); }
-  if(Robot::m_elevator.IsAtUpperLimit()) { Robot::m_elevator.m_liftEncoder.SetIndexSource(8, frc::Encoder::IndexingType::kResetWhileHigh); Robot::m_elevator.SetLiftSpeed(0); }
 }
 
 // Make this return true when this Command no longer needs to run execute()

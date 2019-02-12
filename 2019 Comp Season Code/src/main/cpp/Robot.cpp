@@ -74,7 +74,7 @@ void Robot::RobotInit() {
  
   carriageWheelLEntry = tab.Add("Carriage Wheel L", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
   carriageWheelREntry = tab.Add("Carriage Wheel R", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  carriagePhotoelectricEntry = tab.Add("Carriage Photoelectric", 0).withWidget(frc::BuiltInWidget::kBooleanBox).GetEntry();
+  carriagePhotoelectricEntry = tab.Add("Carriage Photoelectric", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   
   driveMotorLeftAEntry = tab.Add("Drive Motor Left A", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
   driveMotorLeftBEntry = tab.Add("Drive Motor Left B", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
