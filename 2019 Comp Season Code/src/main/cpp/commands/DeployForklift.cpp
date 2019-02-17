@@ -16,14 +16,21 @@ void DeployForklift::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void DeployForklift::Execute() {
 
+    // If gShift
     if (Robot::m_oi.g_shift)
     {
+        // If the forks are deployed
         if (Robot::m_forks.GetForkState())
+            // If positive and out of deadband, DO set positive power to forks through right stick, OTHERWISE set fork power to 0
             Robot::m_forks.SetForks((Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand) > .05) ? Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand) : 0.0);
+        // Otherwise, 
         else
+            // If out of deadband, DO set power to forks through right stick, OTHERWISE set fork power to 0
             Robot::m_forks.SetForks((std::abs(Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand)) > 0.05) ? Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand) : 0.0);
     }
+    // Otherwise
     else
+        // Stop the forks from moving
         Robot::m_forks.SetForks(0.0);
 
     // Robot::m_oi.g_shift 

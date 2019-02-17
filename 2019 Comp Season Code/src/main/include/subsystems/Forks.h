@@ -27,7 +27,7 @@ public:
   bool outriggersOut;
 
 private:
-    frc::Solenoid m_outriggers{4};
-    frc::VictorSP m_forks{7};
-    frc::DigitalInput m_forksDeployed{3};
+    frc::Solenoid m_outriggers{5};
+    frc::VictorSP m_forks{8};
+    frc::DigitalInput m_forksDeployed{5};
 };

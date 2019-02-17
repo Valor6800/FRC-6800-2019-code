@@ -12,10 +12,16 @@
 PrepareHatch::PrepareHatch() {}
 
 void PrepareHatch::Initialize() {
+
+    // Toggle the preparer solenoid
     Robot::m_carriage.preparerToGo = !Robot::m_carriage.preparerToGo;
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool PrepareHatch::IsFinished() { return Robot::m_carriage.GetHatchPreparer() == Robot::m_carriage.preparerToGo; }
+bool PrepareHatch::IsFinished() { 
+
+    // Return the command is finished if the hatch state is actually where it should be
+    return Robot::m_carriage.GetHatchPreparer() == Robot::m_carriage.preparerToGo; 
+}
 
 

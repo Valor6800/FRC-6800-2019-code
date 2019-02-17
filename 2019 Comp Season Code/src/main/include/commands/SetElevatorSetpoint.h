@@ -19,6 +19,7 @@ class SetElevatorSetpoint : public frc::ConditionalCommand {
   SetElevatorSetpoint(Command* hatchCommand, Command* cargoCommand);
   void Initialize() override;
   bool IsFinished() override;
+  void End() override;
   void Interrupted() override;
   bool Condition() override;
 

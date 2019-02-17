@@ -17,13 +17,19 @@ SetIntakePivot::SetIntakePivot() {
 // Called just before this Command runs the first time
 void SetIntakePivot::Initialize() {
 
+  // If gShift is pressed, DO set toGO to the opposite, ELSE keep toGo the same
   Robot::m_oi.g_shift ? toGo = !Robot::m_intake.GetPivot() : toGo = Robot::m_intake.GetPivot();
+
+  // Toggle the pivot if appropriate
   Robot::m_intake.SetPivot(toGo);
 }
 
 void SetIntakePivot::Execute() {}
 
 // Make this return true when this Command no longer needs to run execute()
-bool SetIntakePivot::IsFinished() {return Robot::m_intake.GetPivot() == toGo;}
+bool SetIntakePivot::IsFinished() {
+  // Return true if the intake is actually where its supposed to be
+  return Robot::m_intake.GetPivot() == toGo;
+}
 
 void SetIntakePivot::Interrupted() {}

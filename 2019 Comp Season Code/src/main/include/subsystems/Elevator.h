@@ -12,6 +12,8 @@
 #include <frc/commands/PIDSubsystem.h>
 #include <frc/Encoder.h>
 #include <frc/SpeedControllerGroup.h>
+#include "commands/ElevatorManual.h"
+#include <frc/Solenoid.h>
 
 /**
  * The Pivot subsystem contains the Van-door motor and the pot for PID control
@@ -20,41 +22,45 @@
 class Elevator : public frc::PIDSubsystem {
  public:
   // Constants for some useful angles
-  static constexpr double kBottom =             0.00;
-  static constexpr double kLevelOneHatch =      0.25;
-  static constexpr double kLevelOneCargo =      0.35;
-  static constexpr double kLevelTwoHatch =      0.55;
-  static constexpr double kLevelTwoCargo =      0.65;
-  static constexpr double kLevelThreeHatch =    0.85;
-  static constexpr double kLevelThreeCargo =    0.95;
-  static constexpr double kTop =                1.00;
+  static constexpr double kBottom =             0;
+  static constexpr double kLevelOneHatch =      90;
+  static constexpr double kLevelOneCargo =      90;
+  static constexpr double kLevelTwoHatch =      350;
+  static constexpr double kLevelTwoCargo =      350;
+  static constexpr double kLevelThreeHatch =    650;
+  static constexpr double kLevelThreeCargo =    650;
+  static constexpr double kTop =                750;
 
   Elevator();
-  void InitDefaultCommand() override {}
+  void InitDefaultCommand() override;
 
   double ReturnPIDInput() override;
   void UsePIDOutput(double output) override;
 
-  bool IsAtUpperLimit();
   bool IsAtLowerLimit();
   double GetHeight();
   double GetSpeed();
+  bool GetBrake();
 
   void SetLiftSpeed(double power);
+  void EngageBrake(bool engage);
 
-  frc::Encoder m_liftEncoder{4, 5, frc::Encoder::k1X};
+  frc::Encoder m_liftEncoder{3, 4, frc::Encoder::k1X};
 
  private:
 
   // Sensors for measuring the position of the pivot
-  frc::DigitalInput m_upperLimitSwitch{1};
-  frc::DigitalInput m_lowerLimitSwitch{2};
+  frc::DigitalInput m_limitSwitch1{1};
+  frc::DigitalInput m_limitSwitch2{2};
+
+  // Piston for brake caliper
+  frc::Solenoid m_brake{4};
 
   // Motor to move the pivot
-  frc::VictorSP m_liftMotorA{3};
-  frc::VictorSP m_liftMotorB{4};
-  frc::VictorSP m_liftMotorC{5};
-  frc::VictorSP m_liftMotorD{6};
+  frc::VictorSP m_liftMotorA{4};
+  frc::VictorSP m_liftMotorB{5};
+  frc::VictorSP m_liftMotorC{6};
+  frc::VictorSP m_liftMotorD{7};
 
   frc::SpeedControllerGroup m_liftMotors{m_liftMotorA, m_liftMotorB, m_liftMotorC, m_liftMotorD};
   

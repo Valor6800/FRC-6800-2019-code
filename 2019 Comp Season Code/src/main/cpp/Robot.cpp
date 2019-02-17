@@ -34,6 +34,7 @@ nt::NetworkTableEntry elevatorHeightEntry;
 nt::NetworkTableEntry elevatorUpperLimitEntry;
 nt::NetworkTableEntry elevatorLowerLimitEntry;
 nt::NetworkTableEntry elevatorSpeedEntry;
+nt::NetworkTableEntry elevatorBrakeEntry;
 
 nt::NetworkTableEntry intakeAngleEntry;
 nt::NetworkTableEntry intakeWheelEntry;
@@ -64,10 +65,11 @@ void Robot::RobotInit() {
 
   //countEntry = tab.Add("count_", 0).withWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
   //count2Entry = tab.Add("count2", 100).GetEntry();
-  elevatorHeightEntry = tab.Add("Elevator Height", 0).withWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
+  elevatorHeightEntry = tab.Add("Elevator Height", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
   elevatorLowerLimitEntry = tab.Add("Elevator Lower Limit", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   elevatorUpperLimitEntry = tab.Add("Elevator Upper Limit", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   elevatorSpeedEntry = tab.Add("Elevator Speed", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  elevatorBrakeEntry = tab.Add("Elevator Brake", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
   intakeAngleEntry = tab.Add("Intake Angle", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   intakeWheelEntry = tab.Add("Intake Wheel", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
@@ -93,11 +95,15 @@ void Robot::RobotInit() {
   // const frc::BuiltInWidgets::kNumberSlider slider = frc::BuiltInWidgets::kNumberSlider;
   frc::SmartDashboard::PutData("Auto Mode", &m_autoChooser);
     // pneumatics.Start();  // Pressurize the pneumatics.
+
+    Robot::m_elevator.m_liftEncoder.Reset();
 }
 
 void Robot::AutonomousInit() {
   m_autonomousCommand = m_autoChooser.GetSelected();
   m_autonomousCommand->Start();
+
+    Robot::m_elevator.m_liftEncoder.Reset();
 }
 
 void Robot::AutonomousPeriodic() {
@@ -114,6 +120,8 @@ void Robot::TeleopInit() {
     m_autonomousCommand->Cancel();
   }
   // std::cout << "Starting Teleop" << std::endl;
+
+    Robot::m_elevator.m_liftEncoder.Reset();
 }
 
 void Robot::TeleopPeriodic() {
@@ -153,8 +161,9 @@ void Robot::Log() {
 
   elevatorHeightEntry.SetDouble(m_elevator.GetHeight());
   elevatorLowerLimitEntry.SetBoolean(m_elevator.IsAtLowerLimit());
-  elevatorUpperLimitEntry.SetBoolean(m_elevator.IsAtUpperLimit());
+  // elevatorUpperLimitEntry.SetBoolean(m_elevator.IsAtUpperLimit());
   elevatorSpeedEntry.SetDouble(m_elevator.GetSpeed());
+  elevatorBrakeEntry.SetBoolean(m_elevator.GetBrake());
 
   intakeWheelEntry.SetDouble(m_intake.GetWheelMotor());
 

@@ -16,7 +16,11 @@
 class ElevatorManual : public frc::Command {
  public:
   ElevatorManual();
+  void Initialize() override;
   void Execute() override;
   bool IsFinished() override;
   void End() override;
+
+  bool deadband;
+  double yVal;
 };

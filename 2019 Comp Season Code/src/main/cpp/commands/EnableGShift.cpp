@@ -12,6 +12,8 @@
 EnableGShift::EnableGShift() {}
 
 void EnableGShift::Execute() {
+
+    // Set the g_shift to the same state as the back button, permanently running
     Robot::m_oi.g_shift = Robot::m_oi.GetGamepad().GetBackButton();
 }
 

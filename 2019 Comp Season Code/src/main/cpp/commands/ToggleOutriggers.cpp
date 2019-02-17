@@ -14,7 +14,11 @@ ToggleOutriggers::ToggleOutriggers() {
 }
 
 void ToggleOutriggers::Initialize() {
-    if(Robot::m_oi.g_shift) Robot::m_forks.SetOutriggers(!Robot::m_forks.GetOutriggerState());
+
+    // IF we are in gShift
+    if(Robot::m_oi.g_shift) 
+        // Set the Outriggers to the opposite of what they are at now
+        Robot::m_forks.SetOutriggers(!Robot::m_forks.GetOutriggerState());
 }
 
 // Called repeatedly when this Command is scheduled to run

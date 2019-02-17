@@ -11,21 +11,59 @@
 
 ElevatorManual::ElevatorManual() { Requires(&Robot::m_elevator); }
 
+void ElevatorManual::Initialize() {Robot::m_elevator.Disable(); }
+
 // Called repeatedly when this Command is scheduled to run
 void ElevatorManual::Execute() {
   auto& gamepad = Robot::m_oi.GetGamepad();
 
+  // If elevator all the way down
   if(Robot::m_elevator.IsAtLowerLimit()) {
+
+    // Re-zero the encoder
     Robot::m_elevator.m_liftEncoder.Reset();
-    Robot::m_elevator.SetLiftSpeed(0);
-  }
-  if(Robot::m_elevator.IsAtUpperLimit()) {
-    Robot::m_elevator.m_liftEncoder.SetIndexSource(8, frc::Encoder::IndexingType::kResetWhileHigh);
-    Robot::m_elevator.SetLiftSpeed(0);
+
   }
 
-  Robot::m_elevator.SetLiftSpeed(std::abs(gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) > .05) ? gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) : 0);
-  SetInterruptible(!std::abs(gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand) > .05));
+  // Get the y-Value of the joystick for use later on
+  yVal = gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand);
+
+  // If we are going down, DO quarter-speed mode, ELSE full speed mode
+  if(yVal > 0) {
+    yVal = yVal / 2.0;
+  }
+
+  // If we are out of deadband
+  if(std::abs(gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand)) > .05) {
+    
+    // if(!Robot::m_elevator.IsAtLowerLimit()) {
+    //   Robot::m_elevator.SetLiftSpeed(yVal);
+    //   Robot::m_elevator.EngageBrake(false);
+    // } else {
+    //   if(yVal < 0) {
+    //     Robot::m_elevator.SetLiftSpeed(0);
+    //     Robot::m_elevator.EngageBrake(true);
+    //   } else {
+
+        // If the elevator is moving, disengage the brake
+        Robot::m_elevator.EngageBrake(false);
+
+        // Set the elevator to the y Value of the joystick
+        Robot::m_elevator.SetLiftSpeed(yVal);
+
+        
+    //   }
+    // }
+    
+  // Otherwise
+  } else {
+
+    // Stop the lift
+    Robot::m_elevator.SetLiftSpeed(0);
+
+    // Engage the brake to prevent decay
+    Robot::m_elevator.EngageBrake(true);
+  }
 }
 
 // Make this return true when this Command no longer needs to run execute()
