@@ -65,27 +65,27 @@ void Robot::RobotInit() {
 
   //countEntry = tab.Add("count_", 0).withWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
   //count2Entry = tab.Add("count2", 100).GetEntry();
-  elevatorHeightEntry = tab.Add("Elevator Height", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  elevatorLowerLimitEntry = tab.Add("Elevator Lower Limit", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
-  elevatorUpperLimitEntry = tab.Add("Elevator Upper Limit", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
-  elevatorSpeedEntry = tab.Add("Elevator Speed", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  elevatorBrakeEntry = tab.Add("Elevator Brake", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  elevatorHeightEntry = tab.Add("Elevator Height", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  elevatorLowerLimitEntry = tab.Add("Elevator Lower Limit", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  elevatorUpperLimitEntry = tab.Add("Elevator Upper Limit", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  elevatorSpeedEntry = tab.Add("Elevator Speed", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  elevatorBrakeEntry = tab.Add("Elevator Brake", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
-  intakeAngleEntry = tab.Add("Intake Angle", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
-  intakeWheelEntry = tab.Add("Intake Wheel", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  intakeAngleEntry = tab.Add("Intake Angle", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  intakeWheelEntry = tab.Add("Intake Wheel", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
  
-  carriageWheelLEntry = tab.Add("Carriage Wheel L", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  carriageWheelREntry = tab.Add("Carriage Wheel R", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  carriagePhotoelectricEntry = tab.Add("Carriage Photoelectric", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  carriageWheelLEntry = tab.Add("Carriage Wheel L", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  carriageWheelREntry = tab.Add("Carriage Wheel R", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  carriagePhotoelectricEntry = tab.Add("Carriage Photoelectric", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   
-  driveMotorLeftAEntry = tab.Add("Drive Motor Left A", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  driveMotorLeftBEntry = tab.Add("Drive Motor Left B", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  driveMotorRightAEntry = tab.Add("Drive Motor Right A", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  driveMotorRightBEntry = tab.Add("Drive Motor Right B", 0).withWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  shifterEntry = tab.Add("Shifter Entry", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  driveMotorLeftAEntry = tab.Add("Drive Motor Left A", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  driveMotorLeftBEntry = tab.Add("Drive Motor Left B", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  driveMotorRightAEntry = tab.Add("Drive Motor Right A", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  driveMotorRightBEntry = tab.Add("Drive Motor Right B", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+  shifterEntry = tab.Add("Shifter Entry", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
-  forkStateEntry = tab.Add("Fork State", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
-  outriggerStateEntry = tab.Add("Outrigger State", false).withWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  forkStateEntry = tab.Add("Fork State", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  outriggerStateEntry = tab.Add("Outrigger State", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
   clientValEntry = tab.Add("Client Val Entry", -1).GetEntry();
 
