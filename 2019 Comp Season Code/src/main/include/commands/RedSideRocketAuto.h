@@ -8,7 +8,9 @@
 #pragma once
 
 #include <frc/commands/CommandGroup.h>
-//#include <pathfinder.h>
+#include <pathfinder.h>
+#include <AHRS.h>
+#include "../subsystems/Drivetrain.h"
 
 /**
  * This command allows PS3 joystick to drive the robot. It is always running

@@ -32,7 +32,7 @@ RedSideRocketAuto::RedSideRocketAuto() {
     int length = candidate.length;
 
     // Array of Segments (the trajectory points) to store the trajectory in
-    Segment* trajectory =  (Segment*) malloc(sizeof(Segment) * length);    
+    Segment* trajectory =  (Segment*) malloc(sizeof(Segment) * length);   
 
     // Generate the trajectory
     pathfinder_generate(&candidate, trajectory);
@@ -51,9 +51,7 @@ RedSideRocketAuto::RedSideRocketAuto() {
     leftFollower->last_error = 0; 
     leftFollower->segment = 0; 
     leftFollower->finished = 0;
-
-
-
+    
     EncoderFollower* rightFollower = (EncoderFollower*) malloc(sizeof(EncoderFollower));
     rightFollower->last_error = 0; 
     rightFollower->segment = 0; 
@@ -73,14 +71,12 @@ RedSideRocketAuto::RedSideRocketAuto() {
     double r = pathfinder_follow_encoder(rightConfig, rightFollower, rightTrajectory, length, Robot::m_drivetrain.GetRightEncoder());
 
     // -- using l and r from the previous code block -- //
-    double gyro_heading = ... your gyro code here ...      // Assuming gyro angle is given in degrees
-    double desired_heading = r2d(leftFollower.heading);
+    double gyro_heading =  Robot::m_drivetrain.GetHeading();   // Assuming gyro angle is given in degrees
+    double desired_heading = r2d(leftFollower->heading);
 
     double angle_difference = desired_heading - gyro_heading;    // Make sure to bound this from -180 to 180, otherwise you will get super large values
 
     double turn = 0.8 * (-1.0/80.0) * angle_difference;
 
-    setLeftMotors(l + turn);
-    setRightMotors(r - turn);
-    
+    Robot::m_drivetrain.TankDrive(l + turn, r - turn);
 }

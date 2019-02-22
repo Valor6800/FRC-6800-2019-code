@@ -78,6 +78,10 @@ double Drivetrain::GetRightEncoder() {
   return (m_driveMotorRightA.GetEncoder().GetPosition() + m_driveMotorRightB.GetEncoder().GetPosition()) / 2.0;
 }
 
+double Drivetrain::GetHeading() {
+  return m_gyro.GetYaw();
+}
+
 // frc::Encoder& Drivetrain::GetLeftEncoder() { return m_leftEncoder; }
 
 // frc::Encoder& Drivetrain::GetRightEncoder() { return m_rightEncoder; }

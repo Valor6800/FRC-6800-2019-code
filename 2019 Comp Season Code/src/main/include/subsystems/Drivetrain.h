@@ -15,6 +15,7 @@
 #include <frc/Solenoid.h>
 #include "commands/DriveWithJoystick.h"
 #include <rev/CANSparkMaxLowLevel.h>
+#include <AHRS.h>
 
 namespace frc
 {
@@ -44,6 +45,8 @@ public:
   double GetLeftEncoder();
   double GetRightEncoder();
 
+  double GetHeading();
+
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();
   frc::Solenoid m_shifter{3};
@@ -57,6 +60,8 @@ public:
   frc::SpeedControllerGroup m_rightDrive{m_driveMotorRightA, m_driveMotorRightB};
 
   frc::DifferentialDrive m_robotDrive{m_leftDrive, m_rightDrive}; 
+
+  AHRS m_gyro{SerialPort::Port::kMXP};
 
 private:
   
