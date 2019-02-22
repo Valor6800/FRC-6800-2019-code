@@ -13,9 +13,11 @@
 #include <frc/buttons/Button.h>
 
 #include "commands/DeployForklift.h"
+#include "commands/ElevatorHatchMacro.h"
 #include "commands/SetElevatorSetpoint.h"
 #include "commands/SetIntakePivot.h"
 #include "commands/SetElevatorSetpointDefinite.h"
+#include "commands/SetElevatorSetpointRelative.h"
 #include "commands/SpinIntakeMotors.h"
 #include "commands/EnableGShift.h"
 #include "commands/ToggleOutriggers.h"

@@ -7,10 +7,10 @@
 
 #include "subsystems/Elevator.h"
 
-Elevator::Elevator() : frc::PIDSubsystem("Elevator", .004, 0.0, 0) {
+Elevator::Elevator() : frc::PIDSubsystem("Elevator", .0000004, 0.0, 0) {
   SetAbsoluteTolerance(0.01);
   GetPIDController()->SetContinuous(false);
-  SetOutputRange(.25, 1);
+  SetOutputRange(-.15, .2); // -.4 to .8 
   // Put everything to the LiveWindow for testing.
   // AddChild("Upper Limit Switch", m_upperLimitSwitch);
   // AddChild("Lower Limit Switch", m_lowerLimitSwitch);
@@ -23,17 +23,26 @@ double Elevator::ReturnPIDInput() { return m_liftEncoder.Get(); }
 
 void Elevator::UsePIDOutput(double output) { 
 
-  if(GetPosition() < GetSetpoint()) {
-    m_liftMotors.PIDWrite(-output); 
-  } else {
-    m_liftMotors.PIDWrite(output);
+  // if(GetPosition() < GetSetpoint()) {
+  //   m_liftMotors.PIDWrite(-output); 
+  // } else {
+  //   m_liftMotors.PIDWrite(output);
+  // }
+
+  double power = output;
+
+  if(power < .2 && power > 0) {
+    power = .2;
+  } else if(power > -.15 && power < 0) {
+    power = -.15;
   }
+
+  m_liftMotors.PIDWrite(-power);
 }
 
 bool Elevator::IsAtLowerLimit() {
   return false;
-  // return m_limitSwitch1.Get(); 
-  // && m_limitSwitch2.Get();  // TODO: inverted from real robot
+  // return (m_limitSwitch1.Get() && m_limitSwitch2.Get());  // TODO: inverted from real robot
                                                         // (prefix with !)
 }
 

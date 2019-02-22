@@ -22,7 +22,7 @@
 class Elevator : public frc::PIDSubsystem {
  public:
   // Constants for some useful angles
-  static constexpr double kBottom =             0;
+  static constexpr double kBottom =             550;
   static constexpr double kLevelOneHatch =      90;
   static constexpr double kLevelOneCargo =      90;
   static constexpr double kLevelTwoHatch =      350;
@@ -50,8 +50,8 @@ class Elevator : public frc::PIDSubsystem {
  private:
 
   // Sensors for measuring the position of the pivot
-  frc::DigitalInput m_limitSwitch1{1};
-  frc::DigitalInput m_limitSwitch2{2};
+  frc::DigitalInput m_limitSwitch1{0};
+  frc::DigitalInput m_limitSwitch2{1};
 
   // Piston for brake caliper
   frc::Solenoid m_brake{4};

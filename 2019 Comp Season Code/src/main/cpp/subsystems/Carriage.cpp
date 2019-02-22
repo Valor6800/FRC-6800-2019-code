@@ -12,7 +12,6 @@ Carriage::Carriage() : frc::Subsystem("Carriage") {
 }
 
 void Carriage::InitDefaultCommand() {
-    SetDefaultCommand(new AutoPrepareHatch());
 }
 void Carriage::SetMotors(double val) {
     m_leftMotor.Set(val);
@@ -38,8 +37,8 @@ void Carriage::Stop() {
 }
 
 bool Carriage::IsPhotoelectric() {
-    // return false; // NOTE: Change this back later
-    return m_photoelectric.Get();
+    return false; // NOTE: Change this back later
+    // return m_photoelectric.Get();
 }
 
 bool Carriage::GetHatchScorer() {

@@ -14,9 +14,9 @@
  * the tolerance, but leaves the PID loop running to maintain the position.
  * Other commands using the Elevator should make sure they disable PID!
  */
-class SetElevatorSetpointDefinite : public frc::Command {
+class SetElevatorSetpointRelative : public frc::Command {
  public:
-  SetElevatorSetpointDefinite(double setpoint);
+  SetElevatorSetpointRelative(double setpoint);
   void Initialize() override;
   bool IsFinished() override;
   void End() override;
@@ -24,8 +24,4 @@ class SetElevatorSetpointDefinite : public frc::Command {
 
  private:
   double m_setpoint;
-
-  bool InLevelOneRange();
-  bool InLevelTwoRange();
-  bool InLevelThreeRange();
 };

@@ -41,6 +41,6 @@ private:
   
   frc::Solenoid m_hatchPreparer{2};
   frc::Solenoid m_hatchScorer{1};
-  frc::DigitalInput m_photoelectric{0};
+  frc::DigitalInput m_photoelectric{2};
 
 };
