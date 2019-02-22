@@ -41,6 +41,9 @@ public:
   double GetMotorRightB();
   bool GetShifter();
 
+  double GetLeftEncoder();
+  double GetRightEncoder();
+
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();
   frc::Solenoid m_shifter{3};
