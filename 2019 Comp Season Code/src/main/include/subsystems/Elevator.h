@@ -25,11 +25,13 @@ class Elevator : public frc::PIDSubsystem {
   static constexpr double kBottom =             550;
   static constexpr double kLevelOneHatch =      90;
   static constexpr double kLevelOneCargo =      90;
-  static constexpr double kLevelTwoHatch =      350;
-  static constexpr double kLevelTwoCargo =      350;
+  static constexpr double kLevelTwoHatch =      400;
+  static constexpr double kLevelTwoCargo =      400;
   static constexpr double kLevelThreeHatch =    650;
   static constexpr double kLevelThreeCargo =    650;
   static constexpr double kTop =                750;
+
+  static constexpr double kLevelTwoSafe =       600;
 
   Elevator();
   void InitDefaultCommand() override;

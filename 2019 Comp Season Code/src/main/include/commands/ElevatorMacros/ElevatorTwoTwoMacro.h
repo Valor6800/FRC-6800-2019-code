@@ -7,21 +7,15 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
+#include <frc/commands/CommandGroup.h>
+#include "commands/SetHatch.h"
+#include "commands/SetElevatorSetpointDefinite.h"
 
 /**
- * Moves the  Elevator to a given height. This command finishes when it is within
- * the tolerance, but leaves the PID loop running to maintain the position.
- * Other commands using the Elevator should make sure they disable PID!
+ * This command allows PS3 joystick to drive the robot. It is always running
+ * except when interrupted by another command.
  */
-class SetElevatorSetpointDefinite : public frc::Command {
+class ElevatorTwoTwoMacro : public frc::CommandGroup {
  public:
-  SetElevatorSetpointDefinite(double setpoint);
-  void Initialize() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
-
- private:
-  double m_setpoint;
+  ElevatorTwoTwoMacro();
 };

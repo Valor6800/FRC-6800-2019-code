@@ -35,16 +35,4 @@ void SetElevatorSetpointDefinite::End() { Robot::m_elevator.Disable(); Robot::m_
 
 void SetElevatorSetpointDefinite::Interrupted() { Robot::m_elevator.Disable();}
 
-bool SetElevatorSetpointDefinite::InLevelOneRange() {
-  return Robot::m_elevator.GetHeight() < 140 && Robot::m_elevator.GetHeight() > 40;
-}
-
-bool SetElevatorSetpointDefinite::InLevelTwoRange() {
-  return Robot::m_elevator.GetHeight() < 400 && Robot::m_elevator.GetHeight() > 300;
-}
-
-bool SetElevatorSetpointDefinite::InLevelThreeRange() {
-  return Robot::m_elevator.GetHeight() < 700 && Robot::m_elevator.GetHeight() > 600;
-}
-
 

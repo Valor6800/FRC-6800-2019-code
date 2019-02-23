@@ -22,9 +22,9 @@ void SetElevatorSetpointRelative::Initialize() {
 
       // Enable the PID thread and set the setpoint based on the button being pressed
       if(Robot::m_oi.g_shift) {
-        Robot::m_elevator.SetSetpointRelative(m_setpoint);
+        Robot::m_elevator.SetSetpoint(Robot::m_elevator.GetPosition() + m_setpoint);
       } else {
-        Robot::m_elevator.SetSetpointRelative(-m_setpoint);
+        Robot::m_elevator.SetSetpoint(Robot::m_elevator.GetPosition() - m_setpoint);
       }
       Robot::m_elevator.Enable();
       Robot::m_elevator.EngageBrake(false);

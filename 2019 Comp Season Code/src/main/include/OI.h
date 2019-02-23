@@ -24,9 +24,21 @@
 #include "commands/ScoreHatch.h"
 #include "commands/PrepareHatch.h"
 
+#include "commands/ElevatorMacros/ElevatorOneOneMacro.h"
+#include "commands/ElevatorMacros/ElevatorOneTwoMacro.h"
+#include "commands/ElevatorMacros/ElevatorOneThreeMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoOneMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoThreeMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeOneMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeTwoMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeThreeMacro.h"
+
+
 #include "subsystems/Elevator.h"
 #include "subsystems/Drivetrain.h"
 #include "subsystems/Forks.h"
+
+#include "CustomTrigger.h"
 
 class OI {
  private:
@@ -37,7 +49,7 @@ class OI {
   frc::XboxController m_gamepad{0};
 
   frc::Joystick m_footPedal{3};
-
+  
   frc::JoystickButton m_a {&m_gamepad, 1};
   frc::JoystickButton m_b {&m_gamepad, 2};
   frc::JoystickButton m_x {&m_gamepad, 3};
@@ -45,6 +57,20 @@ class OI {
   frc::JoystickButton m_bumperL {&m_gamepad, 5};
   frc::JoystickButton m_bumperR {&m_gamepad, 6};
   frc::JoystickButton m_back {&m_gamepad, 7};
+
+  frc::CustomTrigger One_One {'B', 0, 200};
+  frc::CustomTrigger One_Two {'X', 0, 200};
+  frc::CustomTrigger One_Three {'Y', 0, 200};
+
+  frc::CustomTrigger Two_One {'B', 200, 550};
+  frc::CustomTrigger Two_Two {'X', 200, 550};
+  frc::CustomTrigger Two_Three {'Y', 200, 550};
+
+  frc::CustomTrigger Three_One {'B', 550, 1000};
+  frc::CustomTrigger Three_Two {'X', 550, 1000};
+  frc::CustomTrigger Three_Three {'Y', 550, 1000};
+
+  // frc::Trigger High_Low {}
 
  public:
   frc::Joystick& GetLeftJoyDrive();

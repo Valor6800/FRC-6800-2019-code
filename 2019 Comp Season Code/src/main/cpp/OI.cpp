@@ -28,6 +28,16 @@ OI::OI() {
   // m_a.WhenPressed(new TestSolenoidProto());
 
   //pedal = new Button(3);
+
+  One_One.WhenActive(new ElevatorOneOneMacro());
+  One_Two.WhenActive(new ElevatorOneTwoMacro());
+  One_Three.WhenActive(new ElevatorOneThreeMacro());
+  Two_One.WhenActive(new ElevatorTwoOneMacro());
+  Two_Three.WhenActive(new ElevatorTwoThreeMacro());
+  Three_One.WhenActive(new ElevatorThreeOneMacro());
+  Three_Two.WhenActive(new ElevatorThreeTwoMacro());
+  Three_Three.WhenActive(new ElevatorThreeThreeMacro());
+
 }
 
 frc::Joystick& OI::GetLeftJoyDrive() {
