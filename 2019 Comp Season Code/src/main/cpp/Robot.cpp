@@ -54,6 +54,8 @@ nt::NetworkTableEntry outriggerStateEntry;
 
 nt::NetworkTableEntry clientValEntry;
 
+nt::NetworkTableEntry gyroEntry;
+
 double count;
 double count2;
 
@@ -89,8 +91,10 @@ void Robot::RobotInit() {
 
   clientValEntry = tab.Add("Client Val Entry", -1).GetEntry();
 
+  gyroEntry = tab.Add("Heading", 0).WithWidget(frc::BuiltInWidgets::kGyro).GetEntry();
+
   // instantiate the command used for the autonomous period
-  // m_autoChooser.SetDefaultOption("Drive and Shoot", &m_driveAndShootAuto);
+  m_autoChooser.SetDefaultOption("Pathfinder test", &m_pathfinder);
   // m_autoChooser.AddOption("Drive Forward", &m_driveForwardAuto);
   // const frc::BuiltInWidgets::kNumberSlider slider = frc::BuiltInWidgets::kNumberSlider;
   frc::SmartDashboard::PutData("Auto Mode", &m_autoChooser);
@@ -103,7 +107,7 @@ void Robot::AutonomousInit() {
   m_autonomousCommand = m_autoChooser.GetSelected();
   m_autonomousCommand->Start();
 
-    Robot::m_elevator.m_liftEncoder.Reset();
+  Robot::m_elevator.m_liftEncoder.Reset();
 }
 
 void Robot::AutonomousPeriodic() {
@@ -135,7 +139,7 @@ void Robot::DisabledInit(){
   
 }
 
-void Robot::DisabledPeriodic() { Log(); }
+void Robot::DisabledPeriodic() { Log(); m_drivetrain.m_gyro.Reset(); }
 
 /**
  * Log interesting values to the SmartDashboard.
@@ -179,6 +183,8 @@ void Robot::Log() {
 
   forkStateEntry.SetBoolean(m_forks.GetForkState());
   outriggerStateEntry.SetBoolean(m_forks.GetOutriggerState());
+
+  gyroEntry.SetDouble(m_drivetrain.GetHeading());
 
   // camera1Entry.SetRaw(outputStream.Get());
 

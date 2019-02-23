@@ -20,7 +20,6 @@ void ElevatorManual::Execute() {
   // If elevator all the way down
   if(Robot::m_elevator.IsAtLowerLimit()) {
     
-    Robot::m_intake.SetWheelMotor(.1);
     // Re-zero the encoder
     Robot::m_elevator.m_liftEncoder.Reset();
 
