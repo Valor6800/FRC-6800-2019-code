@@ -94,7 +94,7 @@ void Robot::RobotInit() {
   gyroEntry = tab.Add("Heading", 0).WithWidget(frc::BuiltInWidgets::kGyro).GetEntry();
 
   // instantiate the command used for the autonomous period
-  m_autoChooser.SetDefaultOption("Pathfinder test", &m_pathfinder);
+  // m_autoChooser.SetDefaultOption("Pathfinder test", &m_pathfinder);
   // m_autoChooser.AddOption("Drive Forward", &m_driveForwardAuto);
   // const frc::BuiltInWidgets::kNumberSlider slider = frc::BuiltInWidgets::kNumberSlider;
   frc::SmartDashboard::PutData("Auto Mode", &m_autoChooser);

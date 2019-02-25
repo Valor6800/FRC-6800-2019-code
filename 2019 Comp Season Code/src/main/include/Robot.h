@@ -27,7 +27,7 @@
 #include "subsystems/Intake.h"
 #include "subsystems/Pneumatics.h"
 #include "subsystems/Forks.h"
-#include "commands/RocketLeftPath.h"
+// #include "commands/RocketLeftPath.h"
 
 class Robot : public frc::TimedRobot {
  public:
@@ -44,7 +44,7 @@ class Robot : public frc::TimedRobot {
   frc::Command* m_autonomousCommand = nullptr;
   //DriveAndShootAutonomous m_driveAndShootAuto;
   //DriveForward m_driveForwardAuto;
-  RocketLeftPath m_pathfinder;
+  // RocketLeftPath m_pathfinder;
   frc::SendableChooser<frc::Command*> m_autoChooser;
 
   void RobotInit() override;
