@@ -47,6 +47,9 @@ public:
 
   double GetHeading();
 
+  double l;
+  double r;
+
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();
   frc::Solenoid m_shifter{3};

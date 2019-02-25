@@ -71,7 +71,7 @@ bool Drivetrain::GetShifter() {
 }
 
 double Drivetrain::GetLeftEncoder() {
-  return (m_driveMotorLeftA.GetEncoder().GetPosition() + m_driveMotorLeftB.GetEncoder().GetPosition()) / 2.0;
+  return -(m_driveMotorLeftA.GetEncoder().GetPosition() + m_driveMotorLeftB.GetEncoder().GetPosition()) / 2.0;
 }
 
 double Drivetrain::GetRightEncoder() {

@@ -27,6 +27,8 @@ class RocketLeftPath : public frc::Command {
   void Execute() override;
   bool IsFinished() override;
   void End() override;
+  double l;
+  double r;
 
  private:
   // const int k_ticks_per_rev = 1024;

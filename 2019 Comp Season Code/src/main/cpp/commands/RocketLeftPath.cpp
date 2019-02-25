@@ -1,11 +1,13 @@
 #include "commands/RocketLeftPath.h"
 #include "Robot.h"
+#include <cmath>
 
 RocketLeftPath::RocketLeftPath() {
     Requires(&Robot::m_drivetrain);
 }
 
 void RocketLeftPath::Initialize() {
+
     // TrajectoryConfig left_trajectory = PathfinderFRC::get_trajectory(k_path_name + ".left");
     // Trajectory right_trajectory = PathfinderFRC.getTrajectory(k_path_name + ".right");
 
@@ -22,10 +24,10 @@ void RocketLeftPath::Initialize() {
 
     const int POINT_LENGTH = 2;
 
-    Waypoint points[POINT_LENGTH];
+    Waypoint *points = (Waypoint*)malloc(sizeof(Waypoint) * POINT_LENGTH);
 
     Waypoint p1 = { 0, 0, d2r(0) };      // Waypoint @ x=-4, y=-1, exit angle=45 degrees
-    Waypoint p2 = { 3.0, 0, d2r(0) };             // Waypoint @ x=-1, y= 2, exit angle= 0 radians
+    Waypoint p2 = { 5.0, 0, d2r(0) };             // Waypoint @ x=-1, y= 2, exit angle= 0 radians
     // Waypoint p3 = { 5.0, 0.7, d2r(79) };             // Waypoint @ x= 2, y= 4, exit angle= 0 radians
     points[0] = p1;
     points[1] = p2;
@@ -43,17 +45,18 @@ void RocketLeftPath::Initialize() {
     // Max Acceleration:    10 m/s/s
     // Max Jerk:            60 m/s/s/s
     pathfinder_prepare(points, POINT_LENGTH, FIT_HERMITE_CUBIC, PATHFINDER_SAMPLES_HIGH, 0.02, 10.0, 2, 60, &candidate);
+    free(points);
 
     const int length = candidate.length;
 
     // Array of Segments (the trajectory points) to store the trajectory in
-    Segment* trajectory =  (Segment*) malloc(sizeof(Segment) * length);   
+    Segment* trajectory =  (Segment*)malloc(sizeof(Segment) * length);   
 
     // Generate the trajectory
     pathfinder_generate(&candidate, trajectory);
 
-    leftTrajectory = new Segment[length];
-    rightTrajectory = new Segment[length];
+    leftTrajectory = (Segment*)malloc(sizeof(Segment) * length);
+    rightTrajectory = (Segment*)malloc(sizeof(Segment) * length);
 
     // The distance between the left and right sides of the wheelbase is 0.8m
     double wheelbase_width = 0.756;
@@ -72,10 +75,10 @@ void RocketLeftPath::Initialize() {
     rightFollower->segment = 0; 
     rightFollower->finished = 0;
 
-    leftConfig = { (int)Robot::m_drivetrain.GetLeftEncoder(), 1000, .1524,      // Position, Ticks per Rev, Wheel Circumference
-                         1.0, 0.0, 0.0, 1.0 / 10.0, 0.0};
-    rightConfig = { (int)Robot::m_drivetrain.GetRightEncoder(), 1000, .1524,      // Position, Ticks per Rev, Wheel Circumference
-                         1.0, 0.0, 0.0, 1.0 / 10.0, 0.0};
+    leftConfig = { (int)Robot::m_drivetrain.GetLeftEncoder(), 18, .478,      // Position, Ticks per Rev, Wheel Circumference
+                         .8, 0.0, 0.0, 1.0 / 10.0, 0.0};
+    rightConfig = { (int)Robot::m_drivetrain.GetRightEncoder(), 18, .478,      // Position, Ticks per Rev, Wheel Circumference
+                         .8, 0.0, 0.0, 1.0 / 10.0, 0.0};
 
     free(trajectory);
 }
@@ -86,8 +89,8 @@ void RocketLeftPath::Execute() {
     // Arg 3: The Trajectory generated from `pathfinder_modify_tank`
     // Arg 4: The Length of the Trajectory (length used in Segment seg[length];)
     // Arg 5: The current value of your encoder
-    double l = pathfinder_follow_encoder(leftConfig, leftFollower, leftTrajectory, candidate.length, Robot::m_drivetrain.GetLeftEncoder());
-    double r = pathfinder_follow_encoder(rightConfig, rightFollower, rightTrajectory, candidate.length, Robot::m_drivetrain.GetRightEncoder());
+    l = -pathfinder_follow_encoder(leftConfig, leftFollower, leftTrajectory, candidate.length, Robot::m_drivetrain.GetLeftEncoder());
+    r = -pathfinder_follow_encoder(rightConfig, rightFollower, rightTrajectory, candidate.length, Robot::m_drivetrain.GetRightEncoder());
 
     // -- using l and r from the previous code block -- //
     double gyro_heading =  Robot::m_drivetrain.GetHeading();   // Assuming gyro angle is given in degrees
@@ -95,9 +98,20 @@ void RocketLeftPath::Execute() {
 
     double angle_difference = desired_heading - gyro_heading;    // Make sure to bound this from -180 to 180, otherwise you will get super large values
 
-    double turn = 0.8 * (-1.0/80.0) * angle_difference;
+    double turn = .8 * (-1.0/80.0) * angle_difference;
 
-    Robot::m_drivetrain.TankDrive((l + turn)/4, (r - turn)/4);
+    
+
+    // if(std::abs(l) > 1 || std::abs(r) > 1) {
+    //     l /= std::max((std::abs(l)), (std::abs(r)));
+    //     r /= std::max((std::abs(l)), (std::abs(r)));
+        
+    // }
+
+    Robot::m_drivetrain.l = l;
+    Robot::m_drivetrain.r = r;
+
+    Robot::m_drivetrain.TankDrive(l/10 + turn, r/10 - turn);
 }
 
 bool RocketLeftPath::IsFinished() {
@@ -105,6 +119,7 @@ bool RocketLeftPath::IsFinished() {
 }
 
 void RocketLeftPath::End() {
+    Robot::m_drivetrain.TankDrive(0, 0);
     free(leftTrajectory);
     free(rightTrajectory);
     free(leftFollower);
