@@ -8,7 +8,7 @@
 #include "subsystems/DriveTrain.h"
 #include <cmath>
 
-Drivetrain::Drivetrain() : frc::Subsystem("Drivetrain") {
+Drivetrain::Drivetrain() : frc::PIDSubsystem("Drivetrain", 0.005, 0, 0) {
 //   AddChild("Front Left CIM", m_frontLeftCIM);
 //   AddChild("Front Right CIM", m_frontRightCIM);
 //   AddChild("Back Left CIM", m_backLeftCIM);
@@ -25,6 +25,10 @@ Drivetrain::Drivetrain() : frc::Subsystem("Drivetrain") {
   m_driveMotorRightA.SetParameter(rev::CANSparkMaxLowLevel::ConfigParameter::kSensorType, 1);
   m_driveMotorRightB.SetParameter(rev::CANSparkMaxLowLevel::ConfigParameter::kSensorType, 1);
 
+  GetPIDController()->SetOutputRange(-180, 180);
+  GetPIDController()->SetAbsoluteTolerance(0.5);
+  GetPIDController()->SetContinuous(true);
+  GetPIDController()->SetOutputRange(-1, 1);
 
 
   // Configure encoders
@@ -36,6 +40,21 @@ Drivetrain::Drivetrain() : frc::Subsystem("Drivetrain") {
 
 //   AddChild("Gyro", m_gyro);
 
+}
+
+double Drivetrain::ReturnPIDInput() { 
+  return GetHeading();
+}
+
+void Drivetrain::UsePIDOutput(double output) { 
+
+  // if(GetPosition() < GetSetpoint()) {
+  //   m_liftMotors.PIDWrite(-output); 
+  // } else {
+  //   m_liftMotors.PIDWrite(output);
+  // }
+
+  TankDrive(-output, output); //TODO: If this goes the wrong way, swap the negative
 }
 
 void Drivetrain::InitDefaultCommand() {
@@ -71,11 +90,15 @@ bool Drivetrain::GetShifter() {
 }
 
 double Drivetrain::GetLeftEncoder() {
-  return -(m_driveMotorLeftA.GetEncoder().GetPosition() + m_driveMotorLeftB.GetEncoder().GetPosition()) / 2.0;
+  return -m_driveMotorLeftA.GetEncoder().GetPosition();
 }
 
 double Drivetrain::GetRightEncoder() {
-  return (m_driveMotorRightA.GetEncoder().GetPosition() + m_driveMotorRightB.GetEncoder().GetPosition()) / 2.0;
+  return m_driveMotorRightA.GetEncoder().GetPosition();
+}
+
+double Drivetrain::GetEncoderAverage() {
+  return (GetLeftEncoder() + GetRightEncoder()) / 2.0;
 }
 
 double Drivetrain::GetHeading() {

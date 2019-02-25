@@ -9,7 +9,7 @@
 
 #include <frc/Encoder.h>
 #include <frc/SpeedControllerGroup.h>
-#include <frc/commands/Subsystem.h>
+#include <frc/commands/PIDSubsystem.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <rev/CANSparkMax.h>
 #include <frc/Solenoid.h>
@@ -26,7 +26,7 @@ class Joystick;
  * The DriveTrain subsystem controls the robot's chassis and reads in
  * information about it's speed and position.
  */
-class Drivetrain : public frc::Subsystem
+class Drivetrain : public frc::PIDSubsystem
 {
 public:
   Drivetrain();
@@ -44,8 +44,12 @@ public:
 
   double GetLeftEncoder();
   double GetRightEncoder();
+  double GetEncoderAverage();
 
   double GetHeading();
+
+  double ReturnPIDInput() override;
+  void UsePIDOutput(double output) override;
 
   double l;
   double r;

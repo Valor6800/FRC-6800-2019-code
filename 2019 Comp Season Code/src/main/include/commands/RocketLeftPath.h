@@ -27,8 +27,9 @@ class RocketLeftPath : public frc::Command {
   void Execute() override;
   bool IsFinished() override;
   void End() override;
-  double l;
-  double r;
+  
+
+
 
  private:
   // const int k_ticks_per_rev = 1024;
@@ -48,4 +49,16 @@ class RocketLeftPath : public frc::Command {
 
   Segment *leftTrajectory;
   Segment *rightTrajectory;
+
+  int length;
+
+  const std::string k_path_name = "Rocket Left Path";
+
+  double l;
+  double r;
+  double gyro_heading;
+  double desired_heading;
+  double angle_difference;
+  double turn;
+
 };
