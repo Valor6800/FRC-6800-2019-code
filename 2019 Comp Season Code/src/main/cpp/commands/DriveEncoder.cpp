@@ -10,16 +10,16 @@
 #include "Robot.h"
 
 DriveEncoder::DriveEncoder(double distance, double angle, double speed) {
-    
-    // TODO: Negative distances?
-    targetDist = distance*(18 / (6 * 3.14159265359)) + Robot::m_drivetrain.GetEncoderAverage();
+    direction = speed >= 0 ? 1 : -1;
+    targetDist = direction * distance * (18 / (6 * 3.14159265359)) + Robot::m_drivetrain.GetEncoderAverage();
     targetHeading = angle;
     power = speed;
     Requires(&Robot::m_drivetrain);
 }
 
 DriveEncoder::DriveEncoder(double distance, double speed) {
-    targetDist = distance*(18 / (6 * 3.14159265359)) + Robot::m_drivetrain.GetEncoderAverage();
+    direction = speed >= 0 ? 1 : -1;
+    targetDist = direction * distance * (18 / (6 * 3.14159265359)) + Robot::m_drivetrain.GetEncoderAverage();
     // 18 TICKS PER REV ?
     // dist inch   1 rev     18 tick
     //             6pi inch  1 rev        
@@ -39,7 +39,10 @@ void DriveEncoder::Execute() {
 }
 
 bool DriveEncoder::IsFinished() {
-    return Robot::m_drivetrain.GetEncoderAverage() >= targetDist;
+    if (direction == 1) {
+        return Robot::m_drivetrain.GetEncoderAverage() >= targetDist;
+    }
+    return Robot::m_drivetrain.GetEncoderAverage() <= targetDist;
 }
 
 void DriveEncoder::End() {

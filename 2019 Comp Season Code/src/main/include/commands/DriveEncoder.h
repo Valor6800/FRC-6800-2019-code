@@ -25,4 +25,5 @@ class DriveEncoder : public frc::Command {
   double GetTargetDist(double distance);
 
   double turn, angError, currDist, targetHeading, currHeading, power, targetDist;
+  int direction;
 };
