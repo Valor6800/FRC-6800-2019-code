@@ -18,11 +18,9 @@ class DriveEncoder : public frc::Command {
  public:
   DriveEncoder(double distance, double speed);
   DriveEncoder(double distance, double angle, double speed);
-  void Initialize();
   void Execute() override;
   bool IsFinished() override;
   void End() override;
-  double GetTargetDist(double distance);
 
   double turn, angError, currDist, targetHeading, currHeading, power, targetDist;
   int direction;
