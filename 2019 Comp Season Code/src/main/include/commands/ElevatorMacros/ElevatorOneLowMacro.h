@@ -15,7 +15,7 @@
  * This command allows PS3 joystick to drive the robot. It is always running
  * except when interrupted by another command.
  */
-class ElevatorThreeTwoMacro : public frc::CommandGroup {
+class ElevatorOneLowMacro : public frc::CommandGroup {
  public:
-  ElevatorThreeTwoMacro();
+  ElevatorOneLowMacro();
 };

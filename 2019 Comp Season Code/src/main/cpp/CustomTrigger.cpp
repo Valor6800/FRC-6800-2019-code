@@ -18,11 +18,14 @@ bool CustomTrigger::Get() {
 
     switch(m_button) {
       case 'Y' :
-        return (Robot::m_oi.GetGamepad().GetYButtonPressed() && Robot::m_elevator.GetHeight() >= m_lowEnd && Robot::m_elevator.GetHeight() < m_highEnd);
+        return (Robot::m_oi.GetGamepad().GetYButtonPressed() && Robot::m_elevator.GetHeight() >= m_lowEnd && Robot::m_elevator.GetHeight() < m_highEnd) && !Robot::m_elevator.encoderBroken;
+        break;
       case 'X' :
-        return (Robot::m_oi.GetGamepad().GetXButtonPressed() && Robot::m_elevator.GetHeight() >= m_lowEnd && Robot::m_elevator.GetHeight() < m_highEnd);
+        return (Robot::m_oi.GetGamepad().GetXButtonPressed() && Robot::m_elevator.GetHeight() >= m_lowEnd && Robot::m_elevator.GetHeight() < m_highEnd) && !Robot::m_elevator.encoderBroken;
+        break;
       case 'B' :
-        return (Robot::m_oi.GetGamepad().GetBButtonPressed() && Robot::m_elevator.GetHeight() >= m_lowEnd && Robot::m_elevator.GetHeight() < m_highEnd);
+        return (Robot::m_oi.GetGamepad().GetBButtonPressed() && Robot::m_elevator.GetHeight() >= m_lowEnd && Robot::m_elevator.GetHeight() < m_highEnd) && !Robot::m_elevator.encoderBroken;
+        break;
     }    
 
 }

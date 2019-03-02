@@ -23,15 +23,19 @@ class Elevator : public frc::PIDSubsystem {
  public:
   // Constants for some useful angles
   static constexpr double kBottom =             550;
-  static constexpr double kLevelOneHatch =      90;
-  static constexpr double kLevelOneCargo =      90;
-  static constexpr double kLevelTwoHatch =      400;
-  static constexpr double kLevelTwoCargo =      400;
-  static constexpr double kLevelThreeHatch =    650;
-  static constexpr double kLevelThreeCargo =    650;
+  static constexpr double kLowHatch =           90;
+  static constexpr double kLowCargo =           90;
+  static constexpr double kMedHatch =           410;
+  static constexpr double kMedCargo =           410;
+  static constexpr double kHighHatch =          650;
+  static constexpr double kHighCargo =          650;
   static constexpr double kTop =                750;
 
-  static constexpr double kLevelTwoSafe =       600;
+// TODO: figure out the real values
+  static constexpr double kLiftBarBottomSafe = 220;
+  static constexpr double kLiftBarTopSafe =    525;
+
+  static constexpr double kLiftBar =            300;
 
   Elevator();
   void InitDefaultCommand() override;
@@ -47,13 +51,19 @@ class Elevator : public frc::PIDSubsystem {
   void SetLiftSpeed(double power);
   void EngageBrake(bool engage);
 
+  bool EncoderBroken();
+
   frc::Encoder m_liftEncoder{3, 4, frc::Encoder::k1X};
 
- private:
-
+  
   // Sensors for measuring the position of the pivot
   frc::DigitalInput m_limitSwitch1{0};
   frc::DigitalInput m_limitSwitch2{1};
+
+  bool encoderBroken;
+
+ private:
+
 
   // Piston for brake caliper
   frc::Solenoid m_brake{4};

@@ -29,7 +29,7 @@ void SetElevatorSetpointDefinite::Initialize() {
   
 
 // Make this return true when this Command no longer needs to run execute()
-bool SetElevatorSetpointDefinite::IsFinished() { return Robot::m_elevator.OnTarget() || std::abs(Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kLeftHand)) > .05;}
+bool SetElevatorSetpointDefinite::IsFinished() { return Robot::m_elevator.OnTarget() || std::abs(Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kLeftHand)) > .05 || Robot::m_elevator.encoderBroken;}
 
 void SetElevatorSetpointDefinite::End() { Robot::m_elevator.Disable(); Robot::m_elevator.EngageBrake(true);}
 

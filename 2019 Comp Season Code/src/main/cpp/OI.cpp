@@ -14,31 +14,35 @@ OI::OI() {
   bool intakeDown = true;
 
   // m_bumperR.WhenPressed(new ToggleOutriggers());
-  m_bumperR.WhenPressed(new SetElevatorSetpointRelative(30));
+  m_bumperR.WhenPressed(new SetElevatorSetpointRelative(20));
 
   m_bumperL.WhenPressed(new SetIntakePivot());
   m_bumperL.WhenPressed(new SetHatch(true));
   m_bumperL.WhenReleased(new SetHatch(false));
 
   m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
-  m_x.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kLevelOneCargo));
+  m_x.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kLowCargo));
   // m_x.WhenPressed(new SetElevatorSetpoint(new ElevatorHatchMacro(Elevator::kLevelOneHatch), new ElevatorHatchMacro(Elevator::kLevelOneCargo)));
-  m_b.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kLevelTwoCargo));
-  m_y.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kLevelThreeCargo));
+  m_b.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kMedCargo));
+  m_y.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kHighCargo));
   // m_a.WhenPressed(new TestSolenoidProto());
 
   //pedal = new Button(3);
 
-  One_One.WhenActive(new ElevatorOneOneMacro());
-  One_Two.WhenActive(new ElevatorOneTwoMacro());
-  One_Three.WhenActive(new ElevatorOneThreeMacro());
-  Two_One.WhenActive(new ElevatorTwoOneMacro());
-  Two_Three.WhenActive(new ElevatorTwoThreeMacro());
-  Three_One.WhenActive(new ElevatorThreeOneMacro());
-  Three_Two.WhenActive(new ElevatorThreeTwoMacro());
-  Three_Three.WhenActive(new ElevatorThreeThreeMacro());
-
+  One_Low.WhenActive(new ElevatorOneLowMacro());
+  One_Med.WhenActive(new ElevatorOneMedMacro());
+  One_High.WhenActive(new ElevatorOneHighMacro());
+  Two_Low.WhenActive(new ElevatorTwoLowMacro());
+  Two_Med.WhenActive(new ElevatorTwoMedMacro());
+  Two_High.WhenActive(new ElevatorTwoHighMacro());
+  Three_Low.WhenActive(new ElevatorThreeLowMacro());
+  Three_Med.WhenActive(new ElevatorThreeMedMacro());
+  Three_High.WhenActive(new ElevatorThreeHighMacro());
+  Four_Low.WhenActive(new ElevatorFourLowMacro());
+  Four_Med.WhenActive(new ElevatorFourMedMacro());
+  Four_High.WhenActive(new ElevatorFourHighMacro());
 }
+
 
 frc::Joystick& OI::GetLeftJoyDrive() {
   return m_leftJoyDrive;

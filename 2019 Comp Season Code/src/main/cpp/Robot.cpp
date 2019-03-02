@@ -29,79 +29,92 @@ Pneumatics Robot::m_pneumatics;
 Forks Robot::m_forks;
 OI Robot::m_oi;
 
-frc::ShuffleboardTab& tab = frc::Shuffleboard::GetTab("OurTab");
+frc::ShuffleboardTab& tab = frc::Shuffleboard::GetTab("Valor");
 
 nt::NetworkTableEntry elevatorHeightEntry;
+
+// nt::NetworkTableEntry elevatorHeightEntry;
 nt::NetworkTableEntry elevatorUpperLimitEntry;
 nt::NetworkTableEntry elevatorLowerLimitEntry;
-nt::NetworkTableEntry elevatorSpeedEntry;
-nt::NetworkTableEntry elevatorBrakeEntry;
+nt::NetworkTableEntry encoderBrokenEntry;
 
-nt::NetworkTableEntry intakeAngleEntry;
-nt::NetworkTableEntry intakeWheelEntry;
+// nt::NetworkTableEntry elevatorSpeedEntry;
+// nt::NetworkTableEntry elevatorBrakeEntry;
 
-nt::NetworkTableEntry carriageWheelLEntry;
-nt::NetworkTableEntry carriageWheelREntry;
-nt::NetworkTableEntry carriagePhotoelectricEntry;
+// nt::NetworkTableEntry intakeAngleEntry;
+// nt::NetworkTableEntry intakeWheelEntry;
 
-nt::NetworkTableEntry driveMotorLeftEntry;
-nt::NetworkTableEntry driveMotorRightEntry;
-nt::NetworkTableEntry shifterEntry;
+// nt::NetworkTableEntry carriageWheelLEntry;
+// nt::NetworkTableEntry carriageWheelREntry;
+// nt::NetworkTableEntry carriagePhotoelectricEntry;
 
-nt::NetworkTableEntry forkStateEntry;
-nt::NetworkTableEntry outriggerStateEntry;
+// nt::NetworkTableEntry driveMotorLeftEntry;
+// nt::NetworkTableEntry driveMotorRightEntry;
+// nt::NetworkTableEntry shifterEntry;
 
-nt::NetworkTableEntry clientValEntry;
+// nt::NetworkTableEntry forkStateEntry;
+// nt::NetworkTableEntry outriggerStateEntry;
 
-nt::NetworkTableEntry gyroEntry;
+// nt::NetworkTableEntry clientValEntry;
 
-nt::NetworkTableEntry drivePowerLeftEntry;
-nt::NetworkTableEntry drivePowerRightEntry;
+// nt::NetworkTableEntry gyroEntry;
 
-double count;
-double count2;
+// nt::NetworkTableEntry drivePowerLeftEntry;
+// nt::NetworkTableEntry drivePowerRightEntry;
+
+// double count;
+// double count2;
 
 void Robot::RobotInit() {
 
-  auto inst = nt::NetworkTableInstance::GetDefault();
-  auto table = inst.GetTable("datatable");
-  inst.StartClientTeam(6800);
+//   auto inst = nt::NetworkTableInstance::GetDefault();
+//   auto table = inst.GetTable("datatable");
+//   inst.StartClientTeam(6800);
 
-  //countEntry = tab.Add("count_", 0).withWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
-  //count2Entry = tab.Add("count2", 100).GetEntry();
+//   //countEntry = tab.Add("count_", 0).withWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
+//   //count2Entry = tab.Add("count2", 100).GetEntry();
   elevatorHeightEntry = tab.Add("Elevator Height", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  elevatorLowerLimitEntry = tab.Add("Elevator Lower Limit", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
-  elevatorUpperLimitEntry = tab.Add("Elevator Upper Limit", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
-  elevatorSpeedEntry = tab.Add("Elevator Speed", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  elevatorBrakeEntry = tab.Add("Elevator Brake", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  elevatorLowerLimitEntry = tab.Add("Elevator Limit 1", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  elevatorUpperLimitEntry = tab.Add("Elevator Limit 2", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  encoderBrokenEntry = tab.Add("Encoder Broken?", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
-  intakeAngleEntry = tab.Add("Intake Angle", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
-  intakeWheelEntry = tab.Add("Intake Wheel", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+//   elevatorSpeedEntry = tab.Add("Elevator Speed", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
+//   elevatorBrakeEntry = tab.Add("Elevator Brake", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+
+// //
+//   intakeAngleEntry = tab.Add("Intake Angle", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+//   intakeWheelEntry = tab.Add("Intake Wheel", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
  
-  carriageWheelLEntry = tab.Add("Carriage Wheel L", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  carriageWheelREntry = tab.Add("Carriage Wheel R", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
-  carriagePhotoelectricEntry = tab.Add("Carriage Photoelectric", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+//   carriageWheelLEntry = tab.Add("Carriage Wheel L", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
   
-  driveMotorLeftEntry = tab.Add("Drive Motor Left A", 0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
-  driveMotorRightEntry = tab.Add("Drive Motor Right A", 0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
-  shifterEntry = tab.Add("Shifter Entry", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+// //
+//   carriageWheelREntry = tab.Add("Carriage Wheel R", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
 
-  forkStateEntry = tab.Add("Fork State", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
-  outriggerStateEntry = tab.Add("Outrigger State", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+// // 
+//  carriagePhotoelectricEntry = tab.Add("Carriage Photoelectric", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  
+//   driveMotorLeftEntry = tab.Add("Drive Motor Left A", 0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
+//   driveMotorRightEntry = tab.Add("Drive Motor Right A", 0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
+//   shifterEntry = tab.Add("Shifter Entry", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
-  clientValEntry = tab.Add("Client Val Entry", -1).GetEntry();
+// //
+//   forkStateEntry = tab.Add("Fork State", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+//   outriggerStateEntry = tab.Add("Outrigger State", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
-  gyroEntry = tab.Add("Heading", 0).WithWidget(frc::BuiltInWidgets::kGyro).GetEntry();
+//   clientValEntry = tab.Add("Client Val Entry", -1).GetEntry();
 
-  drivePowerLeftEntry = tab.Add("Drive Power Left", 0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
-  drivePowerRightEntry = tab.Add("Drive Power Right", 0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
+//   gyroEntry = tab.Add("Heading", 0).WithWidget(frc::BuiltInWidgets::kGyro).GetEntry();
 
-  // instantiate the command used for the autonomous period
-  // m_autoChooser.SetDefaultOption("Pathfinder test", &m_pathfinder);
-  // m_autoChooser.AddOption("Drive Forward", &m_driveForwardAuto);
-  // const frc::BuiltInWidgets::kNumberSlider slider = frc::BuiltInWidgets::kNumberSlider;
-  frc::SmartDashboard::PutData("Auto Mode", &m_autoChooser);
-    // pneumatics.Start();  // Pressurize the pneumatics.
+// //
+//   drivePowerLeftEntry = tab.Add("Drive Power Left", 0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
+//   drivePowerRightEntry = tab.Add("Drive Power Right", 0).WithWidget(frc::BuiltInWidgets::kTextView).GetEntry();
+
+//   // instantiate the command used for the autonomous period
+//   // m_autoChooser.SetDefaultOption("Pathfinder test", &m_pathfinder);
+//   // m_autoChooser.AddOption("Drive Forward", &m_driveForwardAuto);
+//   // const frc::BuiltInWidgets::kNumberSlider slider = frc::BuiltInWidgets::kNumberSlider;
+//   frc::SmartDashboard::PutData("Auto Mode", &m_autoChooser);
+//     // pneumatics.Start();  // Pressurize the pneumatics.
 
     Robot::m_elevator.m_liftEncoder.Reset();
 }
@@ -127,6 +140,11 @@ void Robot::AutonomousInit() {
 void Robot::AutonomousPeriodic() {
   frc::Scheduler::GetInstance()->Run();
   Log();
+
+  // Check if the encoder breaks
+  if(m_elevator.EncoderBroken()) {
+    m_elevator.encoderBroken = true;
+  }
 }
 
 void Robot::TeleopInit() {
@@ -150,6 +168,12 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
   frc::Scheduler::GetInstance()->Run();
   Log();
+
+  // Check if the encoder breaks
+  if(m_elevator.EncoderBroken()) {
+    m_elevator.encoderBroken = true;
+  }
+
 }
 
 void Robot::TestPeriodic() { Log(); }
@@ -178,9 +202,7 @@ void Robot::DisabledPeriodic() {
  * Log interesting values to the SmartDashboard.
  */
 void Robot::Log() {
-  nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
-  auto table = inst.GetTable("testtable");
-  clientValEntry.SetDouble(table->GetEntry("val").GetDouble(-2));
+  //nt::NetworkTableInstance inst = nt::NetworkTableInstance::GetDefault();
 
   // Robot::pneumatics.WritePressure();
   // frc::SmartDashboard::PutNumber("Pivot Pot Value", pivot.GetAngle());
@@ -190,6 +212,18 @@ void Robot::Log() {
   //frc::SmartDashboard::PutNumber("Elevator Height", m_elevator.GetHeight());
   //frc::SmartDashboard::PutNumber("Differential Drive", m_drivetrain.m_driveMotorLeftA.Get());
   //frc::SmartDashboard::PutNumber("Differential Drive", m_drivetrain.m_driveMotorRightA.Get());
+
+  // frc::SmartDashboard::PutBoolean("Limit Switch 1", m_elevator.m_limitSwitch1.Get());
+  // frc::SmartDashboard::PutBoolean("Limit Switch 2", m_elevator.m_limitSwitch2.Get());
+  // frc::SmartDashboard::PutNumber("Lift Encoder", m_elevator.GetHeight());
+
+  // tab.Add("Carriage Wheel L", m_carriage.GetMotorL()).GetEntry();
+  // tab.Add("Limit Switch 1", m_elevator.m_limitSwitch1.Get()).GetEntry();
+  // tab.Add("Limit Switch 2", m_elevator.m_limitSwitch2.Get()).GetEntry();
+  // tab.Add("Lift Encoder", m_elevator.GetHeight()).GetEntry();
+
+
+
   
   //count += .0001;
   //count2 += 1;
@@ -197,39 +231,42 @@ void Robot::Log() {
   //count2Entry.SetDouble(count2);
 
   elevatorHeightEntry.SetDouble(m_elevator.GetHeight());
-  elevatorLowerLimitEntry.SetBoolean(m_elevator.IsAtLowerLimit());
-  // elevatorUpperLimitEntry.SetBoolean(m_elevator.IsAtUpperLimit());
-  elevatorSpeedEntry.SetDouble(m_elevator.GetSpeed());
-  elevatorBrakeEntry.SetBoolean(m_elevator.GetBrake());
+  elevatorLowerLimitEntry.SetBoolean(!m_elevator.m_limitSwitch1.Get());
+  elevatorUpperLimitEntry.SetBoolean(!m_elevator.m_limitSwitch2.Get());
+  encoderBrokenEntry.SetBoolean(m_elevator.encoderBroken);
 
-  intakeWheelEntry.SetDouble(m_intake.GetWheelMotor());
+  // elevatorSpeedEntry.SetDouble(m_elevator.GetSpeed());
+  // elevatorBrakeEntry.SetBoolean(m_elevator.GetBrake());
 
-  carriageWheelLEntry.SetDouble(m_carriage.GetMotorL());
-  carriageWheelREntry.SetDouble(m_carriage.GetMotorR());
-  carriagePhotoelectricEntry.SetBoolean(m_carriage.IsPhotoelectric());
+  // intakeWheelEntry.SetDouble(m_intake.GetWheelMotor());
 
-  driveMotorLeftEntry.SetDouble(m_drivetrain.GetLeftEncoder());
-  driveMotorRightEntry.SetDouble(m_drivetrain.GetRightEncoder());
-  shifterEntry.SetBoolean(m_drivetrain.GetShifter());
+  // carriageWheelLEntry.SetDouble(m_carriage.GetMotorL());
+  // carriageWheelREntry.SetDouble(m_carriage.GetMotorR());
+  // carriagePhotoelectricEntry.SetBoolean(m_carriage.IsPhotoelectric());
 
-  forkStateEntry.SetBoolean(m_forks.GetForkState());
-  outriggerStateEntry.SetBoolean(m_forks.GetOutriggerState());
+  // driveMotorLeftEntry.SetDouble(m_drivetrain.GetLeftEncoder());
+  // driveMotorRightEntry.SetDouble(m_drivetrain.GetRightEncoder());
+  // shifterEntry.SetBoolean(m_drivetrain.GetShifter());
 
-  gyroEntry.SetDouble(m_drivetrain.GetHeading());
 
-  drivePowerLeftEntry.SetDouble(m_drivetrain.l);
-  drivePowerRightEntry.SetDouble(m_drivetrain.r);
+  // forkStateEntry.SetBoolean(m_forks.GetForkState());
+  // outriggerStateEntry.SetBoolean(m_forks.GetOutriggerState());
 
-  // camera1Entry.SetRaw(outputStream.Get());
+  // gyroEntry.SetDouble(m_drivetrain.GetHeading());
 
-  frc::SmartDashboard::PutData(&Robot::m_drivetrain);
-  frc::SmartDashboard::PutData(&Robot::m_forks);
-  frc::SmartDashboard::PutData(&Robot::m_carriage);
-  frc::SmartDashboard::PutData(&Robot::m_intake);
-  frc::SmartDashboard::PutData(&Robot::m_elevator);
-  frc::SmartDashboard::PutData(&Robot::m_pneumatics);
+  // drivePowerLeftEntry.SetDouble(m_drivetrain.l);
+  // drivePowerRightEntry.SetDouble(m_drivetrain.r);
 
-  frc::SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
+  // // camera1Entry.SetRaw(outputStream.Get());
+
+  // frc::SmartDashboard::PutData(&Robot::m_drivetrain);
+  // frc::SmartDashboard::PutData(&Robot::m_forks);
+  // frc::SmartDashboard::PutData(&Robot::m_carriage);
+  // frc::SmartDashboard::PutData(&Robot::m_intake);
+  // frc::SmartDashboard::PutData(&Robot::m_elevator);
+  // frc::SmartDashboard::PutData(&Robot::m_pneumatics);
+
+  // frc::SmartDashboard::PutData("DriveWithJoystick", new DriveWithJoystick());
   // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
   // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());
   // frc::SmartDashboard.putData("DriveWithJoystick", new DriveWithJoystick());

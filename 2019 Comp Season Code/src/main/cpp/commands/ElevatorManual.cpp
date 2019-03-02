@@ -28,7 +28,8 @@ void ElevatorManual::Execute() {
   // Get the y-Value of the joystick for use later on
   yVal = gamepad.GetY(frc::GenericHID::JoystickHand::kLeftHand);
 
-  // If we are going down, DO quarter-speed mode, ELSE full speed mode
+  // If we are going down, DO half-speed mode, ELSE full speed mode
+  // NOTE: Negative yVal runs the lift up and vice versa
   if(yVal > 0) {
     yVal = yVal / 2.0;
   }
@@ -48,9 +49,12 @@ void ElevatorManual::Execute() {
         // If the elevator is moving, disengage the brake
         Robot::m_elevator.EngageBrake(false);
 
-        // Set the elevator to the y Value of the joystick
-        Robot::m_elevator.SetLiftSpeed(yVal);
-
+        if(!(Robot::m_elevator.IsAtLowerLimit() && yVal > 0)) {
+            // Set the elevator to the y Value of the joystick
+            Robot::m_elevator.SetLiftSpeed(yVal);
+        } else {
+            Robot::m_elevator.SetLiftSpeed(0);
+        }
         
     //   }
     // }

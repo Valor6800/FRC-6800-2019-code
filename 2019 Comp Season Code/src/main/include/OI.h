@@ -24,15 +24,18 @@
 #include "commands/ScoreHatch.h"
 #include "commands/PrepareHatch.h"
 
-#include "commands/ElevatorMacros/ElevatorOneOneMacro.h"
-#include "commands/ElevatorMacros/ElevatorOneTwoMacro.h"
-#include "commands/ElevatorMacros/ElevatorOneThreeMacro.h"
-#include "commands/ElevatorMacros/ElevatorTwoOneMacro.h"
-#include "commands/ElevatorMacros/ElevatorTwoThreeMacro.h"
-#include "commands/ElevatorMacros/ElevatorThreeOneMacro.h"
-#include "commands/ElevatorMacros/ElevatorThreeTwoMacro.h"
-#include "commands/ElevatorMacros/ElevatorThreeThreeMacro.h"
-
+#include "commands/ElevatorMacros/ElevatorOneLowMacro.h"
+#include "commands/ElevatorMacros/ElevatorOneMedMacro.h"
+#include "commands/ElevatorMacros/ElevatorOneHighMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoLowMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoMedMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoHighMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeLowMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeMedMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeHighMacro.h"
+#include "commands/ElevatorMacros/ElevatorFourLowMacro.h"
+#include "commands/ElevatorMacros/ElevatorFourMedMacro.h"
+#include "commands/ElevatorMacros/ElevatorFourHighMacro.h"
 
 #include "subsystems/Elevator.h"
 #include "subsystems/Drivetrain.h"
@@ -58,17 +61,22 @@ class OI {
   frc::JoystickButton m_bumperR {&m_gamepad, 6};
   frc::JoystickButton m_back {&m_gamepad, 7};
 
-  frc::CustomTrigger One_One {'X', -100, 200};
-  frc::CustomTrigger One_Two {'B', -100, 200};
-  frc::CustomTrigger One_Three {'Y', -100, 200};
+  frc::CustomTrigger One_Low {'X', -100, 220};
+  frc::CustomTrigger One_Med {'B', -100, 220};
+  frc::CustomTrigger One_High {'Y', -100, 220};
 
-  frc::CustomTrigger Two_One {'X', 200, 550};
-  frc::CustomTrigger Two_Two {'B', 200, 550};
-  frc::CustomTrigger Two_Three {'Y', 200, 550};
+  frc::CustomTrigger Two_Low {'X', 220, 330};
+  frc::CustomTrigger Two_Med {'B', 220, 330};
+  frc::CustomTrigger Two_High {'Y', 220, 330};
 
-  frc::CustomTrigger Three_One {'X', 550, 1000};
-  frc::CustomTrigger Three_Two {'B', 550, 1000};
-  frc::CustomTrigger Three_Three {'Y', 550, 1000};
+  frc::CustomTrigger Three_Low {'X', 330, 550};
+  frc::CustomTrigger Three_Med {'B', 330, 550};
+  frc::CustomTrigger Three_High {'Y', 330, 550};
+
+
+  frc::CustomTrigger Four_Low {'X', 550, 1000};
+  frc::CustomTrigger Four_Med {'B', 550, 1000};
+  frc::CustomTrigger Four_High {'Y', 550, 1000};
 
   // frc::Trigger High_Low {}
 

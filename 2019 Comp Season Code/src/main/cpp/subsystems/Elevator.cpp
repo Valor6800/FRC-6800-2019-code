@@ -16,6 +16,11 @@ Elevator::Elevator() : frc::PIDSubsystem("Elevator", .0000004, 0.0, 0) {
   // AddChild("Lower Limit Switch", m_lowerLimitSwitch);
   // AddChild("Pot", m_pot);
   // AddChild("Motor", m_motor);
+  m_liftEncoder.SetDistancePerPulse(1);
+  m_liftEncoder.SetMinRate(10);
+
+  encoderBroken = false;
+
 }
 
 void Elevator::InitDefaultCommand() {SetDefaultCommand(new ElevatorManual());}
@@ -31,9 +36,12 @@ void Elevator::UsePIDOutput(double output) {
 
   double power = output;
 
-  if(power < .2 && power > 0) {
-    power = .2;
-  } else if(power > -.15 && power < 0) {
+  // This is for going up
+  if(power < .15 && power > 0) {
+    power = .15;
+  } 
+  // This is for going down
+  else if(power > -.15 && power < 0) {
     power = -.15;
   }
 
@@ -41,9 +49,9 @@ void Elevator::UsePIDOutput(double output) {
 }
 
 bool Elevator::IsAtLowerLimit() {
-  return false;
-  // return (m_limitSwitch1.Get() && m_limitSwitch2.Get());  // TODO: inverted from real robot
-                                                        // (prefix with !)
+  // return false;
+  return (!m_limitSwitch1.Get() && !m_limitSwitch2.Get());  // TODO: inverted from real robot
+                                                            // (prefix with !)
 }
 
 double Elevator::GetSpeed() {
@@ -56,6 +64,11 @@ bool Elevator::GetBrake() { return m_brake.Get(); }
 
 void Elevator::SetLiftSpeed(double power) {
     m_liftMotors.Set(power);
+}
+
+bool Elevator::EncoderBroken() {
+  return false;
+  // return m_liftEncoder.GetStopped() && std::abs(m_liftMotors.Get()) > .05;
 }
 
 void Elevator::EngageBrake(bool engage) {
