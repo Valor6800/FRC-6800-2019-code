@@ -37,8 +37,8 @@ void Elevator::UsePIDOutput(double output) {
   double power = output;
 
   // This is for going up
-  if(power < .2 && power > 0) {
-    power = .2;
+  if(power < .15 && power > 0) {
+    power = .15;
   }
   // This is for going down
   else if(power > -.08 && power < 0) {
