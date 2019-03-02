@@ -23,9 +23,9 @@ class Elevator : public frc::PIDSubsystem {
  public:
   // Constants for some useful angles
   static constexpr double kBottom =             550;
-  static constexpr double kLowHatch =           90;
-  static constexpr double kLowCargo =           90;
-  static constexpr double kMedHatch =           410;
+  static constexpr double kLowHatch =           82;
+  static constexpr double kLowCargo =           82;
+  static constexpr double kMedHatch =           440;
   static constexpr double kMedCargo =           410;
   static constexpr double kHighHatch =          650;
   static constexpr double kHighCargo =          650;

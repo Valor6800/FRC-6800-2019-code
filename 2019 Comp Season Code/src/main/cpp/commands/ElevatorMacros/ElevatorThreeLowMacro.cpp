@@ -5,6 +5,7 @@ ElevatorThreeLowMacro::ElevatorThreeLowMacro()
 {
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kLiftBarTopSafe));
     AddSequential(new SetHatch(false));
+    AddSequential(new WaitCommand(1));
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kLowCargo));
     AddSequential(new SetHatch(true));
 }

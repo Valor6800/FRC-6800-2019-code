@@ -28,24 +28,24 @@ double Elevator::ReturnPIDInput() { return m_liftEncoder.Get(); }
 
 void Elevator::UsePIDOutput(double output) { 
 
-  if(GetPosition() < GetSetpoint()) {
-    m_liftMotors.PIDWrite(-output); 
-  } else {
-    m_liftMotors.PIDWrite(output);
-  }
-
-  // double power = output;
-
-  // // This is for going up
-  // if(power < .15 && power > 0) {
-  //   power = .15;
-  // } 
-  // // This is for going down
-  // else if(power > -.15 && power < 0) {
-  //   power = -.15;
+  // if(GetPosition() < GetSetpoint()) {
+  //   m_liftMotors.PIDWrite(-output); 
+  // } else {
+  //   m_liftMotors.PIDWrite(output);
   // }
 
-  // m_liftMotors.PIDWrite(-power);
+  double power = output;
+
+  // This is for going up
+  if(power < .15 && power > 0) {
+    power = .15;
+  }
+  // This is for going down
+  else if(power > -.08 && power < 0) {
+    power = -.08;
+  }
+
+  m_liftMotors.PIDWrite(-power);
 }
 
 bool Elevator::IsAtLowerLimit() {
