@@ -20,11 +20,11 @@ OI::OI() {
   m_bumperL.WhenPressed(new SetHatch(true));
   m_bumperL.WhenReleased(new SetHatch(false));
 
-  m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
-  m_x.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kLowCargo));
-  // m_x.WhenPressed(new SetElevatorSetpoint(new ElevatorHatchMacro(Elevator::kLevelOneHatch), new ElevatorHatchMacro(Elevator::kLevelOneCargo)));
-  m_b.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kMedCargo));
-  m_y.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kHighCargo));
+  // m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
+  // m_x.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kLowCargo));
+  // // m_x.WhenPressed(new SetElevatorSetpoint(new ElevatorHatchMacro(Elevator::kLevelOneHatch), new ElevatorHatchMacro(Elevator::kLevelOneCargo)));
+  // m_b.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kMedCargo));
+  // m_y.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kHighCargo));
   // m_a.WhenPressed(new TestSolenoidProto());
 
   //pedal = new Button(3);

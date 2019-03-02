@@ -36,8 +36,8 @@ public:
   bool preparerToGo;
 
 private:
-  frc::VictorSP m_leftMotor{1};
-  frc::VictorSP m_rightMotor{2};
+  frc::VictorSP m_leftMotor{2};
+  frc::VictorSP m_rightMotor{3};
   
   frc::Solenoid m_hatchPreparer{2};
   frc::Solenoid m_hatchScorer{1};

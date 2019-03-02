@@ -28,6 +28,6 @@ public:
 
 private:
     frc::Solenoid m_outriggers{5};
-    frc::VictorSP m_forks{8};
+    frc::VictorSP m_forks{1};
     frc::DigitalInput m_forksDeployed{5};
 };
