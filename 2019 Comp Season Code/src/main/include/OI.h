@@ -37,6 +37,10 @@
 #include "commands/ElevatorMacros/ElevatorFourMedMacro.h"
 #include "commands/ElevatorMacros/ElevatorFourHighMacro.h"
 
+#include "commands/ElevatorHighSetpoint.h"
+#include "commands/ElevatorMedSetpoint.h"
+#include "commands/ElevatorLowSetpoint.h"
+
 #include "subsystems/Elevator.h"
 #include "subsystems/Drivetrain.h"
 #include "subsystems/Forks.h"
@@ -72,7 +76,6 @@ class OI {
   frc::CustomTrigger Three_Low {'X', 330, 550};
   frc::CustomTrigger Three_Med {'B', 330, 550};
   frc::CustomTrigger Three_High {'Y', 330, 550};
-
 
   frc::CustomTrigger Four_Low {'X', 550, 1000};
   frc::CustomTrigger Four_Med {'B', 550, 1000};
