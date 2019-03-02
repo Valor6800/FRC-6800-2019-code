@@ -7,10 +7,10 @@
 
 #include "subsystems/Elevator.h"
 
-Elevator::Elevator() : frc::PIDSubsystem("Elevator", .0000004, 0.0, 0) {
+Elevator::Elevator() : frc::PIDSubsystem("Elevator", .004, 0.0, 0) {
   SetAbsoluteTolerance(0.01);
   GetPIDController()->SetContinuous(false);
-  SetOutputRange(-.15, .2); // -.4 to .8 
+  SetOutputRange(-.4, .8); // -.4 to .8 
   // Put everything to the LiveWindow for testing.
   // AddChild("Upper Limit Switch", m_upperLimitSwitch);
   // AddChild("Lower Limit Switch", m_lowerLimitSwitch);
@@ -28,24 +28,24 @@ double Elevator::ReturnPIDInput() { return m_liftEncoder.Get(); }
 
 void Elevator::UsePIDOutput(double output) { 
 
-  // if(GetPosition() < GetSetpoint()) {
-  //   m_liftMotors.PIDWrite(-output); 
-  // } else {
-  //   m_liftMotors.PIDWrite(output);
-  // }
-
-  double power = output;
-
-  // This is for going up
-  if(power < .15 && power > 0) {
-    power = .15;
-  } 
-  // This is for going down
-  else if(power > -.15 && power < 0) {
-    power = -.15;
+  if(GetPosition() < GetSetpoint()) {
+    m_liftMotors.PIDWrite(-output); 
+  } else {
+    m_liftMotors.PIDWrite(output);
   }
 
-  m_liftMotors.PIDWrite(-power);
+  // double power = output;
+
+  // // This is for going up
+  // if(power < .15 && power > 0) {
+  //   power = .15;
+  // } 
+  // // This is for going down
+  // else if(power > -.15 && power < 0) {
+  //   power = -.15;
+  // }
+
+  // m_liftMotors.PIDWrite(-power);
 }
 
 bool Elevator::IsAtLowerLimit() {
