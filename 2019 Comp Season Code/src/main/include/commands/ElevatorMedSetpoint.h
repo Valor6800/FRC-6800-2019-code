@@ -18,4 +18,6 @@ class ElevatorMedSetpoint : public frc::Command {
   ElevatorMedSetpoint();
   void Initialize() override;
   bool IsFinished() override;
+
+  frc::CommandGroup* group;
 };

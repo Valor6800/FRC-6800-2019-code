@@ -15,18 +15,21 @@ void ElevatorMedSetpoint::Initialize() {
 
     double height = Robot::m_elevator.GetHeight();
 
-    if(height >= -100 && height < 220) {
-        ElevatorOneMedMacro oneMed;
-        oneMed.Start();
+    if(Robot::m_oi.g_shift) {
+        Command * cargo2 = new SetElevatorSetpointDefinite(Robot::m_elevator.kMedCargo);
+        cargo2->Start();
+    } else if(height >= -100 && height < 220) {
+        group = new ElevatorOneMedMacro();
+        group->Start();
     } else if(height >= 220 && height < 330) {
-        ElevatorTwoMedMacro twoMed;
-        twoMed.Start();
+        group = new ElevatorTwoMedMacro();
+        group->Start();
     } else if(height >= 330 && height < 550) {
-        ElevatorThreeMedMacro threeMed;
-        threeMed.Start();
+        group = new ElevatorThreeMedMacro();
+        group->Start();
     } else if(height >= 550 && height < 1000) {
-        ElevatorFourMedMacro fourMed;
-        fourMed.Start();
+        group = new ElevatorFourMedMacro();
+        group->Start();
     }
 
 }

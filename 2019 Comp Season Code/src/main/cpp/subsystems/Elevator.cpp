@@ -7,10 +7,10 @@
 
 #include "subsystems/Elevator.h"
 
-Elevator::Elevator() : frc::PIDSubsystem("Elevator", .0000004, 0.0, 0) {
+Elevator::Elevator() : frc::PIDSubsystem("Elevator", .02, 0.0, 0) {
   SetAbsoluteTolerance(0.01);
   GetPIDController()->SetContinuous(false);
-  SetOutputRange(-.15, .2); // -.4 to .8 
+  SetOutputRange(-.3, .6); // -.4 to .8 
   // Put everything to the LiveWindow for testing.
   // AddChild("Upper Limit Switch", m_upperLimitSwitch);
   // AddChild("Lower Limit Switch", m_lowerLimitSwitch);
@@ -37,12 +37,12 @@ void Elevator::UsePIDOutput(double output) {
   double power = output;
 
   // This is for going up
-  if(power < .15 && power > 0) {
-    power = .15;
-  } 
+  if(power < .2 && power > 0) {
+    power = .2;
+  }
   // This is for going down
-  else if(power > -.15 && power < 0) {
-    power = -.15;
+  else if(power > -.08 && power < 0) {
+    power = -.08;
   }
 
   m_liftMotors.PIDWrite(-power);

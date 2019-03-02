@@ -16,17 +16,17 @@ void ElevatorHighSetpoint::Initialize() {
     double height = Robot::m_elevator.GetHeight();
 
     if(height >= -100 && height < 220) {
-        ElevatorOneHighMacro oneHigh;
-        oneHigh.Start();
+        group = new ElevatorOneHighMacro();
+        group->Start();
     } else if(height >= 220 && height < 330) {
-        ElevatorTwoHighMacro twoHigh;
-        twoHigh.Start();
+        group = new ElevatorTwoHighMacro();
+        group->Start();
     } else if(height >= 330 && height < 550) {
-        ElevatorThreeHighMacro threeHigh;
-        threeHigh.Start();
+        group = new ElevatorThreeHighMacro();
+        group->Start();
     } else if(height >= 550 && height < 1000) {
-        ElevatorFourHighMacro fourHigh;
-        fourHigh.Start();
+        group = new ElevatorFourHighMacro();
+        group->Start();
     }
 
 }

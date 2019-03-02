@@ -9,27 +9,27 @@
 
 #include "Robot.h"
 
-ElevatorLowSetpoint::ElevatorLowSetpoint() { Requires(&Robot::m_elevator); Requires(&Robot::m_carriage);}
+ElevatorLowSetpoint::ElevatorLowSetpoint() {}
 
 void ElevatorLowSetpoint::Initialize() {
 
     double height = Robot::m_elevator.GetHeight();
 
     if(height >= -100 && height < 220) {
-        ElevatorOneLowMacro oneLow;
-        oneLow.Start();
+        group = new ElevatorOneLowMacro();
+        group->Start();
     } else if(height >= 220 && height < 330) {
-        ElevatorTwoLowMacro twoLow;
-        twoLow.Start();
+        group = new ElevatorTwoLowMacro();
+        group->Start();
     } else if(height >= 330 && height < 550) {
-        ElevatorThreeLowMacro threeLow;
-        threeLow.Start();
+        group = new ElevatorThreeLowMacro();
+        group->Start();
     } else if(height >= 550 && height < 1000) {
-        ElevatorFourLowMacro fourLow;
-        fourLow.Start();
+        group = new ElevatorFourLowMacro();
+        group->Start();
     }
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool ElevatorLowSetpoint::IsFinished() { return true; }
+bool ElevatorLowSetpoint::IsFinished() { return group->IsCompleted(); }

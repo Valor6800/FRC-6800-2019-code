@@ -18,4 +18,6 @@ class ElevatorLowSetpoint : public frc::Command {
   ElevatorLowSetpoint();
   void Initialize() override;
   bool IsFinished() override;
+
+  frc::CommandGroup* group;
 };

@@ -18,4 +18,6 @@ class ElevatorHighSetpoint : public frc::Command {
   ElevatorHighSetpoint();
   void Initialize() override;
   bool IsFinished() override;
+
+  frc::CommandGroup* group;
 };
