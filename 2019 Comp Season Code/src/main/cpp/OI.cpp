@@ -27,6 +27,7 @@ OI::OI() {
   // m_x.WhenPressed(new SetElevatorSetpoint(new ElevatorHatchMacro(Elevator::kLevelOneHatch), new ElevatorHatchMacro(Elevator::kLevelOneCargo)));
   m_b.WhenPressed(new ElevatorMedSetpoint());
   m_y.WhenPressed(new ElevatorHighSetpoint());
+  m_a.WhenPressed(new ElevatorCargoSetpoint());
   // m_a.WhenPressed(new TestSolenoidProto());
 
   //pedal = new Button(3);

@@ -17,8 +17,8 @@ SetElevatorSetpointDefinite::SetElevatorSetpointDefinite(double setpoint) {
 // Called just before this Command runs the first time
 void SetElevatorSetpointDefinite::Initialize() {
 
-  if(Robot::m_oi.GetGamepad().GetAButton() && !Robot::m_oi.g_shift) {
-    m_setpoint = Robot::m_elevator.GetPosition();
+  if(Robot::m_oi.GetGamepad().GetAButton() && Robot::m_oi.g_shift) {
+    m_setpoint = 165;
   }
   // If we are out of deadband
   // if(!std::abs(Robot::m_oi.GetGamepad().GetY(frc::GenericHID::JoystickHand::kLeftHand)) > .05) {
