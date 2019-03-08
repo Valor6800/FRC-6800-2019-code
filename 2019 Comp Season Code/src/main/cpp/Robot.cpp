@@ -121,17 +121,17 @@ void Robot::RobotInit() {
 
 void Robot::AutonomousInit() {
   
-  m_drivetrain.m_driveMotorLeftA.SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
-  m_drivetrain.m_driveMotorRightA.SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
-  m_drivetrain.m_driveMotorLeftB.SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
-  m_drivetrain.m_driveMotorRightB.SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
+  m_drivetrain.m_driveMotorLeftA.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+  m_drivetrain.m_driveMotorRightA.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+  m_drivetrain.m_driveMotorLeftB.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+  m_drivetrain.m_driveMotorRightB.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
   m_drivetrain.m_driveMotorLeftA.GetEncoder().SetPosition(0);
   m_drivetrain.m_driveMotorLeftB.GetEncoder().SetPosition(0);
   m_drivetrain.m_driveMotorRightA.GetEncoder().SetPosition(0);
   m_drivetrain.m_driveMotorRightB.GetEncoder().SetPosition(0);
-  Robot::m_drivetrain.m_gyro.Reset();
-  m_autonomousCommand = m_autoChooser.GetSelected();
-  m_autonomousCommand->Start();
+  // Robot::m_drivetrain.m_gyro.Reset();
+  // m_autonomousCommand = m_autoChooser.GetSelected();
+  // m_autonomousCommand->Start();
 
   Robot::m_elevator.m_liftEncoder.Reset();
 
@@ -157,12 +157,12 @@ void Robot::TeleopInit() {
   // teleop starts running. If you want the autonomous to
   // continue until interrupted by another command, remove
   // this line or comment it out.
-  if (m_autonomousCommand != nullptr) {
-    m_autonomousCommand->Cancel();
-  }
+  // if (m_autonomousCommand != nullptr) {
+  //   m_autonomousCommand->Cancel();
+  // }
   // std::cout << "Starting Teleop" << std::endl;
 
-    Robot::m_elevator.m_liftEncoder.Reset();
+    // Robot::m_elevator.m_liftEncoder.Reset();
 }
 
 void Robot::TeleopPeriodic() {
@@ -192,7 +192,7 @@ void Robot::DisabledInit(){
 
 void Robot::DisabledPeriodic() { 
   Log();
-  m_drivetrain.m_gyro.Reset(); 
+  // m_drivetrain.m_gyro.Reset(); 
   
 
 

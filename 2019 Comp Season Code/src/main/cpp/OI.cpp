@@ -20,7 +20,7 @@ OI::OI() {
   m_bumperL.WhenPressed(new SetHatch(true));
   m_bumperL.WhenReleased(new SetHatch(false));
 
-  m_a.WhenPressed(new SetElevatorSetpointDefinite(160));
+  // m_a.WhenPressed(new SetElevatorSetpointDefinite(160));
 
   // m_a.WhenPressed(new ElevatorHighSetpoint());
   m_x.WhenPressed(new ElevatorLowSetpoint());

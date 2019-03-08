@@ -49,10 +49,20 @@ void ElevatorManual::Execute() {
         // If the elevator is moving, disengage the brake
         Robot::m_elevator.EngageBrake(false);
 
-        if(!(Robot::m_elevator.IsAtLowerLimit() && yVal > 0)) {
+
+        // If we are already towards the bottom and still trying to run the lift down
+        if(Robot::m_elevator.GetHeight() < 30 && yVal > .25) {
+            // Set the elevator to go quite slow
+            Robot::m_elevator.SetLiftSpeed(.25);
+
+        // As long as we are not at the very bottom and trying to go down
+        } else if(!(Robot::m_elevator.IsAtLowerLimit() && yVal > 0)) {
             // Set the elevator to the y Value of the joystick
             Robot::m_elevator.SetLiftSpeed(yVal);
+        
+        // This means we are 0'd on the encoder
         } else {
+            // Set it to 0 completely
             Robot::m_elevator.SetLiftSpeed(0);
         }
         

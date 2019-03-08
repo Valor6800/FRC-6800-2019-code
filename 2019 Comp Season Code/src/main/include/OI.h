@@ -42,6 +42,10 @@
 #include "commands/ElevatorMacros/ElevatorThreeCargoMacro.h"
 #include "commands/ElevatorMacros/ElevatorFourCargoMacro.h"
 
+#include "commands/ElevatorMacros/ElevatorOneRocketCargo.h"
+#include "commands/ElevatorMacros/ElevatorTwoRocketCargo.h"
+#include "commands/ElevatorMacros/ElevatorThreeRocketCargo.h"
+#include "commands/ElevatorMacros/ElevatorFourRocketCargo.h"
 
 #include "commands/ElevatorHighSetpoint.h"
 #include "commands/ElevatorMedSetpoint.h"
