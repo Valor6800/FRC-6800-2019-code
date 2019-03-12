@@ -47,6 +47,25 @@
 #include "commands/ElevatorMacros/ElevatorThreeRocketCargo.h"
 #include "commands/ElevatorMacros/ElevatorFourRocketCargo.h"
 
+#include "commands/ElevatorMacros/ElevatorFourCargoInMacro.h"
+#include "commands/ElevatorMacros/ElevatorFourLowInMacro.h"
+#include "commands/ElevatorMacros/ElevatorFourMedInMacro.h"
+#include "commands/ElevatorMacros/ElevatorFourRocketCargoIn.h"
+#include "commands/ElevatorMacros/ElevatorOneMedInMacro.h"
+#include "commands/ElevatorMacros/ElevatorOneRocketCargoIn.h"
+#include "commands/ElevatorMacros/ElevatorThreeCargoInMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeLowInMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeRocketCargoIn.h"
+#include "commands/ElevatorMacros/ElevatorTwoCargoInMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoMedInMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoRocketCargoIn.h"
+#include "commands/ElevatorMacros/ElevatorOneHighInMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoHighInMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoRocketCargoIn.h"
+#include "commands/ElevatorMacros/ElevatorThreeRocketCargoIn.h"
+#include "commands/ElevatorMacros/ElevatorThreeMedInMacro.h"
+
+
 #include "commands/ElevatorHighSetpoint.h"
 #include "commands/ElevatorMedSetpoint.h"
 #include "commands/ElevatorLowSetpoint.h"
@@ -55,6 +74,7 @@
 #include "subsystems/Elevator.h"
 #include "subsystems/Drivetrain.h"
 #include "subsystems/Forks.h"
+#include "subsystems/Carriage.h"
 
 #include "CustomTrigger.h"
 

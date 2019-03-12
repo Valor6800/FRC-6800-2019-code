@@ -16,11 +16,21 @@ void ElevatorHighSetpoint::Initialize() {
     double height = Robot::m_elevator.GetHeight();
 
     if(height >= -100 && height < 220) {
-        group = new ElevatorOneHighMacro();
-        group->Start();
+        if (Robot::m_carriage.GetHatchScorer()) {
+            group = new ElevatorOneHighMacro();
+            group->Start();
+        } else {
+            group = new ElevatorOneHighInMacro();
+            group->Start();
+        }
     } else if(height >= 220 && height < 330) {
-        group = new ElevatorTwoHighMacro();
-        group->Start();
+        if (Robot::m_carriage.GetHatchScorer()) {
+            group = new ElevatorTwoHighMacro();
+            group->Start();
+        } else {
+            group = new ElevatorTwoHighInMacro();
+            group->Start();
+        }
     } else if(height >= 330 && height < 550) {
         group = new ElevatorThreeHighMacro();
         group->Start();

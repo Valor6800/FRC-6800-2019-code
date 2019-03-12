@@ -17,35 +17,75 @@ void ElevatorMedSetpoint::Initialize() {
 
     if(height >= -100 && height < 220) {
         if(Robot::m_oi.g_shift) {
-            group = new ElevatorOneRocketCargo();
-            group->Start();
+            if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorOneRocketCargo();
+                group->Start();
+            } else {
+                group = new ElevatorOneRocketCargoIn();
+                group->Start();
+            }
         } else {
-            group = new ElevatorOneMedMacro();
-            group->Start();
+            if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorOneMedMacro();
+                group->Start();
+            } else {
+                group = new ElevatorOneMedInMacro();
+                group->Start();
+            }
         }
     } else if(height >= 220 && height < 330) {
         if(Robot::m_oi.g_shift) {
-            group = new ElevatorTwoRocketCargo();
-            group->Start();
+            if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorTwoRocketCargo();
+                group->Start();
+            } else {
+                group = new ElevatorTwoRocketCargoIn();
+                group->Start();
+            }
         } else {
-            group = new ElevatorTwoMedMacro();
-            group->Start();
+            if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorTwoMedMacro();
+                group->Start();
+            } else {
+                group = new ElevatorTwoMedInMacro();
+                group->Start();
+            }
         }
     } else if(height >= 330 && height < 550) {
         if(Robot::m_oi.g_shift) {
-            group = new ElevatorThreeRocketCargo();
-            group->Start();
+            if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorThreeRocketCargo();
+                group->Start();
+            } else {
+                group = new ElevatorThreeRocketCargoIn();
+                group->Start();
+            }
         } else {
-            group = new ElevatorThreeMedMacro();
-            group->Start();
+            if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorThreeMedMacro();
+                group->Start();
+            } else {
+                group = new ElevatorThreeMedInMacro();
+                group->Start();
+            }
         }
     } else if(height >= 550 && height < 1000) {
         if(Robot::m_oi.g_shift) {
-            group = new ElevatorFourRocketCargo();
-            group->Start();
+            if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorFourRocketCargo();
+                group->Start();
+            } else {
+                group = new ElevatorFourRocketCargoIn();
+                group->Start();
+            }
         } else {
-            group = new ElevatorFourMedMacro();
-            group->Start();
+            if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorFourMedMacro();
+                group->Start();
+            } else {
+                group = new ElevatorFourMedInMacro();
+                group->Start();
+            }
         }
     }
 

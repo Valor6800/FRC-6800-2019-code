@@ -54,6 +54,8 @@ class Elevator : public frc::PIDSubsystem {
 
   bool EncoderBroken();
 
+  
+
   frc::Encoder m_liftEncoder{3, 4, frc::Encoder::k1X};
 
   

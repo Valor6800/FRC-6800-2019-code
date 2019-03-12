@@ -22,11 +22,21 @@ void ElevatorLowSetpoint::Initialize() {
         group = new ElevatorTwoLowMacro();
         group->Start();
     } else if(height >= 330 && height < 550) {
-        group = new ElevatorThreeLowMacro();
-        group->Start();
+        if (Robot::m_carriage.GetHatchScorer()) {
+            group = new ElevatorThreeLowMacro();
+            group->Start();
+        } else {
+            group = new ElevatorThreeLowInMacro();
+            group->Start();
+        }
     } else if(height >= 550 && height < 1000) {
-        group = new ElevatorFourLowMacro();
-        group->Start();
+        if (Robot::m_carriage.GetHatchScorer()) {
+            group = new ElevatorFourLowMacro();
+            group->Start();
+        } else {
+            group = new ElevatorFourLowInMacro();
+            group->Start();
+        }
     }
 
 }

@@ -1,7 +1,7 @@
-#include "commands/ElevatorMacros/ElevatorFourCargoInMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeCargoInMacro.h"
 #include "Robot.h"
 
-ElevatorFourCargoInMacro::ElevatorFourCargoInMacro()
+ElevatorThreeCargoInMacro::ElevatorThreeCargoInMacro()
 {
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kShip));
     AddSequential(new SetIntakeMacro(false));
