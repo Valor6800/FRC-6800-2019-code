@@ -11,11 +11,12 @@
 #include "commands/SetHatch.h"
 #include "commands/SetElevatorSetpointDefinite.h"
 #include "commands/SetIntakeMacro.h"
+
 /**
  * This command allows PS3 joystick to drive the robot. It is always running
  * except when interrupted by another command.
  */
-class ElevatorThreeHighMacro : public frc::CommandGroup {
+class ElevatorFourRocketCargo : public frc::CommandGroup {
  public:
-  ElevatorThreeHighMacro();
+  ElevatorFourRocketCargo();
 };

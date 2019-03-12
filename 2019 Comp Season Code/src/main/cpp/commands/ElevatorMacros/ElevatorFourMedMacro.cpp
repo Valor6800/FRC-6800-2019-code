@@ -3,6 +3,7 @@
 
 ElevatorFourMedMacro::ElevatorFourMedMacro()
 {
+    AddSequential(new SetIntakeMacro(true));
     // TODO: Possible go down to kLiftBarTopSafe, then out
     AddSequential(new SetHatch(true));
     AddSequential(new WaitCommand(.2));

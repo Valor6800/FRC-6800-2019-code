@@ -7,15 +7,17 @@
 
 #pragma once
 
-#include <frc/commands/CommandGroup.h>
-#include "commands/SetHatch.h"
-#include "commands/SetElevatorSetpointDefinite.h"
-#include "commands/SetIntakeMacro.h"
+#include <frc/commands/Command.h>
+
 /**
  * This command allows PS3 joystick to drive the robot. It is always running
  * except when interrupted by another command.
  */
-class ElevatorThreeHighMacro : public frc::CommandGroup {
+class ElevatorMedSetpoint : public frc::Command {
  public:
-  ElevatorThreeHighMacro();
+  ElevatorMedSetpoint();
+  void Initialize() override;
+  bool IsFinished() override;
+
+  frc::CommandGroup* group;
 };

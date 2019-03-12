@@ -20,27 +20,33 @@ OI::OI() {
   m_bumperL.WhenPressed(new SetHatch(true));
   m_bumperL.WhenReleased(new SetHatch(false));
 
-  // m_a.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kBottom));
-  // m_x.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kLowCargo));
-  // // m_x.WhenPressed(new SetElevatorSetpoint(new ElevatorHatchMacro(Elevator::kLevelOneHatch), new ElevatorHatchMacro(Elevator::kLevelOneCargo)));
-  // m_b.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kMedCargo));
-  // m_y.WhenPressed(new SetElevatorSetpointDefinite(Elevator::kHighCargo));
+  // m_a.WhenPressed(new SetElevatorSetpointDefinite(160));
+
+  // m_a.WhenPressed(new ElevatorHighSetpoint());
+  m_x.WhenPressed(new ElevatorLowSetpoint());
+  // m_x.WhenPressed(new SetElevatorSetpoint(new ElevatorHatchMacro(Elevator::kLevelOneHatch), new ElevatorHatchMacro(Elevator::kLevelOneCargo)));
+  m_b.WhenPressed(new ElevatorMedSetpoint());
+  m_y.WhenPressed(new ElevatorHighSetpoint());
+  m_a.WhenPressed(new ElevatorCargoSetpoint());
   // m_a.WhenPressed(new TestSolenoidProto());
 
   //pedal = new Button(3);
 
-  One_Low.WhenActive(new ElevatorOneLowMacro());
-  One_Med.WhenActive(new ElevatorOneMedMacro());
-  One_High.WhenActive(new ElevatorOneHighMacro());
-  Two_Low.WhenActive(new ElevatorTwoLowMacro());
-  Two_Med.WhenActive(new ElevatorTwoMedMacro());
-  Two_High.WhenActive(new ElevatorTwoHighMacro());
-  Three_Low.WhenActive(new ElevatorThreeLowMacro());
-  Three_Med.WhenActive(new ElevatorThreeMedMacro());
-  Three_High.WhenActive(new ElevatorThreeHighMacro());
-  Four_Low.WhenActive(new ElevatorFourLowMacro());
-  Four_Med.WhenActive(new ElevatorFourMedMacro());
-  Four_High.WhenActive(new ElevatorFourHighMacro());
+  // ============== NOTE =====================
+  // If you are uncommenting these thhen comment out the code right above this, and vice versa
+
+  // One_Low.WhenActive(new ElevatorOneLowMacro());
+  // One_Med.WhenActive(new ElevatorOneMedMacro());
+  // One_High.WhenActive(new ElevatorOneHighMacro());
+  // Two_Low.WhenActive(new ElevatorTwoLowMacro());
+  // Two_Med.WhenActive(new ElevatorTwoMedMacro());
+  // Two_High.WhenActive(new ElevatorTwoHighMacro());
+  // Three_Low.WhenActive(new ElevatorThreeLowMacro());
+  // Three_Med.WhenActive(new ElevatorThreeMedMacro());
+  // Three_High.WhenActive(new ElevatorThreeHighMacro());
+  // Four_Low.WhenActive(new ElevatorFourLowMacro());
+  // Four_Med.WhenActive(new ElevatorFourMedMacro());
+  // Four_High.WhenActive(new ElevatorFourHighMacro());
 }
 
 

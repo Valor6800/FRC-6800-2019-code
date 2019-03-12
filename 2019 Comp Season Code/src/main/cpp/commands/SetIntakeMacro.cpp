@@ -5,17 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
-
-#include <frc/commands/CommandGroup.h>
-#include "commands/SetHatch.h"
-#include "commands/SetElevatorSetpointDefinite.h"
 #include "commands/SetIntakeMacro.h"
-/**
- * This command allows PS3 joystick to drive the robot. It is always running
- * except when interrupted by another command.
- */
-class ElevatorThreeHighMacro : public frc::CommandGroup {
- public:
-  ElevatorThreeHighMacro();
-};
+
+#include "Robot.h"
+
+SetIntakeMacro::SetIntakeMacro(bool intakeToGo) {
+    toGo = intakeToGo;
+}
+
+void SetIntakeMacro::Initialize() {
+    // Set the carriage to go to the new (or old) location
+    Robot::m_intake.SetPivot(toGo);
+}
+
+// Make this return true when this Command no longer needs to run execute()
+bool SetIntakeMacro::IsFinished() { 
+    // Return true when the hatchScorer is actually where it is supposed to be
+    return Robot::m_intake.GetPivot() == toGo; 
+}
+
+
