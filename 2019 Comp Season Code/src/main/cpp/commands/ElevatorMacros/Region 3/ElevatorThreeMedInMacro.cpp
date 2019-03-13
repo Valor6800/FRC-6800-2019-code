@@ -1,10 +1,10 @@
-#include "commands/ElevatorMacros/ElevatorFourMedMacro.h"
+#include "commands/ElevatorMacros/ElevatorThreeMedInMacro.h"
 #include "Robot.h"
 
-ElevatorFourMedMacro::ElevatorFourMedMacro()
+ElevatorThreeMedInMacro::ElevatorThreeMedInMacro()
 {
     AddSequential(new SetIntakeMacro(true));
-    // TODO: Possible go down to kLiftBarTopSafe, then out
+    AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kLiftBarTopSafe));
     AddSequential(new SetHatch(true));
     AddSequential(new WaitCommand(.2));
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kMedHatch));

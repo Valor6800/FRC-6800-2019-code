@@ -1,7 +1,7 @@
-#include "commands/ElevatorMacros/ElevatorThreeLowMacro.h"
+#include "commands/ElevatorMacros/ElevatorFourLowInMacro.h"
 #include "Robot.h"
 
-ElevatorThreeLowMacro::ElevatorThreeLowMacro()
+ElevatorFourLowInMacro::ElevatorFourLowInMacro()
 {
     AddSequential(new SetIntakeMacro(true));
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kLowCargo));

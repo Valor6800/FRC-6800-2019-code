@@ -1,7 +1,7 @@
-#include "commands/ElevatorMacros/ElevatorTwoMedMacro.h"
+#include "commands/ElevatorMacros/ElevatorTwoMedInMacro.h"
 #include "Robot.h"
 
-ElevatorTwoMedMacro::ElevatorTwoMedMacro()
+ElevatorTwoMedInMacro::ElevatorTwoMedInMacro()
 {
     AddSequential(new SetIntakeMacro(true));
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kLiftBarTopSafe));
