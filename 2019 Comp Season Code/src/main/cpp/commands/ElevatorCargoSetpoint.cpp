@@ -19,14 +19,29 @@ void ElevatorCargoSetpoint::Initialize() {
         group = new ElevatorOneCargoMacro();
         group->Start();
     } else if(height >= 220 && height < 330) {
-        group = new ElevatorTwoCargoMacro();
-        group->Start();
+        if(Robot::m_carriage.GetHatchScorer()) {
+            group = new ElevatorTwoCargoMacro();
+            group->Start();
+        } else {
+            group = new ElevatorTwoCargoInMacro();
+            group->Start();
+        }
     } else if(height >= 330 && height < 550) {
-        group = new ElevatorThreeCargoMacro();
-        group->Start();
+        if(Robot::m_carriage.GetHatchScorer()) {
+            group = new ElevatorThreeCargoMacro();
+            group->Start();
+        } else {
+            group = new ElevatorThreeCargoInMacro();
+            group->Start();
+        }
     } else if(height >= 550 && height < 1000) {
-        group = new ElevatorFourCargoMacro();
-        group->Start();
+        if(Robot::m_carriage.GetHatchScorer()) {
+            group = new ElevatorFourCargoMacro();
+            group->Start();
+        } else {
+            group = new ElevatorFourCargoInMacro();
+            group->Start();
+        }
     }
 
 }

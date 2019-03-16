@@ -10,11 +10,23 @@
 #include "Robot.h"
 
 SetHatch::SetHatch(bool scorerToGo) {
+
     toGo = scorerToGo;
+
+    // if(Robot::m_oi.g_shift || (Robot::m_elevator.GetHeight() < 80 && Robot::m_elevator.hasZeroed)) {
+    //     toGo = Robot::m_carriage.GetHatchScorer();
+    // } else {
+    //     toGo = scorerToGo;
+    // }
 }
 
 void SetHatch::Initialize() {
     // Set the carriage to go to the new (or old) location
+    // toGo = (Robot::m_oi.g_shift || (Robot::m_elevator.GetHeight() < 80 && Robot::m_elevator.hasZeroed)) ? Robot::m_carriage.GetHatchScorer() : !Robot::m_carriage.GetHatchScorer();
+    if(Robot::m_oi.g_shift || (Robot::m_elevator.GetHeight() < 80 && Robot::m_elevator.hasZeroed)){
+        toGo = Robot::m_carriage.GetHatchScorer();
+    }
+
     Robot::m_carriage.SetHatchScorer(toGo);
 }
 

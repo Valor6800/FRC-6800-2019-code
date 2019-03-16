@@ -7,6 +7,10 @@
 
 #include "subsystems/DriveTrain.h"
 #include <cmath>
+#include <iostream>
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <networktables/NetworkTable.h>
+#include <networktables/NetworkTableInstance.h>
 
 Drivetrain::Drivetrain() : frc::PIDSubsystem("Drivetrain", 0.005, 0, 0) {
 //   AddChild("Front Left CIM", m_frontLeftCIM);
@@ -40,6 +44,13 @@ Drivetrain::Drivetrain() : frc::PIDSubsystem("Drivetrain", 0.005, 0, 0) {
 
 //   AddChild("Gyro", m_gyro);
 
+}
+
+double clamp(double in,double minval,double maxval)
+{
+  if (in > maxval) return maxval;
+  if (in < minval) return minval;
+  return in;
 }
 
 double Drivetrain::ReturnPIDInput() { 
@@ -103,6 +114,46 @@ double Drivetrain::GetEncoderAverage() {
 
 double Drivetrain::GetHeading() {
   return m_gyro.GetYaw();
+}
+
+void Drivetrain::UpdateLimelightTracking() {
+  // Proportional Steering Constant:
+  // If your robot doesn't turn fast enough toward the target, make this number bigger
+  // If your robot oscillates (swings back and forth past the target) make this smaller
+  const double STEER_K = 0.05;
+
+  // Proportional Drive constant: bigger = faster drive
+  const double DRIVE_K = 3;
+
+  // Area of the target when your robot has reached the goal
+  const double DESIRED_TARGET_AREA = .4;
+  const double MAX_DRIVE = 0.5;
+  const double MAX_STEER = 1.0f;
+
+  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  double tx = table->GetNumber("tx",0.0);
+  double ty = table->GetNumber("ty",0.0);
+  double ta = table->GetNumber("ta",0.0);
+  double tv = table->GetNumber("tv",0.0);
+
+  if (tv < 1.0)
+  {
+        m_LimelightHasTarget = false;
+        m_LimelightDriveCmd = 0.0;
+        m_LimelightTurnCmd = 0.0;
+  }
+  else
+  {
+        m_LimelightHasTarget = true;
+
+        // Proportional steering
+        m_LimelightTurnCmd = tx*STEER_K;
+        m_LimelightTurnCmd = clamp(m_LimelightTurnCmd,-MAX_STEER,MAX_STEER);
+
+        // drive forward until the target area reaches our desired area
+        m_LimelightDriveCmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
+        m_LimelightDriveCmd = clamp(m_LimelightDriveCmd,-MAX_DRIVE,MAX_DRIVE);
+  }
 }
 
 // frc::Encoder& Drivetrain::GetLeftEncoder() { return m_leftEncoder; }

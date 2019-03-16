@@ -13,12 +13,16 @@ OI::OI() {
   m_back.WhenPressed(new EnableGShift());
   bool intakeDown = true;
 
+  aligner.WhileHeld(new AutoAlign());
+
   // m_bumperR.WhenPressed(new ToggleOutriggers());
-  m_bumperR.WhenPressed(new SetElevatorSetpointRelative(20));
 
   m_bumperL.WhenPressed(new SetIntakePivot());
   m_bumperL.WhenPressed(new SetHatch(true));
   m_bumperL.WhenReleased(new SetHatch(false));
+
+  m_bumperR.WhenReleased(new HoldHatch(true));
+  m_bumperR.WhenPressed(new HoldHatch(false));
 
   // m_a.WhenPressed(new SetElevatorSetpointDefinite(160));
 

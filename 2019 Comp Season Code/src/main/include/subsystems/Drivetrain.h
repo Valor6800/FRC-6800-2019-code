@@ -51,6 +51,12 @@ public:
   double ReturnPIDInput() override;
   void UsePIDOutput(double output) override;
 
+  void UpdateLimelightTracking();
+
+  bool m_LimelightHasTarget;
+  double m_LimelightTurnCmd;
+  double m_LimelightDriveCmd;
+
   double l;
   double r;
 

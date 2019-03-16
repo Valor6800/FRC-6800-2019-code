@@ -169,6 +169,12 @@ void Robot::TeleopPeriodic() {
   frc::Scheduler::GetInstance()->Run();
   Log();
 
+  if(m_elevator.GetHeight() < 80 && m_elevator.hasZeroed) {
+    m_carriage.SetHatchHolder(false);
+  } else {
+    m_carriage.SetHatchHolder(m_carriage.holderToGo);
+  }
+  
   // Check if the encoder breaks
   if(m_elevator.EncoderBroken()) {
     m_elevator.encoderBroken = true;
@@ -188,6 +194,8 @@ void Robot::DisabledInit(){
   m_drivetrain.m_driveMotorRightA.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
   m_drivetrain.m_driveMotorLeftB.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
   m_drivetrain.m_driveMotorRightB.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
+
+  Robot::m_elevator.hasZeroed = false;
 }
 
 void Robot::DisabledPeriodic() { 

@@ -33,10 +33,12 @@ class Elevator : public frc::PIDSubsystem {
   static constexpr double kShip =               250;
 
 // TODO: figure out the real values
-  static constexpr double kLiftBarBottomSafe = 220;
-  static constexpr double kLiftBarTopSafe =    525;
+  static constexpr double kLiftBarBottomSafe =  220;
+  static constexpr double kLiftBarTopSafe =     525;
 
   static constexpr double kLiftBar =            300;
+
+  bool hasZeroed;
 
   Elevator();
   void InitDefaultCommand() override;

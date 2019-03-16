@@ -5,18 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/HoldHatch.h"
 
-#include <frc/commands/Command.h>
+#include "Robot.h"
 
-/**
- * This command allows PS3 joystick to drive the robot. It is always running
- * except when interrupted by another command.
- */
-class PrepareHatch : public frc::Command {
- public:
-  PrepareHatch();
-  void Initialize() override;
-  bool IsFinished() override;
+HoldHatch::HoldHatch(bool scorerToGo) {
+    toGo = scorerToGo;
+}
 
-};
+void HoldHatch::Initialize() {
+    Robot::m_carriage.holderToGo = toGo;
+}
+
+// Make this return true when this Command no longer needs to run execute()
+bool HoldHatch::IsFinished() { 
+    // Return true when the hatchScorer is actually where it is supposed to be
+    return true; 
+}
+
+

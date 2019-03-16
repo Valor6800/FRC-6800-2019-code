@@ -22,7 +22,8 @@
 #include "commands/EnableGShift.h"
 #include "commands/ToggleOutriggers.h"
 #include "commands/ScoreHatch.h"
-#include "commands/PrepareHatch.h"
+#include "commands/HoldHatch.h"
+#include "commands/AutoAlign.h"
 
 #include "commands/ElevatorMacros/Region1/ElevatorOneLowMacro.h"
 #include "commands/ElevatorMacros/Region1/ElevatorOneMedMacro.h"
@@ -119,7 +120,8 @@ class OI {
   frc::JoystickButton& GetShifter();
 
   frc::JoystickButton shifter{&m_footPedal, 1};
-  
+  frc::JoystickButton aligner{&m_rightJoyDrive, 1};
+
   bool g_shift = false;
 
   OI();

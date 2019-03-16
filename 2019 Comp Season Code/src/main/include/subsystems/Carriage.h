@@ -23,23 +23,24 @@ public:
   void SetMotors(double leftVal, double rightVal);
   void Stop();
   void SetHatchScorer(bool score);
-  void SetHatchPreparer(bool prepare);
+  void SetHatchHolder(bool prepare);
 
   bool IsPhotoelectric();
   bool GetHatchScorer();
-  bool GetHatchPreparer();
+  bool GetHatchHolder();
 
   double GetMotorL();
   double GetMotorR();
 
   bool photoelectricActivated = false;
-  bool preparerToGo;
+
+  bool holderToGo;
 
 private:
   frc::VictorSP m_leftMotor{2};
   frc::VictorSP m_rightMotor{3};
   
-  frc::Solenoid m_hatchPreparer{2};
+  frc::Solenoid m_hatchHolder{2};
   frc::Solenoid m_hatchScorer{1};
   frc::DigitalInput m_photoelectric{2};
 
