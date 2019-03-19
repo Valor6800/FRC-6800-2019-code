@@ -14,33 +14,36 @@ ElevatorHighSetpoint::ElevatorHighSetpoint() { Requires(&Robot::m_elevator); Req
 void ElevatorHighSetpoint::Initialize() {
 
     double height = Robot::m_elevator.GetHeight();
+    if(Robot::m_elevator.hasZeroed) {
+        if(height >= -100 && height < 220) {
 
-    if(height >= -100 && height < 220) {
-        if (Robot::m_carriage.GetHatchScorer()) {
-            group = new ElevatorOneHighMacro();
+            if(height < 80 && Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorZeroHighMacro();
+                group->Start(); 
+            } else if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorOneHighMacro();
+                group->Start();
+            } else {
+                group = new ElevatorOneHighInMacro();
+                group->Start();
+            }
+        } else if(height >= 220 && height < 330) {
+            if (Robot::m_carriage.GetHatchScorer()) {
+                group = new ElevatorTwoHighMacro();
+                group->Start();
+            } else {
+                group = new ElevatorTwoHighInMacro();
+                group->Start();
+            }
+        } else if(height >= 330 && height < 550) {
+            group = new ElevatorThreeHighMacro();
             group->Start();
-        } else {
-            group = new ElevatorOneHighInMacro();
+        } else if(height >= 550 && height < 1000) {
+            group = new ElevatorFourHighMacro();
             group->Start();
         }
-    } else if(height >= 220 && height < 330) {
-        if (Robot::m_carriage.GetHatchScorer()) {
-            group = new ElevatorTwoHighMacro();
-            group->Start();
-        } else {
-            group = new ElevatorTwoHighInMacro();
-            group->Start();
-        }
-    } else if(height >= 330 && height < 550) {
-        group = new ElevatorThreeHighMacro();
-        group->Start();
-    } else if(height >= 550 && height < 1000) {
-        group = new ElevatorFourHighMacro();
-        group->Start();
     }
-
     
-
 }
 
 // Make this return true when this Command no longer needs to run execute()

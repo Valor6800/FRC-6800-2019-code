@@ -35,6 +35,7 @@ Drivetrain::Drivetrain() : frc::PIDSubsystem("Drivetrain", 0.005, 0, 0) {
   GetPIDController()->SetOutputRange(-1, 1);
 
 
+
   // Configure encoders
   // m_rightEncoder.SetPIDSourceType(frc::PIDSourceType::kDisplacement);
   // m_leftEncoder.SetPIDSourceType(frc::PIDSourceType::kDisplacement);
@@ -120,14 +121,16 @@ void Drivetrain::UpdateLimelightTracking() {
   // Proportional Steering Constant:
   // If your robot doesn't turn fast enough toward the target, make this number bigger
   // If your robot oscillates (swings back and forth past the target) make this smaller
-  const double STEER_K = 0.05;
+  const double STEER_K = 0.06;
 
   // Proportional Drive constant: bigger = faster drive
-  const double DRIVE_K = 3;
+  const double DRIVE_K = 2.5;
+  //2.5
 
   // Area of the target when your robot has reached the goal
-  const double DESIRED_TARGET_AREA = .4;
+  DESIRED_TARGET_AREA = 1.7;
   const double MAX_DRIVE = 0.5;
+  //.5
   const double MAX_STEER = 1.0f;
 
   std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");

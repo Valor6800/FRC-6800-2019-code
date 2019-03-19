@@ -35,6 +35,7 @@ public:
   bool photoelectricActivated = false;
 
   bool holderToGo;
+  bool scorerToGo;
 
 private:
   frc::VictorSP m_leftMotor{2};

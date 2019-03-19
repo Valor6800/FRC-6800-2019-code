@@ -5,6 +5,6 @@ ElevatorThreeRocketCargo::ElevatorThreeRocketCargo()
 {
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kLiftBarTopSafe));
     AddSequential(new SetHatch(false));
-    AddSequential(new WaitCommand(.5));
+    AddSequential(new WaitCommand(.3));
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kMedCargo));
 }

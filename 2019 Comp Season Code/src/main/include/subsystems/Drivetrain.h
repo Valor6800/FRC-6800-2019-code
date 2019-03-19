@@ -60,6 +60,8 @@ public:
   double l;
   double r;
 
+  double DESIRED_TARGET_AREA;
+
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();
   frc::Solenoid m_shifter{3};

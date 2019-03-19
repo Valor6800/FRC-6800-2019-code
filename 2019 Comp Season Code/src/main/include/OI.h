@@ -64,6 +64,11 @@
 #include "commands/ElevatorMacros/Region2/ElevatorTwoHighInMacro.h"
 #include "commands/ElevatorMacros/Region3/ElevatorThreeMedInMacro.h"
 
+#include "commands/ElevatorMacros/Region0/ElevatorZeroCargoMacro.h"
+#include "commands/ElevatorMacros/Region0/ElevatorZeroHighMacro.h"
+#include "commands/ElevatorMacros/Region0/ElevatorZeroMedMacro.h"
+#include "commands/ElevatorMacros/Region0/ElevatorZeroRocketCargoMacro.h"
+
 
 #include "commands/ElevatorHighSetpoint.h"
 #include "commands/ElevatorMedSetpoint.h"
@@ -86,6 +91,8 @@ class OI {
   frc::XboxController m_gamepad{0};
 
   frc::Joystick m_footPedal{3};
+
+  frc::Joystick m_aligner{4};
   
   frc::JoystickButton m_a {&m_gamepad, 1};
   frc::JoystickButton m_b {&m_gamepad, 2};

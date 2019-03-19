@@ -78,6 +78,9 @@ void Robot::RobotInit() {
   elevatorUpperLimitEntry = tab.Add("Elevator Limit 2", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   encoderBrokenEntry = tab.Add("Encoder Broken?", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
+  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  table->PutNumber("ledMode",1);
+  table->PutNumber("camMode",1);
 //   elevatorSpeedEntry = tab.Add("Elevator Speed", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
 //   elevatorBrakeEntry = tab.Add("Elevator Brake", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
@@ -180,6 +183,8 @@ void Robot::TeleopPeriodic() {
     m_elevator.encoderBroken = true;
   }
 
+  m_carriage.SetHatchScorer(m_carriage.scorerToGo);
+
 }
 
 void Robot::TestPeriodic() { Log(); }
@@ -196,6 +201,10 @@ void Robot::DisabledInit(){
   m_drivetrain.m_driveMotorRightB.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
 
   Robot::m_elevator.hasZeroed = false;
+
+  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  table->PutNumber("ledMode",1);
+  table->PutNumber("camMode",1);
 }
 
 void Robot::DisabledPeriodic() { 

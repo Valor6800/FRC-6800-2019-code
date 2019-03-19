@@ -1,10 +1,10 @@
-#include "commands/ElevatorMacros/Region2/ElevatorTwoMedMacro.h"
+#include "commands/ElevatorMacros/Region0/ElevatorZeroMedMacro.h"
 #include "Robot.h"
 
-ElevatorTwoMedMacro::ElevatorTwoMedMacro()
+ElevatorZeroMedMacro::ElevatorZeroMedMacro()
 {
     AddSequential(new SetIntakeMacro(true));
-    AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kLiftBarBottomSafe));
+    AddSequential(new SetElevatorSetpointDefinite(100));
     AddSequential(new SetHatch(false));
     AddSequential(new WaitCommand(.2));
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kLiftBarTopSafe));
@@ -12,3 +12,4 @@ ElevatorTwoMedMacro::ElevatorTwoMedMacro()
     AddSequential(new WaitCommand(.3));
     AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kMedHatch));
 }
+

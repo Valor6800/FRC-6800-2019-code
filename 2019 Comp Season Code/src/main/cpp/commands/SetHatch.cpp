@@ -23,17 +23,15 @@ SetHatch::SetHatch(bool scorerToGo) {
 void SetHatch::Initialize() {
     // Set the carriage to go to the new (or old) location
     // toGo = (Robot::m_oi.g_shift || (Robot::m_elevator.GetHeight() < 80 && Robot::m_elevator.hasZeroed)) ? Robot::m_carriage.GetHatchScorer() : !Robot::m_carriage.GetHatchScorer();
-    if(Robot::m_oi.g_shift || (Robot::m_elevator.GetHeight() < 80 && Robot::m_elevator.hasZeroed)){
-        toGo = Robot::m_carriage.GetHatchScorer();
+    if(!(Robot::m_elevator.GetHeight() < 80 && Robot::m_elevator.hasZeroed)) {
+        Robot::m_carriage.scorerToGo = toGo;
     }
-
-    Robot::m_carriage.SetHatchScorer(toGo);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool SetHatch::IsFinished() { 
     // Return true when the hatchScorer is actually where it is supposed to be
-    return Robot::m_carriage.GetHatchScorer() == toGo; 
+    return true; 
 }
 
 

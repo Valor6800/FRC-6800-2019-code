@@ -7,19 +7,16 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
+#include <frc/commands/CommandGroup.h>
+#include "commands/SetHatch.h"
+#include "commands/SetElevatorSetpointDefinite.h"
+#include "commands/SetIntakeMacro.h"
 
 /**
  * This command allows PS3 joystick to drive the robot. It is always running
  * except when interrupted by another command.
  */
-class AutoAlign : public frc::Command {
+class ElevatorZeroRocketCargoMacro : public frc::CommandGroup {
  public:
-  AutoAlign();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-
-  bool done;
+  ElevatorZeroRocketCargoMacro();
 };

@@ -7,10 +7,10 @@
 
 #include "subsystems/Elevator.h"
 
-Elevator::Elevator() : frc::PIDSubsystem("Elevator", .005, 0.0, 0) {
+Elevator::Elevator() : frc::PIDSubsystem("Elevator", .0070, 0.0, 0) {
   SetAbsoluteTolerance(0.01);
   GetPIDController()->SetContinuous(false);
-  SetOutputRange(-.4, .8); // -.6 to .8 for comp code
+  SetOutputRange(-.8, 1); // -.6 to .8 for comp code
   // Put everything to the LiveWindow for testing.
   // AddChild("Upper Limit Switch", m_upperLimitSwitch);
   // AddChild("Lower Limit Switch", m_lowerLimitSwitch);
