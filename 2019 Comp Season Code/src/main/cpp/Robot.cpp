@@ -138,6 +138,9 @@ void Robot::AutonomousInit() {
 
   Robot::m_elevator.m_liftEncoder.Reset();
 
+  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  table->PutNumber("ledMode",1);
+  table->PutNumber("camMode",1);
 }
 
 void Robot::AutonomousPeriodic() {
@@ -166,6 +169,10 @@ void Robot::TeleopInit() {
   // std::cout << "Starting Teleop" << std::endl;
 
     // Robot::m_elevator.m_liftEncoder.Reset();
+
+    std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  table->PutNumber("ledMode",1);
+  table->PutNumber("camMode",1);
 }
 
 void Robot::TeleopPeriodic() {

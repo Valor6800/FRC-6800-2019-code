@@ -13,7 +13,7 @@ OI::OI() {
   m_back.WhenPressed(new EnableGShift());
   bool intakeDown = true;
 
-  aligner.WhileHeld(new AutoAlign());
+  // aligner.WhileHeld(new AutoAlign());
 
   // m_bumperR.WhenPressed(new ToggleOutriggers());
 
@@ -23,6 +23,8 @@ OI::OI() {
 
   m_bumperR.WhenReleased(new HoldHatch(true));
   m_bumperR.WhenPressed(new HoldHatch(false));
+
+  visionThing.WhileActive(new AutoAlign());
 
   // m_a.WhenPressed(new SetElevatorSetpointDefinite(160));
 

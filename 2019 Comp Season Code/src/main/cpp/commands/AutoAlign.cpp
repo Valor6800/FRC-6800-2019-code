@@ -36,7 +36,7 @@ void AutoAlign::Execute() {
             Robot::m_drivetrain.m_robotDrive.ArcadeDrive(0.0,0.0);
           }
 
-          if(table->GetNumber("ta",0.0) >= 1.7) {
+          if(table->GetNumber("ta",0.0) >= 1.4) {
             done = true;
           }
         } else {

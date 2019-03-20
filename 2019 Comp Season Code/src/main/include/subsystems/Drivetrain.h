@@ -76,7 +76,7 @@ public:
 
   frc::DifferentialDrive m_robotDrive{m_leftDrive, m_rightDrive}; 
 
-  AHRS m_gyro{SerialPort::Port::kMXP};
+  // AHRS m_gyro{SerialPort::Port::kMXP};
 
 private:
   

@@ -8,25 +8,11 @@
 #include "CustomTrigger.h"
 #include "Robot.h"
 
-CustomTrigger::CustomTrigger(char button, double lowEnd, double highEnd) {
-  m_button = button;
-  m_lowEnd = lowEnd;
-  m_highEnd = highEnd;
-}
+CustomTrigger::CustomTrigger() {}
 
 bool CustomTrigger::Get() {
 
-    switch(m_button) {
-      case 'Y' :
-        return (Robot::m_oi.GetGamepad().GetYButtonPressed() && Robot::m_elevator.GetHeight() >= m_lowEnd && Robot::m_elevator.GetHeight() < m_highEnd) && !Robot::m_elevator.encoderBroken;
-        break;
-      case 'X' :
-        return (Robot::m_oi.GetGamepad().GetXButtonPressed() && Robot::m_elevator.GetHeight() >= m_lowEnd && Robot::m_elevator.GetHeight() < m_highEnd) && !Robot::m_elevator.encoderBroken;
-        break;
-      case 'B' :
-        return (Robot::m_oi.GetGamepad().GetBButtonPressed() && Robot::m_elevator.GetHeight() >= m_lowEnd && Robot::m_elevator.GetHeight() < m_highEnd) && !Robot::m_elevator.encoderBroken;
-        break;
-    }    
+  return Robot::m_oi.GetLeftJoyDrive().GetX() < -.7; 
 
 }
 

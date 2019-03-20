@@ -114,7 +114,8 @@ double Drivetrain::GetEncoderAverage() {
 }
 
 double Drivetrain::GetHeading() {
-  return m_gyro.GetYaw();
+  return 1;
+  // m_gyro.GetYaw();
 }
 
 void Drivetrain::UpdateLimelightTracking() {
@@ -122,19 +123,24 @@ void Drivetrain::UpdateLimelightTracking() {
   // If your robot doesn't turn fast enough toward the target, make this number bigger
   // If your robot oscillates (swings back and forth past the target) make this smaller
   const double STEER_K = 0.06;
+  // comp bot = .05
+  // practice bot = .06
 
   // Proportional Drive constant: bigger = faster drive
   const double DRIVE_K = 2.5;
   //2.5
 
   // Area of the target when your robot has reached the goal
-  DESIRED_TARGET_AREA = 1.7;
+  DESIRED_TARGET_AREA = 1.4;
   const double MAX_DRIVE = 0.5;
   //.5
-  const double MAX_STEER = 1.0f;
+  const double MAX_STEER = 0.7f;
+  // comp bot = .6
+  // practice bot = .7
 
   std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-  double tx = table->GetNumber("tx",0.0);
+  // NOTE: THIS NUMBER IS OUR OFFSET. Subtracting is left, adding is right
+  double tx = (table->GetNumber("tx",0.0)) + 0;
   double ty = table->GetNumber("ty",0.0);
   double ta = table->GetNumber("ta",0.0);
   double tv = table->GetNumber("tv",0.0);

@@ -102,22 +102,7 @@ class OI {
   frc::JoystickButton m_bumperR {&m_gamepad, 6};
   frc::JoystickButton m_back {&m_gamepad, 7};
 
-  frc::CustomTrigger One_Low {'X', -100, 220};
-  frc::CustomTrigger One_Med {'B', -100, 220};
-  frc::CustomTrigger One_High {'Y', -100, 220};
-
-  frc::CustomTrigger Two_Low {'X', 220, 330};
-  frc::CustomTrigger Two_Med {'B', 220, 330};
-  frc::CustomTrigger Two_High {'Y', 220, 330};
-
-  frc::CustomTrigger Three_Low {'X', 330, 550};
-  frc::CustomTrigger Three_Med {'B', 330, 550};
-  frc::CustomTrigger Three_High {'Y', 330, 550};
-
-  frc::CustomTrigger Four_Low {'X', 550, 1000};
-  frc::CustomTrigger Four_Med {'B', 550, 1000};
-  frc::CustomTrigger Four_High {'Y', 550, 1000};
-
+  frc::CustomTrigger visionThing{};
   // frc::Trigger High_Low {}
 
  public:

@@ -33,13 +33,8 @@ class Command;
  */ 
 class CustomTrigger : public Trigger {
  public:
-  CustomTrigger(char button, double lowEnd, double highEnd);
+  CustomTrigger();
   bool Get() override;
-
- private:
-    char m_button;
-    double m_lowEnd;
-    double m_highEnd;
 
 
 };
