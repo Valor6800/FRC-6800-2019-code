@@ -54,5 +54,5 @@ void Carriage::SetHatchScorer(bool score) {
 }
 
 void Carriage::SetHatchHolder(bool prepare) {
-    m_hatchHolder.Set(prepare);
+    m_hatchHolder.Set(!prepare);
 }

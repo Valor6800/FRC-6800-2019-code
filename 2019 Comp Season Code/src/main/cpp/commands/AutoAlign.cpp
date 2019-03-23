@@ -27,25 +27,28 @@ void AutoAlign::Execute() {
         
         std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
-        if(!done) {
+        // if(!done) {
           Robot::m_drivetrain.UpdateLimelightTracking();
           if (Robot::m_drivetrain.m_LimelightHasTarget) {
             // Robot::m_drivetrain.m_LimelightDriveCmd
+
             Robot::m_drivetrain.m_robotDrive.ArcadeDrive(-Robot::m_drivetrain.m_LimelightDriveCmd, -Robot::m_drivetrain.m_LimelightTurnCmd);
           } else {
             Robot::m_drivetrain.m_robotDrive.ArcadeDrive(0.0,0.0);
           }
 
-          if(table->GetNumber("ta",0.0) >= 1.4) {
-            done = true;
+          if(table->GetNumber("ta",0.0) >= 1.7) {
+            // done = true;
           }
-        } else {
-          Robot::m_drivetrain.m_robotDrive.ArcadeDrive(-.4, 0);
-        }
+        // } else {
+          // table->PutNumber("ledMode",1);
+          // table->PutNumber("camMode",1);
+          // Robot::m_drivetrain.m_robotDrive.ArcadeDrive(-.4, 0);
+}
         
 
 
-}
+
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutoAlign::IsFinished() { false; }

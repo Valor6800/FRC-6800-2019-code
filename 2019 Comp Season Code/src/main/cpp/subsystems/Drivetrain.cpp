@@ -130,8 +130,8 @@ void Drivetrain::UpdateLimelightTracking() {
   const double DRIVE_K = 2.5;
 
   // Area of the target when your robot has reached the goal
-  DESIRED_TARGET_AREA = 1.4;
-  const double MAX_DRIVE = 0.5;
+  DESIRED_TARGET_AREA = 1.7;
+  const double MAX_DRIVE = 0.55;
 
   const double MAX_STEER = 0.6f;
   // comp bot = .6
@@ -139,7 +139,7 @@ void Drivetrain::UpdateLimelightTracking() {
 
   std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
   // NOTE: THIS NUMBER IS OUR OFFSET. Subtracting is left, adding is right
-  double tx = (table->GetNumber("tx",0.0)) + 0;
+  double tx = (table->GetNumber("tx",0.0)) - 0;
   double ty = table->GetNumber("ty",0.0);
   double ta = table->GetNumber("ta",0.0);
   double tv = table->GetNumber("tv",0.0);
