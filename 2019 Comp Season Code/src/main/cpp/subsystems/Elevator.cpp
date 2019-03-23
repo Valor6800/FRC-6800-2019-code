@@ -38,12 +38,12 @@ void Elevator::UsePIDOutput(double output) {
 
   // .3 and .25 for comp code
   // This is for going up
-  if(power < .2 && power > 0) {
-    power = .2;
+  if(power < .3 && power > 0) {
+    power = .3;
   }
   // This is for going down
-  else if(power > -.15 && power < 0) {
-    power = -.15;
+  else if(power > -.25 && power < 0) {
+    power = -.25;
   }
 
   m_liftMotors.PIDWrite(-power);

@@ -170,7 +170,7 @@ void Robot::TeleopInit() {
 
     // Robot::m_elevator.m_liftEncoder.Reset();
 
-    std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
   table->PutNumber("ledMode",1);
   table->PutNumber("camMode",1);
 }
