@@ -147,10 +147,14 @@ void Robot::AutonomousPeriodic() {
   frc::Scheduler::GetInstance()->Run();
   Log();
 
+  m_carriage.SetHatchHolder(m_carriage.holderToGo);
+
   // Check if the encoder breaks
   if(m_elevator.EncoderBroken()) {
     m_elevator.encoderBroken = true;
   }
+
+  m_carriage.SetHatchScorer(m_carriage.scorerToGo);
 }
 
 void Robot::TeleopInit() {
@@ -179,11 +183,8 @@ void Robot::TeleopPeriodic() {
   frc::Scheduler::GetInstance()->Run();
   Log();
 
-  if(m_elevator.GetHeight() < 80 && m_elevator.hasZeroed) {
-    m_carriage.SetHatchHolder(false);
-  } else {
-    m_carriage.SetHatchHolder(m_carriage.holderToGo);
-  }
+  m_carriage.SetHatchHolder(m_carriage.holderToGo);
+  
   
   // Check if the encoder breaks
   if(m_elevator.EncoderBroken()) {

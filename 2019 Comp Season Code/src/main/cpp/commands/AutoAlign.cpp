@@ -37,9 +37,9 @@ void AutoAlign::Execute() {
             Robot::m_drivetrain.m_robotDrive.ArcadeDrive(0.0,0.0);
           }
 
-          if(table->GetNumber("ta",0.0) >= 1.7) {
-            // done = true;
-          }
+          // if(table->GetNumber("ta",0.0) >= 1.7) {
+          //   // done = true;
+          // }
         // } else {
           // table->PutNumber("ledMode",1);
           // table->PutNumber("camMode",1);

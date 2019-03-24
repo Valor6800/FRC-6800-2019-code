@@ -32,7 +32,7 @@ void ElevatorManual::Execute() {
   // If we are going down, DO half-speed mode, ELSE full speed mode
   // NOTE: Negative yVal runs the lift up and vice versa
   if(yVal > 0) {
-    yVal = yVal / 2.0;
+    yVal = yVal / 1.5;
   }
 
   // If we are out of deadband
@@ -53,15 +53,15 @@ void ElevatorManual::Execute() {
 
         // TODO: Make this .25 with comp code
         // If we are already towards the bottom and still trying to run the lift down
-        if(Robot::m_elevator.GetHeight() < 80 && yVal > .15) {
+        if(Robot::m_elevator.GetHeight() < 80 && yVal > .25) {
             // Set the elevator to go quite slow
-            Robot::m_elevator.SetLiftSpeed(.15);
+            Robot::m_elevator.SetLiftSpeed(.25);
 
         // As long as we are not at the very bottom and trying to go down
         } else if(!(Robot::m_elevator.IsAtLowerLimit() && yVal > 0)) {
             // Set the elevator to the y Value of the joystick
             Robot::m_elevator.SetLiftSpeed(yVal);
-        
+      
         // This means we are 0'd on the encoder
         } else {
             // Set it to 0 completely

@@ -8,7 +8,7 @@
 #include <subsystems/Carriage.h>
 
 Carriage::Carriage() : frc::Subsystem("Carriage") {
-    holderToGo = false;
+    holderToGo = true;
 }
 
 void Carriage::InitDefaultCommand() {

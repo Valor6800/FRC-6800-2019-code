@@ -159,8 +159,9 @@ void Drivetrain::UpdateLimelightTracking() {
         m_LimelightTurnCmd = clamp(m_LimelightTurnCmd,-MAX_STEER,MAX_STEER);
 
         // drive forward until the target area reaches our desired area
-        m_LimelightDriveCmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
-        m_LimelightDriveCmd = clamp(m_LimelightDriveCmd,-MAX_DRIVE,MAX_DRIVE);
+        // m_LimelightDriveCmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
+        // m_LimelightDriveCmd = clamp(m_LimelightDriveCmd,-MAX_DRIVE,MAX_DRIVE);
+        m_LimelightDriveCmd = .5;
   }
 }
 
