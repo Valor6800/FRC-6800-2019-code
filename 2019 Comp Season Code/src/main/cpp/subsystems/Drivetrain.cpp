@@ -69,6 +69,10 @@ void Drivetrain::UsePIDOutput(double output) {
   TankDrive(-output, output); //TODO: If this goes the wrong way, swap the negative
 }
 
+void Drivetrain::AddOffset(double toAdd) {
+  visionOffset += toAdd;
+}
+
 void Drivetrain::InitDefaultCommand() {
   SetDefaultCommand(new DriveWithJoystick());
 }
@@ -139,7 +143,7 @@ void Drivetrain::UpdateLimelightTracking() {
 
   std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
   // NOTE: THIS NUMBER IS OUR OFFSET. Subtracting is left, adding is right
-  double tx = (table->GetNumber("tx",0.0)) - 0;
+  double tx = table->GetNumber("tx",0.0) + visionOffset;
   double ty = table->GetNumber("ty",0.0);
   double ta = table->GetNumber("ta",0.0);
   double tv = table->GetNumber("tv",0.0);

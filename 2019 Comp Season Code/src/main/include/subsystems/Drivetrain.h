@@ -52,6 +52,7 @@ public:
   void UsePIDOutput(double output) override;
 
   void UpdateLimelightTracking();
+  void AddOffset(double toAdd);
 
   bool m_LimelightHasTarget;
   double m_LimelightTurnCmd;
@@ -61,6 +62,8 @@ public:
   double r;
 
   double DESIRED_TARGET_AREA;
+
+  double visionOffset = 0;
 
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();

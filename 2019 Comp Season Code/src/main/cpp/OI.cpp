@@ -25,6 +25,8 @@ OI::OI() {
   m_bumperR.WhenPressed(new HoldHatch(false));
 
   visionThing.WhileActive(new AutoAlign());
+  offsetLeft.WhenActive(new ChangeOffset(-1));
+  offsetRight.WhenActive(new ChangeOffset(1));
 
   // m_a.WhenPressed(new SetElevatorSetpointDefinite(160));
 

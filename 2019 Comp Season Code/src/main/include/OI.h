@@ -24,6 +24,7 @@
 #include "commands/ScoreHatch.h"
 #include "commands/HoldHatch.h"
 #include "commands/AutoAlign.h"
+#include "commands/ChangeOffset.h"
 
 #include "commands/ElevatorMacros/Region1/ElevatorOneLowMacro.h"
 #include "commands/ElevatorMacros/Region1/ElevatorOneMedMacro.h"
@@ -81,6 +82,8 @@
 #include "subsystems/Carriage.h"
 
 #include "CustomTrigger.h"
+#include "OffsetTuningTriggerAdd.h"
+#include "OffsetTuningTriggerSubtract.h"
 
 class OI {
  private:
@@ -103,6 +106,8 @@ class OI {
   frc::JoystickButton m_back {&m_gamepad, 7};
 
   frc::CustomTrigger visionThing{};
+  frc::OffsetTuningTriggerAdd offsetRight{};
+  frc::OffsetTuningTriggerSubtract offsetLeft{};
   // frc::Trigger High_Low {}
 
  public:
