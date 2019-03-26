@@ -37,6 +37,7 @@ nt::NetworkTableEntry elevatorHeightEntry;
 nt::NetworkTableEntry elevatorUpperLimitEntry;
 nt::NetworkTableEntry elevatorLowerLimitEntry;
 nt::NetworkTableEntry encoderBrokenEntry;
+nt::NetworkTableEntry visionOffsetEntry;
 
 // nt::NetworkTableEntry elevatorSpeedEntry;
 // nt::NetworkTableEntry elevatorBrakeEntry;
@@ -77,6 +78,7 @@ void Robot::RobotInit() {
   elevatorLowerLimitEntry = tab.Add("Elevator Limit 1", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   elevatorUpperLimitEntry = tab.Add("Elevator Limit 2", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   encoderBrokenEntry = tab.Add("Encoder Broken?", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+  visionOffsetEntry = tab.Add("Vision offset", 0).WithWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
 
   std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
   table->PutNumber("ledMode",1);
@@ -259,6 +261,8 @@ void Robot::Log() {
   elevatorLowerLimitEntry.SetBoolean(!m_elevator.m_limitSwitch1.Get());
   elevatorUpperLimitEntry.SetBoolean(!m_elevator.m_limitSwitch2.Get());
   encoderBrokenEntry.SetBoolean(m_elevator.encoderBroken);
+  visionOffsetEntry.SetDouble(m_drivetrain.visionOffset);
+
 
   // elevatorSpeedEntry.SetDouble(m_elevator.GetSpeed());
   // elevatorBrakeEntry.SetBoolean(m_elevator.GetBrake());
