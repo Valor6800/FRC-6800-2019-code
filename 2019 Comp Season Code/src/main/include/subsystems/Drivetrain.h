@@ -63,7 +63,7 @@ public:
 
   double DESIRED_TARGET_AREA;
 
-  double visionOffset = 0;
+  double visionOffset = 1;
 
   // frc::Encoder& GetLeftEncoder();
   // frc::Encoder& GetRightEncoder();
