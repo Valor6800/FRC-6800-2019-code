@@ -12,7 +12,7 @@ CustomTrigger::CustomTrigger() {}
 
 bool CustomTrigger::Get() {
 
-  return Robot::m_oi.GetLeftJoyDrive().GetX() < -.7; 
+  return Robot::m_oi.GetLeftJoyDrive().GetX() < -.4; 
 
 }
 
