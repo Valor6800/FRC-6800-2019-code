@@ -11,6 +11,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
+#include "Robot.h"
 
 Drivetrain::Drivetrain() : frc::PIDSubsystem("Drivetrain", 0.005, 0, 0) {
 //   AddChild("Front Left CIM", m_frontLeftCIM);
@@ -148,10 +149,13 @@ void Drivetrain::UpdateLimelightTracking() {
   double ta = table->GetNumber("ta",0.0);
   double tv = table->GetNumber("tv",0.0);
 
+  double y_val;
+
   if (tv < 1.0)
   {
         m_LimelightHasTarget = false;
-        m_LimelightDriveCmd = 0.0;
+        y_val = Robot::m_oi.GetRightJoyDrive().GetY();
+        m_LimelightDriveCmd = y_val < 0 ? y_val : 0;
         m_LimelightTurnCmd = 0.0;
   }
   else
@@ -165,7 +169,8 @@ void Drivetrain::UpdateLimelightTracking() {
         // drive forward until the target area reaches our desired area
         // m_LimelightDriveCmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
         // m_LimelightDriveCmd = clamp(m_LimelightDriveCmd,-MAX_DRIVE,MAX_DRIVE);
-        m_LimelightDriveCmd = .5;
+        y_val = Robot::m_oi.GetRightJoyDrive().GetY();
+        m_LimelightDriveCmd = y_val < 0 ? y_val : 0;
   }
 }
 

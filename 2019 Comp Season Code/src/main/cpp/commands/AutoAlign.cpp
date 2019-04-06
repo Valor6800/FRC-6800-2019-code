@@ -24,7 +24,6 @@ void AutoAlign::Initialize() {
 
 void AutoAlign::Execute() {
 
-        
         std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
         // if(!done) {
@@ -32,9 +31,9 @@ void AutoAlign::Execute() {
           if (Robot::m_drivetrain.m_LimelightHasTarget) {
             // Robot::m_drivetrain.m_LimelightDriveCmd
 
-            Robot::m_drivetrain.m_robotDrive.ArcadeDrive(-Robot::m_drivetrain.m_LimelightDriveCmd, -Robot::m_drivetrain.m_LimelightTurnCmd);
+            Robot::m_drivetrain.m_robotDrive.ArcadeDrive(Robot::m_drivetrain.m_LimelightDriveCmd, -Robot::m_drivetrain.m_LimelightTurnCmd);
           } else {
-            Robot::m_drivetrain.m_robotDrive.ArcadeDrive(0.0,0.0);
+            Robot::m_drivetrain.m_robotDrive.ArcadeDrive(Robot::m_drivetrain.m_LimelightDriveCmd, 0.0);
           }
 
           // if(table->GetNumber("ta",0.0) >= 1.7) {
