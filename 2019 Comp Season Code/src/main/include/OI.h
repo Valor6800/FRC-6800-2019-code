@@ -65,10 +65,12 @@
 #include "commands/ElevatorMacros/Region2/ElevatorTwoHighInMacro.h"
 #include "commands/ElevatorMacros/Region3/ElevatorThreeMedInMacro.h"
 
-#include "commands/ElevatorMacros/Region0/ElevatorZeroCargoMacro.h"
-#include "commands/ElevatorMacros/Region0/ElevatorZeroHighMacro.h"
-#include "commands/ElevatorMacros/Region0/ElevatorZeroMedMacro.h"
-#include "commands/ElevatorMacros/Region0/ElevatorZeroRocketCargoMacro.h"
+#include "commands/ElevatorMacros/Region1/ElevatorOneRocketCargoHigh.h"
+#include "commands/ElevatorMacros/Region1/ElevatorOneRocketCargoHighIn.h"
+#include "commands/ElevatorMacros/Region2/ElevatorTwoRocketCargoHigh.h"
+#include "commands/ElevatorMacros/Region2/ElevatorTwoRocketCargoHighIn.h"
+#include "commands/ElevatorMacros/Region3/ElevatorThreeRocketCargoHigh.h"
+#include "commands/ElevatorMacros/Region4/ElevatorFourRocketCargoHigh.h"
 
 
 #include "commands/ElevatorHighSetpoint.h"

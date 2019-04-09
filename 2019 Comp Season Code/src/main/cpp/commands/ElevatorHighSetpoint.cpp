@@ -18,27 +18,60 @@ void ElevatorHighSetpoint::Initialize() {
         if(height >= -100 && height < 220) {
 
             if (Robot::m_carriage.GetHatchScorer()) {
-                group = new ElevatorOneHighMacro();
-                group->Start();
+                if(Robot::m_oi.g_shift) {
+                    group = new ElevatorOneRocketCargoHigh();
+                    group ->Start();
+                } else {
+                    group = new ElevatorOneHighMacro();
+                    group->Start();
+                }
             } else {
-                group = new ElevatorOneHighInMacro();
-                group->Start();
+                if(Robot::m_oi.g_shift) {
+                    group = new ElevatorOneRocketCargoHighIn();
+                    group ->Start();
+                } else {
+                    group = new ElevatorOneHighInMacro();
+                    group->Start();
+                }
             }
         } else if(height >= 220 && height < 330) {
             if (Robot::m_carriage.GetHatchScorer()) {
-                group = new ElevatorTwoHighMacro();
-                group->Start();
+
+                if(Robot::m_oi.g_shift) {
+                    group = new ElevatorTwoRocketCargoHigh();
+                    group ->Start();
+                } else {
+                    group = new ElevatorTwoHighMacro();
+                    group->Start();
+                }
             } else {
-                group = new ElevatorTwoHighInMacro();
-                group->Start();
+
+                if(Robot::m_oi.g_shift) {
+                    group = new ElevatorTwoRocketCargoHighIn();
+                    group ->Start();
+                } else {
+                    group = new ElevatorTwoHighInMacro();
+                    group->Start();
+                }
             }
         } else if(height >= 330 && height < 550) {
-            group = new ElevatorThreeHighMacro();
-            group->Start();
+            if(Robot::m_oi.g_shift) {
+                group = new ElevatorThreeRocketCargoHigh();
+                group ->Start();
+            } else {
+                group = new ElevatorThreeHighMacro();
+                group->Start();
+            }
         } else if(height >= 550 && height < 1000) {
-            group = new ElevatorFourHighMacro();
-            group->Start();
+            if(Robot::m_oi.g_shift) {
+                group = new ElevatorFourRocketCargoHigh();
+                group ->Start();
+            } else {
+                group = new ElevatorFourHighMacro();
+                group->Start();
+            }
         }
+
     }
     
 }
