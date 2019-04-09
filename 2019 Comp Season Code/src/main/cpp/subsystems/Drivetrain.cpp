@@ -79,7 +79,7 @@ void Drivetrain::InitDefaultCommand() {
 }
 
 void Drivetrain::TankDrive(double leftAxis, double rightAxis) {
-  m_robotDrive.TankDrive(leftAxis, rightAxis);
+  m_robotDrive.TankDrive(leftAxis, rightAxis, true);
 }
 
 void Drivetrain::Stop() { m_robotDrive.TankDrive(0.0, 0.0); }
