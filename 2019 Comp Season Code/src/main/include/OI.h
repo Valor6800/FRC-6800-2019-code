@@ -88,8 +88,10 @@
 class OI {
  private:
 
-  frc::Joystick m_leftJoyDrive{1};
-  frc::Joystick m_rightJoyDrive{2};
+  // frc::Joystick m_leftJoyDrive{1};
+  // frc::Joystick m_rightJoyDrive{2};
+
+  frc::XboxController m_driveGamepad{1};
 
   frc::XboxController m_gamepad{0};
 
@@ -111,13 +113,13 @@ class OI {
   // frc::Trigger High_Low {}
 
  public:
-  frc::Joystick& GetLeftJoyDrive();
-  frc::Joystick& GetRightJoyDrive();
+  // frc::Joystick& GetLeftJoyDrive();
+  // frc::Joystick& GetRightJoyDrive();
   frc::XboxController& GetGamepad();
+  frc::XboxController& GetDriveGamepad();
   frc::JoystickButton& GetShifter();
 
   frc::JoystickButton shifter{&m_footPedal, 1};
-  frc::JoystickButton aligner{&m_rightJoyDrive, 1};
 
   bool g_shift = false;
 

@@ -13,12 +13,13 @@ DriveWithJoystick::DriveWithJoystick() { Requires(&Robot::m_drivetrain); }
 
 // Called repeatedly when this Command is scheduled to run
 void DriveWithJoystick::Execute() {
-  auto& joystickL = Robot::m_oi.GetLeftJoyDrive();
-  auto& joystickR = Robot::m_oi.GetRightJoyDrive();
+
+  double leftVal = Robot::m_oi.GetDriveGamepad().GetY(frc::GenericHID::JoystickHand::kLeftHand);
+  double rightVal = Robot::m_oi.GetDriveGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand);
   auto& shifter = Robot::m_oi.GetShifter();
 
   // If joysticks out of deadband, DO set power to wheels, ELSE stop wheels from moving
-  Robot::m_drivetrain.TankDrive(std::abs(joystickL.GetY()) > 0.05 ? joystickL.GetY() : 0, std::abs(joystickR.GetY()) > 0.05 ? joystickR.GetY() : 0);
+  Robot::m_drivetrain.TankDrive(std::abs(leftVal) > 0.05 ? leftVal : 0, std::abs(rightVal) > 0.05 ? rightVal : 0);
   
   // Set low vs. high gear
   Robot::m_drivetrain.SetShifter(!shifter.Get());
