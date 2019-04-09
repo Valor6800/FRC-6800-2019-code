@@ -17,10 +17,7 @@ void ElevatorHighSetpoint::Initialize() {
     if(Robot::m_elevator.hasZeroed) {
         if(height >= -100 && height < 220) {
 
-            if(height < 80 && Robot::m_carriage.GetHatchScorer()) {
-                group = new ElevatorZeroHighMacro();
-                group->Start(); 
-            } else if (Robot::m_carriage.GetHatchScorer()) {
+            if (Robot::m_carriage.GetHatchScorer()) {
                 group = new ElevatorOneHighMacro();
                 group->Start();
             } else {

@@ -16,14 +16,8 @@ void ElevatorCargoSetpoint::Initialize() {
     double height = Robot::m_elevator.GetHeight();
     if(Robot::m_elevator.hasZeroed) {
         if(height >= -100 && height < 220) {
-
-            if(height < 80 && Robot::m_carriage.GetHatchScorer()) {
-                group = new ElevatorZeroCargoMacro();
-                group->Start(); 
-            } else {
-                group = new ElevatorOneCargoMacro();
-                group->Start();
-            }
+            group = new ElevatorOneCargoMacro();
+            group->Start();
         } else if(height >= 220 && height < 330) {
             if(Robot::m_carriage.GetHatchScorer()) {
                 group = new ElevatorTwoCargoMacro();

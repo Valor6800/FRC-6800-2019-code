@@ -17,13 +17,7 @@ void ElevatorMedSetpoint::Initialize() {
     if(Robot::m_elevator.hasZeroed) {
         if(height >= -100 && height < 220) {
             if(Robot::m_oi.g_shift) {
-                if(height < 80 && Robot::m_carriage.GetHatchScorer()) {
-                    
-                    group = new ElevatorZeroRocketCargoMacro();
-                    group->Start();
-
-                    // Robot::m_intake.SetWheelMotor(.5);
-                } else if (Robot::m_carriage.GetHatchScorer()) {
+                if (Robot::m_carriage.GetHatchScorer()) {
                     group = new ElevatorOneRocketCargo();
                     group->Start();
                     // Robot::m_intake.SetWheelMotor(-.5);
@@ -33,10 +27,7 @@ void ElevatorMedSetpoint::Initialize() {
                     group->Start();
                 }
             } else {
-                if(height < 80 && Robot::m_carriage.GetHatchScorer()) {
-                    group = new ElevatorZeroMedMacro();
-                    group->Start(); 
-                } else if (Robot::m_carriage.GetHatchScorer()) {
+                if (Robot::m_carriage.GetHatchScorer()) {
                     group = new ElevatorOneMedMacro();
                     group->Start();
                 } else {
