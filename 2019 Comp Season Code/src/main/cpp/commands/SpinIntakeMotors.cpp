@@ -46,14 +46,17 @@ void SpinIntakeMotors::Execute() { // possible edit trigger axis value
     //     Robot::m_carriage.SetMotors(0);
     // }
 
-    if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand) > .05) {
+    if(Robot::m_oi.GetDriveGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand) > .05 && !Robot::m_oi.GetDriveGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand) > .05) {
+        Robot::m_intake.SetWheelMotor(0);
+        Robot::m_carriage.SetMotors(Robot::m_oi.GetDriveGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand));
+    } else if(!Robot::m_oi.GetDriveGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand) > .05 && Robot::m_oi.GetDriveGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand) > .05) {
+        Robot::m_intake.SetWheelMotor(0);
+        Robot::m_carriage.SetMotors(-Robot::m_oi.GetDriveGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
+    } else if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand) > .05) {
         Robot::m_intake.SetWheelMotor(0);
         Robot::m_carriage.SetMotors(Robot::m_oi.g_shift ? Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand) : -Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand));
     } else {
-        if(Robot::m_carriage.IsPhotoelectric()){
-            Robot::m_intake.SetWheelMotor(0);
-            Robot::m_carriage.SetMotors(0);
-        } else if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand) > 0.05) {
+        if (Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand) > 0.05) {
             Robot::m_oi.g_shift ? Robot::m_intake.SetWheelMotor(.5 * Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand)) : Robot::m_intake.SetWheelMotor(.5 * -Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
             Robot::m_oi.g_shift ? Robot::m_carriage.SetMotors(.4 * Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand)) : Robot::m_carriage.SetMotors(.4 * -Robot::m_oi.GetGamepad().GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
         } else {
