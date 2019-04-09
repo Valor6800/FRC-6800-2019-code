@@ -26,7 +26,8 @@ void PIDTurn::Initialize() {
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool PIDTurn::IsFinished() { return Robot::m_drivetrain.OnTarget() || std::abs(Robot::m_oi.GetLeftJoyDrive().GetY()) > .05 || std::abs(Robot::m_oi.GetRightJoyDrive().GetY()) > .05;}
+bool PIDTurn::IsFinished() { return Robot::m_drivetrain.OnTarget() || true; }
+// std::abs(Robot::m_oi.GetLeftJoyDrive().GetY()) > .05 || std::abs(Robot::m_oi.GetRightJoyDrive().GetY()) > .05;}
 
 void PIDTurn::End() { Robot::m_drivetrain.Disable();}
 

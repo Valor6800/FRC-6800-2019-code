@@ -58,12 +58,16 @@ OI::OI() {
 }
 
 
-frc::Joystick& OI::GetLeftJoyDrive() {
-  return m_leftJoyDrive;
-}
+// frc::Joystick& OI::GetLeftJoyDrive() {
+//   return m_leftJoyDrive;
+// }
 
-frc::Joystick& OI::GetRightJoyDrive() {
-  return m_rightJoyDrive;
+// frc::Joystick& OI::GetRightJoyDrive() {
+//   return m_rightJoyDrive;
+// }
+
+frc::XboxController& OI::GetDriveGamepad() {
+  return m_driveGamepad;
 }
 
 frc::XboxController& OI::GetGamepad() {

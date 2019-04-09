@@ -151,27 +151,23 @@ void Drivetrain::UpdateLimelightTracking() {
 
   double y_val;
 
-  if (tv < 1.0)
-  {
-        m_LimelightHasTarget = false;
-        y_val = Robot::m_oi.GetRightJoyDrive().GetY();
-        m_LimelightDriveCmd = y_val < 0 ? y_val : 0;
-        m_LimelightTurnCmd = 0.0;
-  }
-  else
-  {
-        m_LimelightHasTarget = true;
+  if (tv < 1.0) {
+    m_LimelightHasTarget = false;
+    m_LimelightTurnCmd = 0.0;
+  } else {
+    m_LimelightHasTarget = true;
 
-        // Proportional steering
-        m_LimelightTurnCmd = tx*STEER_K;
-        m_LimelightTurnCmd = clamp(m_LimelightTurnCmd,-MAX_STEER,MAX_STEER);
+    // Proportional steering
+    m_LimelightTurnCmd = tx*STEER_K;
+    m_LimelightTurnCmd = clamp(m_LimelightTurnCmd,-MAX_STEER,MAX_STEER);
 
-        // drive forward until the target area reaches our desired area
-        // m_LimelightDriveCmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
-        // m_LimelightDriveCmd = clamp(m_LimelightDriveCmd,-MAX_DRIVE,MAX_DRIVE);
-        y_val = Robot::m_oi.GetRightJoyDrive().GetY();
-        m_LimelightDriveCmd = y_val < 0 ? y_val : 0;
+    // drive forward until the target area reaches our desired area
+    // m_LimelightDriveCmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
+    // m_LimelightDriveCmd = clamp(m_LimelightDriveCmd,-MAX_DRIVE,MAX_DRIVE);
+    
   }
+
+  m_LimelightDriveCmd = Robot::m_oi.GetDriveGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand);
 }
 
 // frc::Encoder& Drivetrain::GetLeftEncoder() { return m_leftEncoder; }
