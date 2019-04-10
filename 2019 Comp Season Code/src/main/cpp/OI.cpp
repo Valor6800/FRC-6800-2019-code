@@ -17,9 +17,9 @@ OI::OI() {
 
   // m_bumperR.WhenPressed(new ToggleOutriggers());
 
-  m_bumperL.WhenPressed(new SetIntakePivot());
-  m_bumperL.WhenPressed(new SetHatch(true));
-  m_bumperL.WhenReleased(new SetHatch(false));
+  intakePivotTrigger.WhenActive(new SetIntakePivot());
+  hatchTrigger.WhenActive(new SetHatch(true));
+  hatchTrigger.WhenInactive(new SetHatch(false));
 
   m_bumperR.WhenReleased(new HoldHatch(true));
   m_bumperR.WhenPressed(new HoldHatch(false));
