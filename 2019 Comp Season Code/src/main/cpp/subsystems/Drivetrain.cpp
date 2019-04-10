@@ -167,7 +167,8 @@ void Drivetrain::UpdateLimelightTracking() {
     
   }
 
-  m_LimelightDriveCmd = Robot::m_oi.GetDriveGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand);
+  m_LimelightDriveCmd = Robot::m_oi.GetDriveGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand) * std::abs(Robot::m_oi.GetDriveGamepad().GetY(frc::GenericHID::JoystickHand::kRightHand));
+  
 }
 
 // frc::Encoder& Drivetrain::GetLeftEncoder() { return m_leftEncoder; }

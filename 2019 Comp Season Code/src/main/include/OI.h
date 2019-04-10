@@ -86,6 +86,8 @@
 #include "CustomTrigger.h"
 #include "OffsetTuningTriggerAdd.h"
 #include "OffsetTuningTriggerSubtract.h"
+#include "HatchTrigger.h"
+#include "IntakePivotTrigger.h"
 
 class OI {
  private:
@@ -112,6 +114,8 @@ class OI {
   frc::CustomTrigger visionThing{};
   frc::OffsetTuningTriggerAdd offsetRight{};
   frc::OffsetTuningTriggerSubtract offsetLeft{};
+  frc::HatchTrigger hatchTrigger{};
+  frc::IntakePivotTrigger intakePivotTrigger{};
   // frc::Trigger High_Low {}
 
  public:
