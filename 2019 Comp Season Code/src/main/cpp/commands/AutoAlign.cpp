@@ -15,9 +15,9 @@
 AutoAlign::AutoAlign() { Requires(&Robot::m_drivetrain); }
 
 void AutoAlign::Initialize() {
-  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-  table->PutNumber("ledMode",3);
-  table->PutNumber("camMode", 0);
+  // std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  // table->PutNumber("ledMode",3);
+  // table->PutNumber("camMode", 0);
 
   done = false;
 }
@@ -53,9 +53,9 @@ void AutoAlign::Execute() {
 bool AutoAlign::IsFinished() { false; }
 
 void AutoAlign::End() {
-    std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-    table->PutNumber("ledMode",1);
-    table->PutNumber("camMode",1);
+    // std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+    // table->PutNumber("ledMode",1);
+    // table->PutNumber("camMode",1);
 
     Robot::m_drivetrain.TankDrive(0,0);
 }

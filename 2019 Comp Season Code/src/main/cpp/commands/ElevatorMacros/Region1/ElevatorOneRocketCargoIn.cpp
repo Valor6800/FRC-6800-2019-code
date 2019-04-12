@@ -3,5 +3,5 @@
 
 ElevatorOneRocketCargoIn::ElevatorOneRocketCargoIn()
 {
-    AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kMedCargo));
+    AddSequential(new SetElevatorSetpointDefinite(Robot::m_elevator.kMedCargo - 10));
 }

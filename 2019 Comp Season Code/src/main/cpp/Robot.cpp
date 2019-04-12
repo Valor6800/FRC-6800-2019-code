@@ -80,9 +80,9 @@ void Robot::RobotInit() {
   encoderBrokenEntry = tab.Add("Encoder Broken?", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
   visionOffsetEntry = tab.Add("Vision offset", 0).WithWidget(frc::BuiltInWidgets::kNumberSlider).GetEntry();
 
-  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-  table->PutNumber("ledMode",1);
-  table->PutNumber("camMode",1);
+  // std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  // table->PutNumber("ledMode",1);
+  // table->PutNumber("camMode",1);
 //   elevatorSpeedEntry = tab.Add("Elevator Speed", 0).WithWidget(frc::BuiltInWidgets::kDial).GetEntry();
 //   elevatorBrakeEntry = tab.Add("Elevator Brake", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
 
@@ -140,9 +140,9 @@ void Robot::AutonomousInit() {
 
   Robot::m_elevator.m_liftEncoder.Reset();
 
-  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-  table->PutNumber("ledMode",1);
-  table->PutNumber("camMode",1);
+  // std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  // table->PutNumber("ledMode",1);
+  // table->PutNumber("camMode",1);
 }
 
 void Robot::AutonomousPeriodic() {
@@ -176,9 +176,9 @@ void Robot::TeleopInit() {
 
     // Robot::m_elevator.m_liftEncoder.Reset();
 
-  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-  table->PutNumber("ledMode",1);
-  table->PutNumber("camMode",1);
+  // std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  // table->PutNumber("ledMode",1);
+  // table->PutNumber("camMode",1);
 }
 
 void Robot::TeleopPeriodic() {
@@ -212,9 +212,9 @@ void Robot::DisabledInit(){
 
   Robot::m_elevator.hasZeroed = false;
 
-  std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-  table->PutNumber("ledMode",1);
-  table->PutNumber("camMode",1);
+  // std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  // table->PutNumber("ledMode",1);
+  // table->PutNumber("camMode",1);
 }
 
 void Robot::DisabledPeriodic() { 
