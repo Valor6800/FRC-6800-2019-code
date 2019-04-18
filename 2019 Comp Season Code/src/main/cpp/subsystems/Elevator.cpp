@@ -7,7 +7,7 @@
 
 #include "subsystems/Elevator.h"
 
-Elevator::Elevator() : frc::PIDSubsystem("Elevator", .0070, 0.0, 0) {
+Elevator::Elevator() : frc::PIDSubsystem("Elevator", .0080, 0.0, 0.00012) {
   SetAbsoluteTolerance(0.01);
   GetPIDController()->SetContinuous(false);
   SetOutputRange(-.8, 1); // -.6 to .8 for comp code
@@ -36,14 +36,14 @@ void Elevator::UsePIDOutput(double output) {
 
   double power = output;
 
-  // .3 and .25 for comp code
-  // This is for going up
-  if(power < .22 && power > 0) {
-    power = .22;
+  // .22
+  if(power < .2 && power > 0) {
+    power = .2;
   }
+  // .17
   // This is for going down
-  else if(power > -.17 && power < 0) {
-    power = -.17;
+  else if(power > -.1 && power < 0) {
+    power = -.1;
   }
 
   m_liftMotors.PIDWrite(-power);

@@ -114,8 +114,6 @@ class OI {
   frc::CustomTrigger visionThing{};
   frc::OffsetTuningTriggerAdd offsetRight{};
   frc::OffsetTuningTriggerSubtract offsetLeft{};
-  frc::HatchTrigger hatchTrigger{};
-  frc::IntakePivotTrigger intakePivotTrigger{};
   // frc::Trigger High_Low {}
 
  public:
