@@ -22,7 +22,7 @@ OI::OI() {
   // hatchTrigger.WhenInactive(new SetHatch(false));
 
   m_bumperL.WhenPressed(new SetIntakePivot());
-  m_bumperL.WhileActive(new SetHatch(true));
+  m_bumperL.WhenPressed(new SetHatch(true));
   m_bumperL.WhenReleased(new SetHatch(false));
 
   m_bumperR.WhenReleased(new HoldHatch(true));

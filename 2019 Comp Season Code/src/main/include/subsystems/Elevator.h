@@ -25,10 +25,10 @@ class Elevator : public frc::PIDSubsystem {
   // static constexpr double kBottom =             550;
   static constexpr double kLowHatch =           105;
   static constexpr double kLowCargo =           105;
-  static constexpr double kMedHatch =           440;
-  static constexpr double kMedCargo =           410;
-  static constexpr double kHighHatch =          685;
-  static constexpr double kHighCargo =          685;
+  static constexpr double kMedHatch =           435;
+  static constexpr double kMedCargo =           400;
+  static constexpr double kHighHatch =          695;
+  static constexpr double kHighCargo =          675;
   // static constexpr double kTop =                750;
   static constexpr double kShip =               250;
 
